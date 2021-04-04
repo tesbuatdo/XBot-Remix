@@ -115,7 +115,7 @@ async def pingme(pong):
 @register(outgoing=True, pattern="^.xspeed")
 async def _(event):
     if event.fwd_from:
-        return    
+        return
     await event.edit("__Test Internet Speed Connection..__")
     as_text = False
     as_document = False
@@ -147,12 +147,12 @@ async def _(event):
                   f"**ISP Rating:** {i_s_p_rating}")
         logo = speedtest_image
         await bot.send_file(
-                event.chat_id,
-                logo,
-                caption=output,
-                force_document=as_document,
-                reply_to=reply_msg_id,
-                allow_cache=False
+            event.chat_id,
+            logo,
+            caption=output,
+            force_document=as_document,
+            reply_to=reply_msg_id,
+            allow_cache=False
         )
         await event.delete()
 
