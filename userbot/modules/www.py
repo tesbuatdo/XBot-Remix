@@ -96,7 +96,7 @@ ISP Rating: {}""".format(ms, speed_convert(download_speed), speed_convert(upload
             await bot.send_file(
                 event.chat_id,
                 logo,
-                caption=output
+                caption=output,
                 force_document=as_document,
                 reply_to=reply_msg_id,
                 allow_cache=False
