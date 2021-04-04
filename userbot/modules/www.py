@@ -7,9 +7,7 @@
     Information Superhighway (yes, Internet). """
 
 import speedtest
-from telethon import events
 import time
-import io
 from datetime import datetime
 from userbot import StartTime, bot, CMD_HELP
 from userbot.events import register
