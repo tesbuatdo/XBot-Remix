@@ -12,7 +12,7 @@ async def image_maker(event):
         await event.edit("`Reply di pesan user goblok!`")
         return
     await event.client.download_profile_photo(
-        replied_user.id, file="user.png", download_big=True
+        replied_user, file="user.png", download_big=True
     )
     user_photo = Image.open("user.png")
     id_template = Image.open("userbot/resources/FrameID.png")
