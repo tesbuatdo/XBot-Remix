@@ -1,5 +1,5 @@
 from telethon import events, functions, types
-from userbot.utils.tools import admin_cmd
+from userbot.utils.tools import is_admin
 from userbot import CMD_HELP, bot
 from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
 
