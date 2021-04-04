@@ -153,5 +153,3 @@ async def _(event):
                 reply_to=reply_msg_id,
                 allow_cache=False
             )
-            
-        
