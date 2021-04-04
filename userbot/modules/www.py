@@ -8,8 +8,6 @@
 
 
 import time
-import io
-import os
 from datetime import datetime
 from speedtest import Speedtest
 from userbot import StartTime, bot, CMD_HELP
