@@ -132,7 +132,12 @@ async def spdtst(event):
     i_s_p_rating = client_infos.get("isprating")
     response = s.results.share()
     speedtest_image = response
-    output = f"**SpeedTest** completed in {ms} seconds, \nDownload: {speed_convert(download_speed)}, \nUpload: {convert_from_bytes(upload_speed)}, \nPing: {ping_time}, \nInternet Service Provider: {i_s_p}, \nISP Rating: {i_s_p_rating}")
+    output = (f"**SpeedTest** completed in {ms} seconds\n"
+             f"**Download:** {speed_convert(download_speed)}\n"
+             f"**Upload:** {convert_from_bytes(upload_speed)}\n"
+             f"**Ping:** {ping_time}\n"
+             f"**Internet Service Provider:** {i_s_p}\n"
+             f"**ISP Rating:** {i_s_p_rating}")
     logo=speedtest_image
     await bot.send_file(
         event.chat_id,
