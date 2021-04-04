@@ -133,15 +133,15 @@ async def spdtst(event):
     response = s.results.share()
     speedtest_image = response
     output = (f"**SpeedTest** completed in {ms} seconds\n"
-             f"**Download:** {speed_convert(download_speed)}\n"
-             f"**Upload:** {convert_from_bytes(upload_speed)}\n"
-             f"**Ping:** {ping_time}\n"
-             f"**Internet Service Provider:** {i_s_p}\n"
-             f"**ISP Rating:** {i_s_p_rating}")
-    logo=speedtest_image
+              f"**Download:** {speed_convert(download_speed)}\n"
+              f"**Upload:** {convert_from_bytes(upload_speed)}\n"
+              f"**Ping:** {ping_time}\n"
+              f"**Internet Service Provider:** {i_s_p}\n"
+              f"**ISP Rating:** {i_s_p_rating}")
+    logo = speedtest_image
     await bot.send_file(
         event.chat_id,
         logo,
-        caption = output,
-        force_document = False)
+        caption=output,
+        force_document=False)
     await event.delete()
