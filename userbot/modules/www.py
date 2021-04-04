@@ -8,9 +8,11 @@
 
 
 import time
+import io
+import os
 from datetime import datetime
 from speedtest import Speedtest
-from userbot import StartTime, bot
+from userbot import StartTime, bot, CMD_HELP
 from userbot.events import register
 
 
@@ -66,13 +68,7 @@ async def speedtst(spd):
               f"{result['client']['isp']}"
               )
     logo = speedtest_image
-    await bot.send_file(
-        spd.chat_id,
-        logo,
-        caption=output,
-        force_document=False,
-        allow_cache=False
-    )
+    await bot.send_file(spd.chat_id, logo, caption=output, force_document=False, allow_cache=False)
     await spd.delete()
 
 
