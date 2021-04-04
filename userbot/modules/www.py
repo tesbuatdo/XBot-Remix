@@ -152,15 +152,14 @@ async def _(event):
         response = s.results.share()
         speedtest_image = response
         await bot.send_file(
-           event.chat_id,
-           speedtest_image,
-           caption="""**SpeedTest** completed in {} seconds\nDownload: {}\nUpload: {}\nPing: {}\nInternet Service Provider: {}\nISP Rating: {}""".format(ms, convert_from_bytes(download_speed), convert_from_bytes(upload_speed), ping_time, i_s_p, i_s_p_rating),
-           force_document=as_document,   
-           reply_to=reply_msg_id,        
-           allow_cache=False,
+            event.chat_id,
+            speedtest_image,
+            caption="""**SpeedTest** completed in {} seconds\nDownload: {}\nUpload: {}\nPing: {}\nInternet Service Provider: {}\nISP Rating: {}""".format(ms, convert_from_bytes(download_speed), convert_from_bytes(upload_speed), ping_time, i_s_p, i_s_p_rating),
+            force_document=False,   
+            reply_to=reply_msg_id,        
+            allow_cache=False
         )
-    
-    
+
 
 CMD_HELP.update(
     {"webtools": "`.ping`\
