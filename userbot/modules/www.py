@@ -130,7 +130,7 @@ def convert_from_bytes(size):
 
 @register(outgoing=True, pattern="^.xspeed$")
 async def _(event):    
-    await event.edit("`Test Speed Internet connection..!`🔥")
+    await event.edit("`Test Speed Internet connection.`🔥")
     start = datetime.now()
     s = speedtest.Speedtest()
     s.get_best_server()
@@ -144,17 +144,22 @@ async def _(event):
     ping_time = response.get("ping")
     client_infos = response.get("client")
     i_s_p = client_infos.get("isp")
-    i_s_p_rating = client_infos.get("isprating")    
-    response = s.results.share()
-    speedtest_image = response
-    await bot.send_file(
+    i_s_p_rating = client_infos.get("isprating")
+    reply_msg_id = event.message.id
+    if event.reply_to_msg_id:
+        reply_msg_id = event.reply_to_msg_id
+    try:    
+        response = s.results.share()
+        speedtest_image = response
+        await bot.send_file(
            event.chat_id,
            speedtest_image,
-           caption="**SpeedTest** completed in {} seconds\nDownload: {}\nUpload: {}\nPing: {}\nInternet Service Provider: {}\nISP Rating: {}".format(ms, convert_from_bytes(download_speed), convert_from_bytes(upload_speed), ping_time, i_s_p, i_s_p_rating),
-           force_document=as_document,           
+           caption="""**SpeedTest** completed in {} seconds\nDownload: {}\nUpload: {}\nPing: {}\nInternet Service Provider: {}\nISP Rating: {}""".format(ms, convert_from_bytes(download_speed), convert_from_bytes(upload_speed), ping_time, i_s_p, i_s_p_rating),
+           force_document=as_document,   
+           reply_to=reply_msg_id,        
            allow_cache=False,
-    )
-    await event.delete()
+        )
+    
     
 
 CMD_HELP.update(
