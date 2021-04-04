@@ -142,24 +142,10 @@ async def speedtst(event):
         await bot.send_file(
             event.chat_id,
             speedtest_image,
-            caption="**SpeedTest** completed in {} seconds, Download: {}, Upload: {}, Ping: {}, Internet Service Provider: {}, ISP Rating: {}".format(ms, convert_from_bytes(download_speed), convert_from_bytes(upload_speed), ping_time, i_s_p, i_s_p_rating),
+            caption="**SpeedTest** completed in {} seconds, Download: {}, Upload: {}, Ping: {}, Internet Service Provider: {}, ISP Rating: {}".format(ms, speed_convert(download_speed), convert_from_bytes(upload_speed), ping_time, i_s_p, i_s_p_rating),
             force_document=False,   
             reply_to=reply_msg_id,        
             allow_cache=False
         )
         await event.delete()
 
-def convert_from_bytes(size):
-    power = 2**10
-    n = 0
-    units = {
-        0: "",
-        1: "kilobytes",
-        2: "megabytes",
-        3: "gigabytes",
-        4: "terabytes"
-    }
-    while size > power:
-        size /= power
-        n += 1
-    return f"{round(size, 2)} {units[n]}"
