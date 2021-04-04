@@ -120,9 +120,7 @@ async def _(event):
     as_text = False
     as_document = True
     if input_str == "image":
-        as_document = False
-    elif input_str == "file":
-        as_document = False
+        as_document = False    
     elif input_str == "text":
         as_text = True
     await event.edit("Calculating my internet speed. Please wait!")
@@ -147,13 +145,6 @@ async def _(event):
         response = s.results.share()
         speedtest_image = response
         if as_text:
-            await event.edit("""**SpeedTest** completed in {} seconds
-Download: {}
-Upload: {}
-Ping: {}
-Internet Service Provider: {}
-ISP Rating: {}""".format(ms, speed_convert(download_speed), speed_convert(upload_speed), ping_time, i_s_p, i_s_p_rating))
-        else:
             await bot.send_file(
                 event.chat_id,
                 speedtest_image,
@@ -163,10 +154,12 @@ ISP Rating: {}""".format(ms, speed_convert(download_speed), speed_convert(upload
                 allow_cache=False
             )
             await event.delete()
-    except Exception as exc:
-        await event.edit("""**SpeedTest** completed in {} seconds
+        else:
+            await event.edit("""**SpeedTest** completed in {} seconds
 Download: {}
 Upload: {}
 Ping: {}
-__With the Following ERRORs__
-{}""".format(ms, speed_convert(download_speed), speed_convert(upload_speed), ping_time, str(exc)))
+Internet Service Provider: {}
+ISP Rating: {}""".format(ms, speed_convert(download_speed), speed_convert(upload_speed), ping_time, i_s_p, i_s_p_rating))
+            
+    
