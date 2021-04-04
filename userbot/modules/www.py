@@ -155,11 +155,11 @@ Internet Service Provider: {}
 ISP Rating: {}""".format(ms, speed_convert(download_speed), speed_convert(upload_speed), ping_time, i_s_p, i_s_p_rating))
         else:
             output = (f"**SpeedTest** completed in {ms} seconds\n"
-              f"**Download:** {speed_convert(download_speed)}\n"
-              f"**Upload:** {speed_convert(upload_speed)}\n"
-              f"**Ping:** {ping_time}\n"
-              f"**Internet Service Provider:** {i_s_p}\n"
-              f"**ISP Rating:** {i_s_p_rating}")
+                      f"**Download:** {speed_convert(download_speed)}\n"
+                      f"**Upload:** {speed_convert(upload_speed)}\n"
+                      f"**Ping:** {ping_time}\n"
+                      f"**Internet Service Provider:** {i_s_p}\n"
+                      f"**ISP Rating:** {i_s_p_rating}")
             logo = speedtest_image
             await bot.send_file(
                 event.chat_id,
