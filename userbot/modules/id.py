@@ -4,9 +4,15 @@ from userbot import CMD_HELP
 from userbot.events import register
 
 
-@register(outgoing=True, pattern=r"^\.id(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.xid")
 async def image_maker(event):
+    if event.fwd_from:
+        return
     replied_user = await event.get_reply_message()
+    if not replied_user:
+        await event.edit("`Reply di pesan user goblok!`")
+        return
+    await event.edit("`Membuat ID Card..`")
     await event.client.download_profile_photo(
         replied_user.from_id, file="user.png", download_big=True
     )
@@ -25,7 +31,6 @@ async def image_maker(event):
         font=font,
     )
     id_template.save("user_id.png")
-    await event.edit("`Membuat ID Card..`")
     await event.client.send_message(
         event.chat_id,
         "Generated User ID",
