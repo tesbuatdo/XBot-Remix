@@ -47,7 +47,7 @@ async def get_readable_time(seconds: int) -> str:
 async def _(event):
     if event.fwd_from:
         return
-    await event.edit("__Test Internet Speed Connection..__")    
+    await event.edit("__Test Internet Speed Connection..__")
     start = datetime.now()
     s = speedtest.Speedtest()
     s.get_best_server()
