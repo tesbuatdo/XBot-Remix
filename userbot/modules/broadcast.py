@@ -1,7 +1,7 @@
 import io
 import os
 
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, bot, TMP_DOWNLOAD_DIRECTORY
+from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, bot, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 from userbot.modules.sql_helper.broadcast_sql import (
@@ -85,7 +85,7 @@ async def _(event):
 @register(outgoing=True, pattern=r"^\.broadcast ?(.*)")
 async def _(event):
     await event.edit("**Fine. Broadcasting in Progress. Kindly Wait !**")
-    sedpath = TMP_DOWNLOAD_DIRECTORY
+    sedpath = TEMP_DOWNLOAD_DIRECTORY
     all_chnnl = get_all_chnnl()
     if len(all_chnnl) == 0:
         await event.edit("No Channel Or Group Found On Database. Please Check Again")
