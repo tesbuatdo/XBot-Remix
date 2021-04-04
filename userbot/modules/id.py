@@ -10,10 +10,9 @@ async def image_maker(event):
     replied_user = await event.get_reply_message()
     if not replied_user:
         await event.edit("`Reply di pesan user goblok!`")
-        return
-    chat = event.input_chat
+        return    
     await event.client.download_profile_photo(
-        replied_user.from_id, chat, file="user.png", download_big=True
+        replied_user.id, file="user.png", download_big=True
     )
     user_photo = Image.open("user.png")
     id_template = Image.open("userbot/resources/FrameID.png")
