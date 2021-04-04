@@ -144,4 +144,9 @@ async def spdtst(event):
         logo,
         caption=output,
         force_document=False)
-    await event.delete()
+    await event.edit("""**SpeedTest** completed in {} seconds
+Download: {}
+Upload: {}
+Ping: {}
+__With the Following ERRORs__
+{}""".format(ms, convert_from_bytes(download_speed), convert_from_bytes(upload_speed), ping_time))
