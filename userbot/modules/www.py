@@ -130,7 +130,7 @@ def convert_from_bytes(size):
 
 @register(outgoing=True, pattern="^.xspeed$")
 async def _(event):    
-    await event.edit("`Test Speed Internet connection..!` 🔥")
+    await event.edit("`Test Speed Internet connection..!`🔥")
     start = datetime.now()
     s = speedtest.Speedtest()
     s.get_best_server()
@@ -153,8 +153,8 @@ async def _(event):
            caption="**SpeedTest** completed in {} seconds\nDownload: {}\nUpload: {}\nPing: {}\nInternet Service Provider: {}\nISP Rating: {}".format(ms, convert_from_bytes(download_speed), convert_from_bytes(upload_speed), ping_time, i_s_p, i_s_p_rating),
            force_document=as_document,           
            allow_cache=False,
-        )
-        await event.delete()
+    )
+    await event.delete()
     
 
 CMD_HELP.update(
