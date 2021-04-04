@@ -6,12 +6,9 @@
 """ Userbot module containing commands related to the \
     Information Superhighway (yes, Internet). """
 
-from telethon import events
-import io
 import speedtest
 import time
 from datetime import datetime
-from speedtest import Speedtest
 from userbot import StartTime, bot, CMD_HELP
 from userbot.events import register
 
@@ -44,9 +41,8 @@ async def get_readable_time(seconds: int) -> str:
 
 
 @register(outgoing=True, pattern="^.speed$")
-async def speedtest(event):   
+async def speedtest(event):
     await event.edit("__Test Internet Speed Connection..__")
-    as_text = False
     as_document = True
     start = datetime.now()
     s = speedtest.Speedtest()
@@ -61,7 +57,7 @@ async def speedtest(event):
     ping_time = response.get("ping")
     client_infos = response.get("client")
     i_s_p = client_infos.get("isp")
-    i_s_p_rating = client_infos.get("isprating")    
+    i_s_p_rating = client_infos.get("isprating")
     response = s.results.share()
     speedtest_image = response
     output = (f"**SpeedTest** completed in {ms} seconds\n"
