@@ -8,7 +8,6 @@
 
 
 import time
-import speedtest
 from datetime import datetime
 from speedtest import Speedtest
 from userbot import StartTime, bot
@@ -71,7 +70,7 @@ async def speedtst(spd):
         spd.chat_id,
         logo,
         caption=output,
-        force_document=False,            
+        force_document=False,
         allow_cache=False
     )
     await spd.delete()
