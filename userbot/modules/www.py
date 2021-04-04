@@ -153,11 +153,5 @@ async def _(event):
                 reply_to=reply_msg_id,
                 allow_cache=False
             )
-            await event.delete()
-        else:
-            await event.edit("""**SpeedTest** completed in {} seconds
-Download: {}
-Upload: {}
-Ping: {}
-Internet Service Provider: {}
-ISP Rating: {}""".format(ms, speed_convert(download_speed), speed_convert(upload_speed), ping_time, i_s_p, i_s_p_rating))
+            
+        
