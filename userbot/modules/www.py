@@ -40,7 +40,7 @@ async def get_readable_time(seconds: int) -> str:
     return up_time
 
 
-@register(outgoing=True, pattern="^.speed$")
+@register(outgoing=True, pattern="^.speed ?(.*)")
 async def _(event):
     if event.fwd_from:
         return
