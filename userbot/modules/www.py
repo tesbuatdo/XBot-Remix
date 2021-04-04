@@ -113,8 +113,8 @@ async def pingme(pong):
     await pong.edit("**CROOTSS!\n%sms**" % (duration))
 
 
-@register(outgoing=True, pattern="^.xspeed$")
-async def (event):    
+@register(outgoing=True, pattern="^.speed$")
+async def speedtst(event):
     await event.edit("`Test Speed Internet connection.`🔥")
     start = datetime.now()
     s = speedtest.Speedtest()
@@ -123,6 +123,7 @@ async def (event):
     s.upload()
     end = datetime.now()
     ms = (end - start).microseconds / 1000
+
     response = s.results.dict()
     download_speed = response.get("download")
     upload_speed = response.get("upload")
@@ -130,12 +131,14 @@ async def (event):
     client_infos = response.get("client")
     i_s_p = client_infos.get("isp")
     i_s_p_rating = client_infos.get("isprating")
+
     reply_msg_id = event.message.id
     if event.reply_to_msg_id:
         reply_msg_id = event.reply_to_msg_id
     try:    
         response = s.results.share()
         speedtest_image = response
+
         await bot.send_file(
             event.chat_id,
             speedtest_image,
