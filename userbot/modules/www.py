@@ -44,9 +44,7 @@ async def get_readable_time(seconds: int) -> str:
 
 
 @register(outgoing=True, pattern="^.speed$")
-async def speedtest(event):
-    if event.fwd_from:
-        return
+async def speedtest(event):   
     await event.edit("__Test Internet Speed Connection..__")
     as_text = False
     as_document = True
