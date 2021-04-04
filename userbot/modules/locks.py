@@ -1,15 +1,14 @@
-import io
-import os
 
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, bot, ALIVE_NAME
+from userbot import ALIVE_NAME, CMD_HELP
 
 from telethon.tl.functions.messages import EditChatDefaultBannedRightsRequest
 from telethon.tl.types import ChatBannedRights
 
 from userbot.events import register
-from userbot.utils.tools import is_admin
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Set ALIVE_NAME in config vars in Heroku"
+DEFAULTUSER = str(
+    ALIVE_NAME) if ALIVE_NAME else "Set ALIVE_NAME in config vars in Heroku"
+
 
 @register(outgoing=True, pattern=r"^.lock ?(.*)")
 async def locks(event):
@@ -195,4 +194,3 @@ CMD_HELP.update({
 \n\nAvailable message types to lock/unlock are: \
 \n`all, msg, media, sticker, gif, game, inline, poll, invite, pin, info`"
 })
-

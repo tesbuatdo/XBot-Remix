@@ -46,8 +46,9 @@ def get_all_chnnl():
 
 def already_added(chat_id):
     try:
-        return SESSION.query(Broadcast).filter(Broadcast.chat_id == str(chat_id)).one()
-    except:
+        return SESSION.query(Broadcast).filter(
+            Broadcast.chat_id == str(chat_id)).one()
+    except BaseException:
         return None
     finally:
         SESSION.close()

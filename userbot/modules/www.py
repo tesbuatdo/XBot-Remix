@@ -8,11 +8,10 @@
 
 
 import time
-import io
 import speedtest
 from datetime import datetime
 from speedtest import Speedtest
-from userbot import CMD_HELP, StartTime, bot
+from userbot import StartTime, bot
 from userbot.events import register
 
 
@@ -130,14 +129,13 @@ async def speedtst(event):
     ping_time = response.get("ping")
     client_infos = response.get("client")
     i_s_p = client_infos.get("isp")
-    i_s_p_rating = client_infos.get("isprating")    
+    i_s_p_rating = client_infos.get("isprating")
     response = s.results.share()
     speedtest_image = response
     await bot.send_file(
-            event.chat_id,
-            speedtest_image,
-            caption="**SpeedTest** completed in {} seconds, Download: {}, Upload: {}, Ping: {}, Internet Service Provider: {}, ISP Rating: {}".format(ms, speed_convert(download_speed), convert_from_bytes(upload_speed), ping_time, i_s_p, i_s_p_rating),
-            force_document=False,                      
-            allow_cache=False)
+        event.chat_id,
+        speedtest_image,
+        caption="**SpeedTest** completed in {} seconds, Download: {}, Upload: {}, Ping: {}, Internet Service Provider: {}, ISP Rating: {}".format(ms, speed_convert(download_speed), convert_from_bytes(upload_speed), ping_time, i_s_p, i_s_p_rating),
+        force_document=False,
+        allow_cache=False)
     await event.delete()
-
