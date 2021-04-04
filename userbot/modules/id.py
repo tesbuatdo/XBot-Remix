@@ -1,5 +1,4 @@
 from PIL import Image, ImageDraw, ImageFont
-from telethon import events
 from userbot import CMD_HELP
 from userbot.events import register
 
