@@ -234,15 +234,15 @@ async def amireallyalive(alive):
     output = (
         f"۝⩵꙰ཱི►XBOT-REMIX◄⩵꙰ཱི۝\n __running on__ 🤖 __**{UPSTREAM_REPO_BRANCH}**__ 🤖\n"
         f"╭━━━━━━━━━━━━━━━━━━━━━╮\n"
-        f"┣[•👤 **USER     :** __**{DEFAULTUSER}**__\n"
-        f"┣[ 👁‍🗨 **Username** :** __**@{user.username}**__\n"
+        f"┣[•👤 **USER     :{DEFAULTUSER}**\n"
+        f"┣[•👁‍🗨 **Username** :@{user.username}**\n"
         "`┣▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱`\n"
-        f"┣[•⚙️ **Telethon :** __**v {version.__version__}**__ 🔥\n"
-        f"┣[•🐍 **Python   :** __**v {python_version()}**__ 🔥\n"
-        f"┣[•💻 **Base on  :** __**{UPSTREAM_REPO_BRANCH}**__🔥\n"
-        f"┣[•🛠 **Version  :** __**{BOT_VER}**__ 🔥\n"
-        f"┣[•🗃 **Modules  :** __**{len(modules)}**__ Loaded🔥\n"
-        f"┣[•🕒 **Uptime   :** __**{uptime}**__ 🔥\n"
+        f"┣[•⚙️ **Telethon :v {version.__version__}**🔥\n"
+        f"┣[•🐍 **Python   :v {python_version()}**🔥\n"
+        f"┣[•💻 **Base on  :{UPSTREAM_REPO_BRANCH}**🔥\n"
+        f"┣[•🛠 **Version  :{BOT_VER}**🔥\n"
+        f"┣[•🗃 **Modules  :{len(modules)}Loaded**🔥\n"
+        f"┣[•🕒 **Uptime   :{uptime}**🔥\n"
         f"╰━━━━━━━━━━━━━━━━━━━━━╯\n"
         f" **•MOD BY :** **{DEFAULTUSER}**")
     if ALIVE_LOGO:
