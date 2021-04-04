@@ -112,20 +112,13 @@ async def pingme(pong):
     await pong.edit("**CROOTSS!\n%sms**" % (duration))
 
 
-@register(outgoing=True, pattern="^.xspeed ?(.*)")
+@register(outgoing=True, pattern="^.xspeed")
 async def _(event):
     if event.fwd_from:
-        return
-    input_str = event.pattern_match.group(1)
+        return    
+    await event.edit("__Test Internet Speed Connection..__")
     as_text = False
-    as_document = True
-    if input_str == "image":
-        as_document = False
-    elif input_str == "file":
-        as_document = True
-    elif input_str == "text":
-        as_text = True
-    await event.edit("Calculating my internet speed. Please wait!")
+    as_document = False
     start = datetime.now()
     s = speedtest.Speedtest()
     s.get_best_server()
@@ -146,34 +139,29 @@ async def _(event):
     try:
         response = s.results.share()
         speedtest_image = response
-        if as_text:
-            await event.edit("""**SpeedTest** completed in {} seconds
-Download: {}
-Upload: {}
-Ping: {}
-Internet Service Provider: {}
-ISP Rating: {}""".format(ms, speed_convert(download_speed), speed_convert(upload_speed), ping_time, i_s_p, i_s_p_rating))
-        else:
-            output = (f"**SpeedTest** completed in {ms} seconds\n"
-                      f"**Download:** {speed_convert(download_speed)}\n"
-                      f"**Upload:** {speed_convert(upload_speed)}\n"
-                      f"**Ping:** {ping_time}\n"
-                      f"**Internet Service Provider:** {i_s_p}\n"
-                      f"**ISP Rating:** {i_s_p_rating}")
-            logo = speedtest_image
-            await bot.send_file(
+        output = (f"**SpeedTest** completed in {ms} seconds\n"
+                  f"**Download:** {speed_convert(download_speed)}\n"
+                  f"**Upload:** {speed_convert(upload_speed)}\n"
+                  f"**Ping:** {ping_time}\n"
+                  f"**Internet Service Provider:** {i_s_p}\n"
+                  f"**ISP Rating:** {i_s_p_rating}")
+        logo = speedtest_image
+        await bot.send_file(
                 event.chat_id,
                 logo,
                 caption=output,
                 force_document=as_document,
                 reply_to=reply_msg_id,
                 allow_cache=False
-            )
-            await event.delete()
-    except Exception as exc:
-        await event.edit("""**SpeedTest** completed in {} seconds
-Download: {}
-Upload: {}
-Ping: {}
-__With the Following ERRORs__
-{}""".format(ms, speed_convert(download_speed), speed_convert(upload_speed), ping_time, str(exc)))
+        )
+        await event.delete()
+
+
+CMD_HELP.update(
+    {"ping": "`.ping`\
+    \nUsage: Shows how long it takes to ping your bot.\
+    \n\n`.speed`\
+    \nUsage: Does a speedtest and shows the results.\
+    \n\n`.pong`\
+    \nUsage: Shows how long it takes to ping your bot."
+     })
