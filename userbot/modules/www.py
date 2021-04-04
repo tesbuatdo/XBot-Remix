@@ -44,23 +44,23 @@ async def get_readable_time(seconds: int) -> str:
 
 
 @register(outgoing=True, pattern="^.speed$")
-    await event.edit("__Test Internet Speed Connection..__")
-    start = datetime.now()
-    s = speedtest.Speedtest()
-    s.get_best_server()
-    s.download()
-    s.upload()
-    end = datetime.now()
-    ms = (end - start).microseconds / 1000
-    response = s.results.dict()
-    download_speed = response.get("download")
-    upload_speed = response.get("upload")
-    ping_time = response.get("ping")
-    client_infos = response.get("client")
-    i_s_p = client_infos.get("isp")
-    i_s_p_rating = client_infos.get("isprating")
-    reply_msg_id = event.message.id
-    if event.reply_to_msg_id:
+await event.edit("__Test Internet Speed Connection..__")
+start = datetime.now()
+s = speedtest.Speedtest()
+s.get_best_server()
+s.download()
+s.upload()
+end = datetime.now()
+ms = (end - start).microseconds / 1000
+response = s.results.dict()
+download_speed = response.get("download")
+upload_speed = response.get("upload")
+ping_time = response.get("ping")
+client_infos = response.get("client")
+i_s_p = client_infos.get("isp")
+ i_s_p_rating = client_infos.get("isprating")
+  reply_msg_id = event.message.id
+   if event.reply_to_msg_id:
         reply_msg_id = event.reply_to_msg_id
     try:
         response = s.results.share()
@@ -74,7 +74,6 @@ async def get_readable_time(seconds: int) -> str:
         logo = speedtest_image
         await bot.send_file(event.chat_id, logo, caption=output, force_document=False, reply_to=reply_msg_id)
         await event.delete()
-
 
 
 def speed_convert(size):
