@@ -180,7 +180,7 @@ async def rem_locks(event):
         await event.client(
             EditChatDefaultBannedRightsRequest(peer=peer_id,
                                                banned_rights=unlock_rights))
-        await event.edit(f"{DEFAULTUSER} `Unlocked {what} now Start Chit Chat !!`")
+        await event.edit(f"{DEFAULTUSER} `Telah membuka izin {what} di group ini !!`")
     except BaseException as e:
         await event.edit(
             f"`Do I have proper rights for that ??`\n**Error:** {str(e)}")
