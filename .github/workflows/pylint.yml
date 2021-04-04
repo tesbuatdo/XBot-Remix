@@ -31,4 +31,4 @@ jobs:
           repository: .
           commit_user_name: ximfine
           commit_user_email: xbotprojects@gmail.com
-          commit_author: @X_ImFine
+          commit_author: ximfine
