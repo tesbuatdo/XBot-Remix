@@ -48,6 +48,8 @@ async def speedtest(event):
     if event.fwd_from:
         return
     await event.edit("__Test Internet Speed Connection..__")
+    as_text = False
+    as_document = True
     start = datetime.now()
     s = speedtest.Speedtest()
     s.get_best_server()
@@ -71,7 +73,7 @@ async def speedtest(event):
               f"**Internet Service Provider:** {i_s_p}\n"
               f"**ISP Rating:** {i_s_p_rating}")
     logo = speedtest_image
-    await bot.send_file(event.chat_id, logo, caption=output, force_document=False, allow_cache=False)
+    await bot.send_file(event.chat_id, logo, caption=output, force_document=as_document, allow_cache=False)
     await event.delete()
 
 
