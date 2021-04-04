@@ -232,36 +232,36 @@ async def amireallyalive(alive):
     user = await bot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
-        f"۝⩵꙰ཱི►XBOT-REMIX◄⩵꙰ཱི۝\n running on 🤖 `{UPSTREAM_REPO_BRANCH}` 🤖\n"
+        f"۝⩵꙰ཱི►XBOT-REMIX◄⩵꙰ཱི۝\n __running on__ 🤖 __**{UPSTREAM_REPO_BRANCH}**__ 🤖\n"
         f"╭━━━━━━━━━━━━━━━━━━━━━╮\n"
-        f"┣[•👤 `USER     :`{DEFAULTUSER}\n"
-        f"┣[ 👁‍🗨 `Username :`@{user.username}\n"
+        f"┣[•👤 **USER     :** __**{DEFAULTUSER}**__\n"
+        f"┣[ 👁‍🗨 **Username** :** __**@{user.username}**__\n"
         "`┣▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱`\n"
-        f"┣[•⚙️ `Telethon :`v {version.__version__} 🔥\n"
-        f"┣[•🐍 `Python   :`v {python_version()} 🔥\n"
-        f"┣[•💻 `Base on  :`{UPSTREAM_REPO_BRANCH}🔥\n"
-        f"┣[•🛠 `Version  :`{BOT_VER} 🔥\n"
-        f"┣[•🗃 `Modules  :`{len(modules)} Loaded🔥\n"
-        f"┣[•🕒 `Uptime   :`{uptime} 🔥\n"
+        f"┣[•⚙️ **Telethon :** __**v {version.__version__}**__ 🔥\n"
+        f"┣[•🐍 **Python   :** __**v {python_version()}**__ 🔥\n"
+        f"┣[•💻 **Base on  :** __**{UPSTREAM_REPO_BRANCH}**__🔥\n"
+        f"┣[•🛠 **Version  :** __**{BOT_VER}**__ 🔥\n"
+        f"┣[•🗃 **Modules  :** __**{len(modules)}**__ Loaded🔥\n"
+        f"┣[•🕒 **Uptime   :** __**{uptime}**__ 🔥\n"
         f"╰━━━━━━━━━━━━━━━━━━━━━╯\n"
-        f" •MOD BY : `{DEFAULTUSER}`")
+        f" **•MOD BY :** **{DEFAULTUSER}**")
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
             await alive.delete()
             msg = await bot.send_file(alive.chat_id, logo, caption=output)
-            await asyncio.sleep(100)
+            await asyncio.sleep(200)
             await msg.delete()
         except BaseException:
             await alive.edit(
                 output + "\n\n *`The provided logo is invalid."
                 "\nMake sure the link is directed to the logo picture`"
             )
-            await asyncio.sleep(100)
+            await asyncio.sleep(200)
             await alive.delete()
     else:
         await alive.edit(output)
-        await asyncio.sleep(100)
+        await asyncio.sleep(200)
         await alive.delete()
 
 
