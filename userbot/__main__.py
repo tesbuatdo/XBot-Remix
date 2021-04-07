@@ -13,6 +13,8 @@ from userbot.callsmusic import run
 from userbot import LOGS, bot
 from userbot.modules import ALL_MODULES
 
+run()
+
 INVALID_PH = (
     "\nERROR: The Phone No. entered is INVALID"
     "\n Tip: Use Country Code along with number."
@@ -36,5 +38,3 @@ if len(argv) not in (1, 3, 4):
     bot.disconnect()
 else:
     bot.run_until_disconnected()
-
-run()
