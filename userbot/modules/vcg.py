@@ -5,7 +5,6 @@ from pytgcalls import GroupCall
 import ffmpeg
 from userbot.events import register
 import os
-from userbot import bot
 
 
 def transcode(filename):
@@ -37,7 +36,7 @@ async def vcg(event):
     await event.edit("Transcode...")
     transcode(song)
     await event.edit("Memutar Music...")
-    playing = True
+
 
 @register(outgoing=True, pattern=r"^\.joinvc$")
 async def joinvc(event):
