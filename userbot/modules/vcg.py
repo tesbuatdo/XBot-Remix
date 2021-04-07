@@ -28,6 +28,7 @@ chat_joined = False  # Tell if chat is joined or not
 async def vcg(event):
     if event.fwd_from:
         return
+    global playing
     ureply = await event.get_reply_message()
     if not (ureply and (ureply.media)):
         await event.edit("`Reply to any media`")
@@ -40,8 +41,7 @@ async def vcg(event):
     await event.edit("Memutar Music...")
 
 
-@register(outgoing=True, pattern=r"^\.joinvc$")
+@register(outgoing=True, pattern="^\.jvcg")
 async def joinvc(event):
-    chat_id = event.chat.id
-    await vc.start(chat_id)
+    await vc.start(event.chat.id)
     await event.edit("__**Joined The Voice Chat.**__")
