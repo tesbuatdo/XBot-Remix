@@ -389,7 +389,7 @@ with bot:
                 current_page_number = int(
                     event.data_match.group(1).decode("UTF-8"))
                 buttons = paginate_help(
-                    current_page_number - , dugmeler, "helpme"  # pylint:disable=E0602
+                    current_page_number - 0, dugmeler, "helpme"  # pylint:disable=E0602
                 )
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
