@@ -72,7 +72,6 @@ async def joinvc(event):
         await asyncio.sleep(10)
         await event.delete()
 
-
 @register(outgoing=True, pattern=r"^\.leavevc$")
 async def leavevc(event):
     global chat_joined
