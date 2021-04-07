@@ -13,7 +13,7 @@ ydl = YoutubeDL(ydl_opts)
 
 def download(url: str) -> str:
     info = ydl.extract_info(url, False)
-    duration = round(info["duration"] / 60)
+    round(info["duration"] / 60)
 
     ydl.download([url])
     return path.join("downloads", f"{info['id']}.{info['ext']}")
