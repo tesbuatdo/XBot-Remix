@@ -47,5 +47,4 @@ async def vcg(event):
 async def joinvc(event):
     chat_id = event.chat.id
     await client.vc.start(chat_id)
-    chat_joined = True
     await event.edit("__**Joined The Voice Chat.**__")
