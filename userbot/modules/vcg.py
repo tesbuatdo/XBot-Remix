@@ -18,7 +18,7 @@ def transcode(filename):
     os.remove(filename)
 
 
-vc = GroupCall(bot, input_filename="input.raw", play_on_repeat=True)
+vc = GroupCall(event, input_filename="input.raw", play_on_repeat=True)
 
 playing = False  # Tells if something is playing or not
 chat_joined = False  # Tell if chat is joined or not
@@ -37,7 +37,7 @@ async def vcg(event):
     await event.edit("Transcode...")
     transcode(song)
     await event.edit("Memutar Music...")
-
+    playing = True
 
 @register(outgoing=True, pattern=r"^\.joinvc$")
 async def joinvc(event):
