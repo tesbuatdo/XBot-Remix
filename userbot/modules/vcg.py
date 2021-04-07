@@ -48,6 +48,7 @@ chat_joined = False  # Tell if chat is joined or not
 
 path = "./downloads/"
 
+
 @register(outgoing=True, pattern=r"^\.play$")
 async def vcg(event):
     if event.fwd_from:
@@ -77,4 +78,3 @@ async def joinvc(event):
         await event.edit("__**Joined The Voice Chat.**__")
         await asyncio.sleep(10)
         await event.delete()
-
