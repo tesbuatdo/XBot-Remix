@@ -48,7 +48,6 @@ chat_joined = False  # Tell if chat is joined or not
 
 path = "./downloads/"
 
-
 @register(outgoing=True, pattern=r"^\.play$")
 async def vcg(event):
     if event.fwd_from:
@@ -79,14 +78,3 @@ async def joinvc(event):
         await asyncio.sleep(10)
         await event.delete()
 
-
-@register(outgoing=True, pattern=r"^\.leavevc$")
-async def levc(event):
-    global chat_joined
-    if not bot.chat_joined:
-        await event.edit("__**Already Out Of Voice Chat.**__")
-        return
-    bot.chat_joined = False
-    await event.edit("__**Left The Voice Chat.**__")
-    await asyncio.sleep(10)
-    await event.delete()
