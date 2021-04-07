@@ -308,16 +308,14 @@ with bot:
         dugmeler = CMD_HELP
         me = bot.get_me()
         uid = me.id
+        logo = "https://telegra.ph/file/099b2bf1c3256847946bf.mp4"
 
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
-            if event.message.from_id != uid:
-                await event.reply(
-                    "I'm [🔥 XBØT 🔥](https://github.com/ximfine/XBot-Remix) modules helper...\nplease make your own bot, don't use mine 😋"
-                )
-            else:
-                await event.reply(f"`Hey there {ALIVE_NAME}\n\nI work for you :)`")
-
+            sender = await event.message.get_sender()
+            text = (f"Hai {sender.first_name}\nSaya adalah bot assisten {ALIVE_NAME}\n\nSaya adalah [XBØT-REMIX](https://github.com/ximfine/XBot-Remix) modules helper...\nplease make your own bot, don't use mine")
+            await client.send_file(event.chat_id, logo, caption=text)
+            
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
             builder = event.builder
@@ -353,7 +351,7 @@ with bot:
                             ),
                             custom.Button.url(
                                 "Support",
-                                "https://t.me/UserBotIndo"),
+                                "https://t.me/X_Projectss"),
                         ],
                     ],
                     link_preview=False,
