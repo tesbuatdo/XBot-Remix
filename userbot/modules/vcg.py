@@ -23,28 +23,6 @@ def transcode(filename):
 def get_file_name(audio: Union[Audio]):
     return f'{audio.file_unique_id}.{audio.file_name.split(".")[-1] if not isinstance(audio) else "ogg"}'
 
-vc = GroupCall(bot, input_filename="input.raw", play_on_repeat=True)
-
-playing = False  # Tells if something is playing or not
-chat_joined = False  # Tell if chat is joined or not
-
-
-@register(outgoing=True, pattern=r"^\.play$")
-async def vcg(event):
-    if event.fwd_from:
-        return
-    global playing
-    ureply = await event.get_reply_message()
-    if not (ureply and (ureply.media)):
-        await event.edit("`Reply to any media`")
-        return
-    await event.edit("Downloading Music....")
-    song = await event.client.download_media(ureply)
-    await event.edit("Transcode...")
-    transcode(song)
-    playing = False  # pylint:disable=E0602
-    await event.edit("Memutar Music...")
-
 
 @register(outgoing=True, pattern=r"^\.xplay$")
 async def xvcg(event):
