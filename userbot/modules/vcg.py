@@ -32,9 +32,11 @@ async def vcg(event):
     if not (ureply and (ureply.media)):
         await event.edit("`Reply to any media`")
         return
+    await event.edit(f"Downloading Music {ureply}")
     song = await event.client.download_media(ureply)
     await event.edit("Transcode...")
     transcode(song)
+    playing = True
     await event.edit("Memutar Music...")
 
 
