@@ -43,14 +43,10 @@ def transcode(filename):
 
 vc = GroupCall(bot, input_filename="input.raw", play_on_repeat=True)
 
-# Arq Client
-arq = ARQ(ARQ_API)
-
 playing = False  # Tells if something is playing or not
 chat_joined = False  # Tell if chat is joined or not
 
 path = "./downloads/"
-
 
 @register(outgoing=True, pattern=r"^\.play$")
 async def vcg(event):
@@ -84,7 +80,7 @@ async def joinvc(event):
 
 
 @register(outgoing=True, pattern=r"^\.leavevc$")
-async def leavevc(event):
+async def levc(event):
     global chat_joined
     if not bot.chat_joined:
         await event.edit("__**Already Out Of Voice Chat.**__")
