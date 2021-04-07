@@ -1,6 +1,7 @@
 from os import path
 import asyncio
 
+
 async def convert(file_path: str) -> str:
     out = path.basename(file_path)
     out = out.split(".")
