@@ -5,7 +5,7 @@ from pytgcalls import GroupCall
 import ffmpeg
 from userbot.events import register
 import os
-
+from userbot import bot
 
 def transcode(filename):
     ffmpeg.input(filename).output(
@@ -17,7 +17,7 @@ def transcode(filename):
     os.remove(filename)
 
 
-vc = GroupCall(event, input_filename="input.raw", play_on_repeat=True)
+vc = GroupCall(bot, input_filename="input.raw", play_on_repeat=True)
 
 playing = False  # Tells if something is playing or not
 chat_joined = False  # Tell if chat is joined or not
@@ -31,15 +31,16 @@ async def vcg(event):
     if not (ureply and (ureply.media)):
         await event.edit("`Reply to any media`")
         return
-    await event.edit(f"Downloading Music {ureply}")
+    await event.edit("Downloading Music....")
     song = await event.client.download_media(ureply)
     await event.edit("Transcode...")
     transcode(song)
+    playing = True  # pylint:disable=E0602
     await event.edit("Memutar Music...")
 
 
 @register(outgoing=True, pattern=r"^\.joinvc$")
 async def joinvc(event):
     chat_id = event.chat.id
-    await event.vc.start(chat_id)
+    await vc.start(chat_id)
     await event.edit("__**Joined The Voice Chat.**__")
