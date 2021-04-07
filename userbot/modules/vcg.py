@@ -19,7 +19,7 @@ def transcode(filename):
     os.remove(filename)
 
 
-vc = GroupCall(client, input_filename="input.raw", play_on_repeat=True)
+vc = GroupCall(bot, input_filename="input.raw", play_on_repeat=True)
 
 playing = False  # Tells if something is playing or not
 chat_joined = False  # Tell if chat is joined or not
