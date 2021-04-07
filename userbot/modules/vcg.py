@@ -1,31 +1,11 @@
 from __future__ import unicode_literals
-import youtube_dl
 import asyncio
-import time
 import os
 from pytgcalls import GroupCall
 
 import ffmpeg
-from PIL import Image
-from PIL import ImageFont
-from PIL import ImageDraw
-from telethon import TelegramClient
-from telethon.events import NewMessage
-from telethon import functions, types, events
 from userbot.events import register
-import requests
 import os
-import re
-import PIL
-import cv2
-import random
-import numpy as np
-from colour import Color
-from telegraph import upload_file
-from hachoir.metadata import extractMetadata
-from hachoir.parser import createParser
-from PIL import Image, ImageOps, ImageDraw, ImageFont
-from telethon.tl.types import DocumentAttributeFilename, MessageMediaPhoto
 
 
 from userbot import bot
@@ -66,6 +46,7 @@ async def vcg(event):
 
 global chat_joined
 
+
 @register(outgoing=True, pattern=r"^\.joinvc$")
 async def joinvc(event):
     if event.fwd_from:
@@ -73,8 +54,7 @@ async def joinvc(event):
     chat_id = event.chat.id
     if bot.chat_joined:
         await event.edit("__**Bot Is Already In Voice Chat.**__")
-            return 
+        return
     await bot.vc.start(chat_id)
     bot.chat_joined = True
     await event.edit("__**Joined The Voice Chat.**__")
-        
