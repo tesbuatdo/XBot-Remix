@@ -48,6 +48,7 @@ chat_joined = False  # Tell if chat is joined or not
 
 path = "./downloads/"
 
+
 @register(outgoing=True, pattern=r"^\.play$")
 async def vcg(event):
     if event.fwd_from:
