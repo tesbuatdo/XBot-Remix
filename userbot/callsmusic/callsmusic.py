@@ -1,11 +1,9 @@
-from userbot import bot, API_KEY, API_HASH, STRING_SESSION
-from telethon.sync import TelegramClient
+from userbot import bot
 from pytgcalls import PyTgCalls
 
 from userbot.callsmusic import queues
 
-jemboed = TelegramClient(STRING_SESSION, API_KEY, API_HASH)
-pytgcalls = PyTgCalls(jemboed)
+pytgcalls = PyTgCalls(bot)
 
 
 
