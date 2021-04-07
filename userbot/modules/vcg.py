@@ -22,7 +22,7 @@ async def xvcg(event):
         return
     file_name = get_file_name(audio)
     file_path = await converter.convert(
-            (await event.client.download_media(file_name))
+            (await bot.download_media(file_name))
             if not path.isfile(path.join("downloads", file_name)) else file_name
         )
     await event.edit("Downloading Music....")
@@ -32,9 +32,3 @@ async def xvcg(event):
         callsmusic.pytgcalls.join_group_call(event.chat.id, file_path)
         await event.edit("Memutar Music...")
 
-
-
-@register(outgoing=True, pattern="^\.jvc")
-async def joinvc(event):
-    await vc.start(event.chat.id)
-    await event.edit("__**Joined The Voice Chat.**__")
