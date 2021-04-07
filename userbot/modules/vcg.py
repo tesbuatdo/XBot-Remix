@@ -1,30 +1,18 @@
 from __future__ import unicode_literals
 import os
 from os import path
-from pytgcalls import GroupCall
 import ffmpeg
 from typing import Union
 from userbot.events import register
 from userbot import bot, converter, callsmusic
 from telethon.tl.types import DocumentAttributeAudio as Audio
 
-def transcode(filename):
-    ffmpeg.input(filename).output(
-        "input.raw",
-        format='s16le',
-        acodec='pcm_s16le',
-        ac=1,
-        ar='48000').overwrite_output().run()
-    os.remove(filename)
-
-    return text[offset:offset + length]
-
 
 def get_file_name(audio: Union[Audio]):
     return f'{audio.file_unique_id}.{audio.file_name.split(".")[-1] if not isinstance(audio) else "ogg"}'
 
 
-@register(outgoing=True, pattern=r"^\.xplay$")
+@register(outgoing=True, pattern=r"^\.play")
 async def xvcg(event):
     if event.fwd_from:
         return
