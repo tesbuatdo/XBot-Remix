@@ -1,2 +1,2 @@
-from userbot.callsmusic import pytgcalls, run
-from userbot.callsmusic import queues
+from .callsmusic import pytgcalls, run
+from .callsmusic import queues
