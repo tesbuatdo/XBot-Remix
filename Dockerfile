@@ -10,6 +10,7 @@ WORKDIR /home/xnewbie/
 
 # Upgrade pip
 # RUN pip install --upgrade pip
+RUN apt install ffmpeg
 
 #Install python requirements
 RUN pip3 install -r https://raw.githubusercontent.com/ximfine/XBot-Remix/Beta/requirements2.txt
