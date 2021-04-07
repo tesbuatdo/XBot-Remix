@@ -1,7 +1,2 @@
 ffmpeg-python
 pytgcalls
-pyrogram
-TgCrypto
-py-tgcalls
-python-dotenv
-youtube_dl
