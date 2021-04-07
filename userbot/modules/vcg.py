@@ -7,6 +7,7 @@ from userbot.events import register
 import os
 from userbot import bot
 
+
 def transcode(filename):
     ffmpeg.input(filename).output(
         "input.raw",
