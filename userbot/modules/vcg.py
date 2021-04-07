@@ -6,7 +6,6 @@ import ffmpeg
 from typing import Union
 from userbot.events import register
 from userbot import bot, converter, callsmusic
-from userbot.converter import convert
 from telethon.tl.types import DocumentAttributeAudio as Audio
 
 def transcode(filename):
