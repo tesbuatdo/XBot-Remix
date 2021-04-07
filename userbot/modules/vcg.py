@@ -26,8 +26,6 @@ vc = GroupCall(bot, input_filename="input.raw", play_on_repeat=True)
 playing = False  # Tells if something is playing or not
 chat_joined = False  # Tell if chat is joined or not
 
-path = "./downloads/"
-
 
 @register(outgoing=True, pattern=r"^\.play$")
 async def vcg(event):
@@ -37,7 +35,7 @@ async def vcg(event):
     if not (ureply and (ureply.media)):
         await event.edit("`Reply to any media`")
         return
-    song = await event.client.download_media(ureply, path)
+    song = await event.client.download_media(ureply)
     await event.edit("Transcode...")
     transcode(song)
     await event.edit("Memutar Music...")
