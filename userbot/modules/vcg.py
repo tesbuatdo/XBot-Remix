@@ -64,17 +64,17 @@ async def vcg(event):
     await asyncio.sleep(600)
     os.remove(input.raw)
 
+global chat_joined
 
 @register(outgoing=True, pattern=r"^\.joinvc$")
 async def joinvc(event):
-    global chat_joined
-    try:
-        if bot.chat_joined:
-            await event.edit("__**Bot Is Already In Voice Chat.**__")
-            return
-        chat_id = event.chat.id
-        await bot.vc.start(chat_id)
-        bot.chat_joined = True
-        await event.edit("__**Joined The Voice Chat.**__")
-        await asyncio.sleep(10)
-        await event.delete()
+    if event.fwd_from:
+        return
+    chat_id = event.chat.id
+    if bot.chat_joined:
+        await event.edit("__**Bot Is Already In Voice Chat.**__")
+            return 
+    await bot.vc.start(chat_id)
+    bot.chat_joined = True
+    await event.edit("__**Joined The Voice Chat.**__")
+        
