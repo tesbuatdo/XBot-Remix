@@ -21,7 +21,7 @@ def transcode(filename):
     os.remove(filename)
 
 
-vc = GroupCall(bot, input_filename="input.raw", play_on_repeat=True)
+vc = GroupCall(client, input_filename="input.raw", play_on_repeat=True)
 
 playing = False  # Tells if something is playing or not
 chat_joined = False  # Tell if chat is joined or not
@@ -38,13 +38,14 @@ async def vcg(event):
     song = await event.client.download_media(ureply)
     await event.edit("Transcode...")
     transcode(song)
+    playing = True
     await event.edit("Memutar Music...")
-    await asyncio.sleep(600)
-    os.remove(input.raw)
+    
 
 
 @register(outgoing=True, pattern=r"^\.joinvc$")
 async def joinvc(event):
     chat_id = event.chat.id
     await client.vc.start(chat_id)
+    chat_joined = True
     await event.edit("__**Joined The Voice Chat.**__")
