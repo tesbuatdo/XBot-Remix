@@ -313,9 +313,10 @@ with bot:
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
             sender = await event.message.get_sender()
-            text = (f"Hai {sender.first_name}\nSaya adalah bot assisten {ALIVE_NAME}\n\nSaya adalah [XBØT-REMIX](https://github.com/ximfine/XBot-Remix) modules helper...\nplease make your own bot, don't use mine")
+            text = (
+                f"Hai {sender.first_name}\nSaya adalah bot assisten {ALIVE_NAME}\n\nSaya adalah [XBØT-REMIX](https://github.com/ximfine/XBot-Remix) modules helper...\nplease make your own bot, don't use mine")
             await client.send_file(event.chat_id, logo, caption=text)
-            
+
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
             builder = event.builder
