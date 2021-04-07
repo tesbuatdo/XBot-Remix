@@ -10,7 +10,11 @@ WORKDIR /home/xnewbie/
 
 # Upgrade pip
 # RUN pip install --upgrade pip
-RUN apt install ffmpeg
+RUN apt install git curl ffmpeg -y
+RUN pip3 install -U pip
+RUN curl -sL https://deb.nodesource.com/setup_15.x | bash -
+RUN apt-get install -y nodejs
+RUN npm i -g npm
 
 #Install python requirements
 RUN pip3 install -r https://raw.githubusercontent.com/ximfine/XBot-Remix/Beta/requirements2.txt
