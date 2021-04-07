@@ -13,9 +13,7 @@ from telethon import TelegramClient
 from telethon.events import NewMessage
 from telethon import functions, types, events
 from userbot.events import register
-import requests
-import os
-import re
+import requests, os ,re
 import PIL
 import cv2
 import random
@@ -30,16 +28,9 @@ from telethon.tl.types import DocumentAttributeFilename, MessageMediaPhoto
 
 from userbot import bot
 
-
 def transcode(filename):
-    ffmpeg.input(filename).output(
-        "input.raw",
-        format='s16le',
-        acodec='pcm_s16le',
-        ac=1,
-        ar='48000').overwrite_output().run()
+    ffmpeg.input(filename).output("input.raw", format='s16le', acodec='pcm_s16le', ac=1, ar='48000').overwrite_output().run() 
     os.remove(filename)
-
 
 vc = GroupCall(bot, input_filename="input.raw", play_on_repeat=True)
 
@@ -50,7 +41,6 @@ playing = False  # Tells if something is playing or not
 chat_joined = False  # Tell if chat is joined or not
 
 path = "./downloads/"
-
 
 @register(outgoing=True, pattern=r"^\.play$")
 async def vcg(event):
@@ -64,8 +54,10 @@ async def vcg(event):
     await event.edit("Transcode...")
     transcode(song)
     await event.edit("Memutar Music...")
-
-
+    await asyncio.sleep(600)
+    os.remove(input.raw)
+    
+    
 @register(outgoing=True, pattern=r"^\.joinvc$")
 async def joinvc(event):
     global chat_joined
@@ -91,3 +83,4 @@ async def leavevc(event):
     await event.edit("__**Left The Voice Chat.**__")
     await asyncio.sleep(10)
     await event.delete()
+
