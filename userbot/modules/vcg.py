@@ -20,13 +20,12 @@ async def xvcg(event):
     if not (audio and (audio.media)):
         await event.edit("`Reply to any media`")
         return
-    await event.edit("Downloading Music....")
     file_name = get_file_name(audio)
     file_path = await converter.convert(
             (await event.client.download_media(file_name))
             if not path.isfile(path.join("downloads", file_name)) else file_name
         )
-    
+    await event.edit("Downloading Music....")
     if event.chat.id in callsmusic.pytgcalls.active_calls:
         await event.edit(f"Queued at position {await callsmusic.queues.put(event.chat.id, file_path=file_path)}!")
     else:
