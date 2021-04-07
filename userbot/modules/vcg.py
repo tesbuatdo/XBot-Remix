@@ -41,7 +41,7 @@ async def vcg(event):
     await event.edit("Memutar Music...")
 
 
-@register(outgoing=True, pattern="^\.jvcg")
+@register(outgoing=True, pattern="^\\.jvcg")
 async def joinvc(event):
     await vc.start(event.chat.id)
     await event.edit("__**Joined The Voice Chat.**__")
