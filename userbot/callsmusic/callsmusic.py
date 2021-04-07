@@ -4,7 +4,7 @@ from pytgcalls import PyTgCalls
 
 from userbot.callsmusic import queues
 
-jemboed = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
+jemboed = TelegramClient(STRING_SESSION, API_KEY, API_HASH)
 pytgcalls = PyTgCalls(jemboed)
 
 
