@@ -5,7 +5,7 @@ from pytgcalls import GroupCall
 import ffmpeg
 from userbot.events import register
 import os
-
+from userbot import bot
 
 def transcode(filename):
     ffmpeg.input(filename).output(
@@ -40,5 +40,5 @@ async def vcg(event):
 @register(outgoing=True, pattern=r"^\.joinvc$")
 async def joinvc(event):
     chat_id = event.chat.id
-    await client.vc.start(chat_id)
+    await event.client.vc.start(chat_id)
     await event.edit("__**Joined The Voice Chat.**__")
