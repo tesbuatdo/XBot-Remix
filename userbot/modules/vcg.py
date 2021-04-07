@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-import asyncio
 import os
 from pytgcalls import GroupCall
 
@@ -8,7 +7,6 @@ from userbot.events import register
 import os
 
 
-from userbot import bot
 
 
 def transcode(filename):
@@ -38,14 +36,11 @@ async def vcg(event):
     song = await event.client.download_media(ureply)
     await event.edit("Transcode...")
     transcode(song)
-    playing = True
     await event.edit("Memutar Music...")
-    
 
 
 @register(outgoing=True, pattern=r"^\.joinvc$")
 async def joinvc(event):
     chat_id = event.chat.id
     await client.vc.start(chat_id)
-    chat_joined = True
     await event.edit("__**Joined The Voice Chat.**__")
