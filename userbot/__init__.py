@@ -390,7 +390,7 @@ with bot:
 
         @tgbot.on(events.CallbackQuery(data=b'close'))
         async def close(event):
-            await event.edit('Closed!', buttons=Button.clear())
+            await event.edit(buttons=Button.clear())
 
             
         @tgbot.on(
