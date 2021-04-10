@@ -9,6 +9,7 @@ from userbot import bot
 from telethon.tl.types import DocumentAttributeAudio as Audio
 from pytgcalls import PyTgCalls
 pytgcalls = PyTgCalls(bot)
+run = pytgcalls.run
 
 async def convert(file_path: str) -> str:
     out = path.basename(file_path)
