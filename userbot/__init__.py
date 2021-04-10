@@ -390,7 +390,7 @@ with bot:
 
         @tgbot.on(events.CallbackQuery(data=b'close'))
         async def close(event):
-            await event.delete()
+            await event.client.delete_messages(event.chat_id)
 
             
         @tgbot.on(
