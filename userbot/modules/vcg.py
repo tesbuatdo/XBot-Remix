@@ -1,39 +1,39 @@
-from __future__ import unicode_literals
-import os
 from os import path
-import ffmpeg
-from pytgcalls import GroupCall
-from Python_ARQ import ARQ
+import asyncio
+import os
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
 from userbot.events import register
 from userbot import bot
 from telethon.tl.types import DocumentAttributeAudio as Audio
+from pytgcalls import PyTgCalls
+pytgcalls = PyTgCalls(bot)
 
+async def convert(file_path: str) -> str:
+    out = path.basename(file_path)
+    out = out.split(".")
+    out[-1] = "raw"
+    out = ".".join(out)
+    out = path.basename(out)
+    out = path.join("raw_files", out)
 
-def transcode(filename):
-    ffmpeg.input(filename).output(
-        "input.raw",
-        format='s16le',
-        acodec='pcm_s16le',
-        ac=1,
-        ar='48000').overwrite_output().run()
-    os.remove(filename)
+    if path.isfile(out):
+        return out
 
-    return text[offset:offset + length]
+    proc = await asyncio.create_subprocess_shell(
+        f"ffmpeg -y -i {file_path} -f s16le -ac 1 -ar 48000 -acodec pcm_s16le {out}",
+        asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE
+    )
 
-ARQ_API = "http://35.240.133.234:8000"
-
-arq = ARQ(ARQ_API)
-vc = GroupCall(bot, input_filename="input.raw", play_on_repeat=True)
-
-playing = False  # Tells if something is playing or not
-chat_joined = False  # Tell if chat is joined or not
-
+    await proc.communicate()
+    return out
 
 @register(outgoing=True, pattern=r"^\.play")
 async def vcg(event):
     if event.fwd_from:
         return
-    global playing
     ureply = await event.get_reply_message()
     if not (ureply and (ureply.media)):
         await event.edit("`Reply to any media`")
@@ -41,6 +41,6 @@ async def vcg(event):
     await event.edit("Downloading Music....")
     song = await event.client.download_media(ureply)
     await event.edit("Transcode...")
-    transcode(song)
-    playing = False  # pylint:disable=E0602
+    file_path = convert(song)
     await event.edit("Memutar Music...")
+    await pytgcalls.join_group_call(event.chat_id, file_path)
