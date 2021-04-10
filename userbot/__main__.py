@@ -11,7 +11,9 @@ from sys import argv
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from userbot import LOGS, bot
 from userbot.modules import ALL_MODULES
+from pytgcalls import PyTgCalls
 
+run = pytgcalls.run
 
 INVALID_PH = (
     "\nERROR: The Phone No. entered is INVALID"
@@ -20,6 +22,7 @@ INVALID_PH = (
 )
 
 try:
+    run()
     bot.start()
 except PhoneNumberInvalidError:
     print(INVALID_PH)
