@@ -394,7 +394,7 @@ with bot:
             )
         )
         async def on_plug_in_callback_query_handler(event):        
-              await buttons.delete()
+              await pairs.delete()
             
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
