@@ -30,7 +30,7 @@ async def yardim(event):
                 "`Bot can't be used in inline mode.\nMake sure to turn on inline mode!`"
             )
         await results[0].click(
-            event.chat_id, reply_to=event.reply_to_msg_id, hide_via=True
+            event.chat_id, reply_to=event.reply_to_msg_id, hide_via=False
         )
         await event.delete()
     else:
