@@ -126,21 +126,19 @@ async def repo_is_here(wannasee):
 
 
 @register(outgoing=True, pattern="^.xrepo$")
-async def handler(event):
-    text = "OFFICIAL REPO"
-    await bot.send_message(event.chat_id, text,
-                           buttons=[
-                               [
-                                   custom.Button.url(
-                                       "🔥 GITHUB REPO 🔥",
-                                       "https://github.com/ximfine/XBot-Remix",
-                                   )],
-                               [custom.Button.url(
-                                   "🔱 OFFICIAL CHANNELS 🔱",
-                                   "https://t.me/X_Projectss"),
-                                ]]
-                           )
-
+async def repo(e):
+    res = [
+        await e.builder.article(
+            title="XPROJECT Userbot",
+            description="Userbot | Telethon"),
+            text="• **XPROJECT USERBOT** •",
+            buttons=[
+                [Button.url("GITHUB REPO", url="https://github.com/ximfine/XBot-Remix")],
+                [Button.url("SUPPORT CHANNELS", url="t.me/X-Projectss")],
+            ],
+        ),
+    ]
+    await e.answer(res)
 
 @ register(outgoing=True, pattern="^.raw$")
 async def raw(event):
