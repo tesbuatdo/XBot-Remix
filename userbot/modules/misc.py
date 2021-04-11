@@ -138,8 +138,7 @@ async def handler(event):
                                   [custom.Button.url(
                                          "🔱 OFFICIAL CHANNELS 🔱",
                                          "https://t.me/X_Projectss"),
-                                 ],
-                             link_preview=False,
+                                 ]]                             
                              )
 
 
