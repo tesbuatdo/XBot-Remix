@@ -17,7 +17,7 @@ import sys
 from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
 from userbot.events import register
 from userbot.utils import time_formatter
-from telethon import custom, events, Button
+from telethon import Button
 import urllib
 import requests
 from bs4 import BeautifulSoup
@@ -128,17 +128,18 @@ async def repo_is_here(wannasee):
 @register(outgoing=True, pattern="^.xrepo$")
 async def repo(e):
     res = [
-    await e.builder.article(
+        await e.builder.article(
             title="XPROJECT Userbot",
             description="Userbot | Telethon",
-            text= "• **XPROJECT USERBOT** •",
-            buttons = [
+            text="• **XPROJECT USERBOT** •",
+            buttons=[
                 [Button.url("GITHUB REPO", url="https://github.com/ximfine/XBot-Remix")],
                 [Button.url("SUPPORT CHANNELS", url="t.me/X-Projectss")],
             ],
         ),
     ]
     await e.answer(res)
+
 
 @ register(outgoing=True, pattern="^.raw$")
 async def raw(event):
@@ -158,21 +159,21 @@ async def raw(event):
         await event.client.send_file(
             BOTLOG_CHATID,
             out_file,
-            force_document = True,
-            allow_cache = False,
-            reply_to = reply_to_id,
-            caption = "`Here's the decoded message data !!`")
+            force_document=True,
+            allow_cache=False,
+            reply_to=reply_to_id,
+            caption="`Here's the decoded message data !!`")
 
 
-@ register(outgoing = True, pattern = r"^.reverse(?: |$)(\d*)")
+@ register(outgoing=True, pattern=r"^.reverse(?: |$)(\d*)")
 async def okgoogle(img):
     """ For .reverse command, Google search images and stickers. """
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 
-    message=await img.get_reply_message()
+    message = await img.get_reply_message()
     if message and message.media:
-        photo=io.BytesIO()
+        photo = io.BytesIO()
         await bot.download_media(message, photo)
     else:
         await img.edit("`Balas di Gambar Goblokk!!.`")
@@ -181,16 +182,16 @@ async def okgoogle(img):
     if photo:
         await img.edit("`Processing...`")
         try:
-            image=Image.open(photo)
+            image = Image.open(photo)
         except OSError:
             await img.edit('`Gambar tidak di dukung, Cari yg lain!!.`')
             return
-        name="okgoogle.png"
+        name = "okgoogle.png"
         image.save(name, "PNG")
         image.close()
         # https://stackoverflow.com/questions/23270175/google-reverse-image-search-using-post-request#28792943
-        searchUrl='https://www.google.com/searchbyimage/upload'
-        multipart={
+        searchUrl = 'https://www.google.com/searchbyimage/upload'
+        multipart = {
             'encoded_image': (name, open(name, 'rb')),
             'image_content': ''
         }
