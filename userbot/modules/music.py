@@ -16,7 +16,6 @@ from selenium import webdriver
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
-from youtubesearchpython import SearchVideos
 from youtube_search import YoutubeSearch
 
 from userbot import (
