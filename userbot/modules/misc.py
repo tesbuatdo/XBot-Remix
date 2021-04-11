@@ -17,7 +17,7 @@ import sys
 from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, tgbot
 from userbot.events import register
 from userbot.utils import time_formatter
-from telethon import events, Button, custom
+from telethon import Button, events
 import urllib
 import requests
 from bs4 import BeautifulSoup
@@ -124,24 +124,26 @@ async def repo_is_here(wannasee):
         "   **[[KLIK HERE]](https://github.com/ximfine/XBot-Remix)**\n     __To Use Official Repo__\n                   🔥 **XBOT-REMIX** 🔥\n ≪━━━━━━━━࿇━━━━━━━━≫\n             **Thanks for using**\n "
     )
 
+
 @tgbot.on(events.NewMessage(pattern=".xrepo"))
 async def handler(event):
-    sender = await event.message.get_sender()
+    await event.message.get_sender()
     text = ("**OFFICIAL REPO**")
-            await tgbot.send_message(event.chat_id, text=text,
-                                  buttons=[
-                                      [
-                                          Button.url(
-                                              text="🔱 OFFICIAL CHANNELS 🔱",
-                                              url="https://t.me/X_Projectss"
-                                          ),
-                                          Button.url(
-                                              text="🔥 GET TEPO 🔥",
-                                              url="https://github.com/ximfine/XBot-Remix/"
-                                          ),
-                                      ]
-                                  ]
-                                  )
+    await tgbot.send_message(event.chat_id, text=text,
+                             buttons=[
+                                 [
+                                     Button.url(
+                                         text="🔱 OFFICIAL CHANNELS 🔱",
+                                         url="https://t.me/X_Projectss"
+                                     ),
+                                     Button.url(
+                                         text="🔥 GET TEPO 🔥",
+                                         url="https://github.com/ximfine/XBot-Remix/"
+                                     ),
+                                 ]
+                             ]
+                             )
+
 
 @register(outgoing=True, pattern="^.raw$")
 async def raw(event):
