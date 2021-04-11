@@ -151,7 +151,7 @@ async def xrepo(event):
                                 )
 
 
-@register(outgoing=True, pattern="^.raw$")
+@ register(outgoing=True, pattern="^.raw$")
 async def raw(event):
     the_real_message = None
     reply_to_id = None
