@@ -128,13 +128,12 @@ async def repo_is_here(wannasee):
 @register(outgoing=True, pattern="^.xrepo$")
 async def repo(e):
     res = [
-        await e.builder.article(
+    await e.builder.article(
             title="XPROJECT Userbot",
-            description="Userbot | Telethon"),
+            description="Userbot | Telethon",
             text= "• **XPROJECT USERBOT** •",
             buttons = [
-                [Button.url("GITHUB REPO",
-     url="https://github.com/ximfine/XBot-Remix")],
+                [Button.url("GITHUB REPO", url="https://github.com/ximfine/XBot-Remix")],
                 [Button.url("SUPPORT CHANNELS", url="t.me/X-Projectss")],
             ],
         ),
