@@ -14,10 +14,10 @@ import sys
 import os
 import io
 import sys
-from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, tgbot
+from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
 from userbot.events import register
 from userbot.utils import time_formatter
-from telethon import custom, events
+from telethon import custom
 import urllib
 import requests
 from bs4 import BeautifulSoup
@@ -129,32 +129,32 @@ async def repo_is_here(wannasee):
 async def handler(event):
     text = "OFFICIAL REPO"
     await bot.send_message(event.chat_id, text,
-                             buttons=[
-                                 [
-                                     custom.Button.url(
-                                         "🔥 GITHUB REPO 🔥",
-                                         "https://github.com/ximfine/XBot-Remix",
-                                     )],
-                                  [custom.Button.url(
-                                         "🔱 OFFICIAL CHANNELS 🔱",
-                                         "https://t.me/X_Projectss"),
-                                 ]]                             
-                             )
+                           buttons=[
+                               [
+                                   custom.Button.url(
+                                       "🔥 GITHUB REPO 🔥",
+                                       "https://github.com/ximfine/XBot-Remix",
+                                   )],
+                               [custom.Button.url(
+                                   "🔱 OFFICIAL CHANNELS 🔱",
+                                   "https://t.me/X_Projectss"),
+                                ]]
+                           )
 
 
 @ register(outgoing=True, pattern="^.raw$")
 async def raw(event):
-    the_real_message= None
-    reply_to_id= None
+    the_real_message = None
+    reply_to_id = None
     if event.reply_to_msg_id:
-        previous_message= await event.get_reply_message()
-        the_real_message= previous_message.stringify()
-        reply_to_id= event.reply_to_msg_id
+        previous_message = await event.get_reply_message()
+        the_real_message = previous_message.stringify()
+        reply_to_id = event.reply_to_msg_id
     else:
-        the_real_message= event.stringify()
-        reply_to_id= event.message.id
+        the_real_message = event.stringify()
+        reply_to_id = event.message.id
     with io.BytesIO(str.encode(the_real_message)) as out_file:
-        out_file.name= "raw_message_data.txt"
+        out_file.name = "raw_message_data.txt"
         await event.edit(
             "`Check the userbot log for the decoded message data !!`")
         await event.client.send_file(
@@ -172,9 +172,9 @@ async def okgoogle(img):
     if os.path.isfile("okgoogle.png"):
         os.remove("okgoogle.png")
 
-    message= await img.get_reply_message()
+    message = await img.get_reply_message()
     if message and message.media:
-        photo= io.BytesIO()
+        photo = io.BytesIO()
         await bot.download_media(message, photo)
     else:
         await img.edit("`Balas di Gambar Goblokk!!.`")
@@ -183,23 +183,23 @@ async def okgoogle(img):
     if photo:
         await img.edit("`Processing...`")
         try:
-            image= Image.open(photo)
+            image = Image.open(photo)
         except OSError:
             await img.edit('`Gambar tidak di dukung, Cari yg lain!!.`')
             return
-        name= "okgoogle.png"
+        name = "okgoogle.png"
         image.save(name, "PNG")
         image.close()
         # https://stackoverflow.com/questions/23270175/google-reverse-image-search-using-post-request#28792943
-        searchUrl= 'https://www.google.com/searchbyimage/upload'
-        multipart= {
+        searchUrl = 'https://www.google.com/searchbyimage/upload'
+        multipart = {
             'encoded_image': (name, open(name, 'rb')),
             'image_content': ''
         }
-        response= requests.post(searchUrl,
+        response = requests.post(searchUrl,
                                  files=multipart,
                                  allow_redirects=False)
-        fetchUrl= response.headers['Location']
+        fetchUrl = response.headers['Location']
 
         if response != 400:
             await img.edit("`Image successfully uploaded to Google. Maybe.`"
@@ -209,10 +209,10 @@ async def okgoogle(img):
             return
 
         os.remove(name)
-        match= await ParseSauce(fetchUrl +
+        match = await ParseSauce(fetchUrl +
                                  "&preferences?hl=en&fg=1#languages")
-        guess= match['best_guess']
-        imgspage= match['similar_images']
+        guess = match['best_guess']
+        imgspage = match['similar_images']
 
         if guess and imgspage:
             await img.edit(f"[{guess}]({fetchUrl})\n\n`Looking for images...`")
@@ -221,13 +221,13 @@ async def okgoogle(img):
             return
 
         if img.pattern_match.group(1):
-            lim= img.pattern_match.group(1)
+            lim = img.pattern_match.group(1)
         else:
-            lim= 3
-        images= await scam(match, lim)
-        yeet= []
+            lim = 3
+        images = await scam(match, lim)
+        yeet = []
         for i in images:
-            k= requests.get(i)
+            k = requests.get(i)
             yeet.append(k.content)
         try:
             await img.client.send_file(entity=await
@@ -244,35 +244,35 @@ async def okgoogle(img):
 async def ParseSauce(googleurl):
     """Parse/Scrape the HTML code for the info we want."""
 
-    source= opener.open(googleurl).read()
-    soup= BeautifulSoup(source, 'html.parser')
+    source = opener.open(googleurl).read()
+    soup = BeautifulSoup(source, 'html.parser')
 
-    results= {'similar_images': '', 'best_guess': ''}
+    results = {'similar_images': '', 'best_guess': ''}
 
     try:
         for similar_image in soup.findAll('input', {'class': 'gLFyf'}):
-            url= 'https://www.google.com/search?tbm=isch&q=' + \
+            url = 'https://www.google.com/search?tbm=isch&q=' + \
                 urllib.parse.quote_plus(similar_image.get('value'))
-            results['similar_images']= url
+            results['similar_images'] = url
     except BaseException:
         pass
 
     for best_guess in soup.findAll('div', attrs={'class': 'r5a77d'}):
-        results['best_guess']= best_guess.get_text()
+        results['best_guess'] = best_guess.get_text()
 
     return results
 
 
 async def scam(results, lim):
 
-    single= opener.open(results['similar_images']).read()
-    decoded= single.decode('utf-8')
+    single = opener.open(results['similar_images']).read()
+    decoded = single.decode('utf-8')
 
-    imglinks= []
-    counter= 0
+    imglinks = []
+    counter = 0
 
-    pattern= r'^,\[\"(.*[.png|.jpg|.jpeg])\",[0-9]+,[0-9]+\]$'
-    oboi= re.findall(pattern, decoded, re.I | re.M)
+    pattern = r'^,\[\"(.*[.png|.jpg|.jpeg])\",[0-9]+,[0-9]+\]$'
+    oboi = re.findall(pattern, decoded, re.I | re.M)
 
     for imglink in oboi:
         counter += 1
