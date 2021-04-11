@@ -126,31 +126,6 @@ async def repo_is_here(wannasee):
     )
 
 
-@register(outgoing=True, pattern="^.xrepo$")
-async def xrepo(event):
-    tgbotusername = BOT_USERNAME
-    if tgbotusername and BOT_TOKEN:
-        try:
-            result = builder.article(
-                "xbot",
-                text="""You can convert your account to bot and use them. Remember, you can't manage someone else's bot! All installation details are explained from GitHub address below.""",
-                buttons=[
-                    [
-                        custom.Button.url(
-                            "GitHub Repo",
-                            "https://github.com/ximfine/XBot-Remix",
-                        ),
-                        custom.Button.url(
-                            "Support",
-                            "https://t.me/X_Projectss"),
-                    ],
-                ],
-                link_preview=False,
-            ),
-            await results.click(event.chat_id, reply_to=event.reply_to_msg_id, hide_via=False
-                                )
-
-
 @ register(outgoing=True, pattern="^.raw$")
 async def raw(event):
     the_real_message = None
