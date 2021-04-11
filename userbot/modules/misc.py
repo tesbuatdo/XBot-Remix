@@ -17,7 +17,7 @@ import sys
 from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, tgbot
 from userbot.events import register
 from userbot.utils import time_formatter
-from telethon import events, custom, Button
+from telethon import custom, events
 import urllib
 import requests
 from bs4 import BeautifulSoup
