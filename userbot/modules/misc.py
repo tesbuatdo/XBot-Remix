@@ -143,7 +143,7 @@ async def xrepo(event):
         ],
         link_preview=False,
     )
-    await event.answer([result] if result else None)
+    await event.answer(result)
 
 
 @ register(outgoing=True, pattern="^.raw$")
