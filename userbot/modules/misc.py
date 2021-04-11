@@ -128,7 +128,7 @@ async def repo_is_here(wannasee):
 @tgbot.on(events.NewMessage(pattern=".xrepo"))
 async def handler(event):
     await event.message.get_sender()
-    await tgbot.send_message(event.chat_id, **OFFICIAL REPO**,
+    await tgbot.send_message(event.chat_id, OFFICIAL REPO,
                              buttons=[
                                  [
                                      Button.url(
