@@ -69,5 +69,6 @@ wget
 wordcloud
 youtube-dl==2021.4.1
 youtube_search
+youtube-search-python==1.4.3
 zipfile38
 opencv-python-headless
