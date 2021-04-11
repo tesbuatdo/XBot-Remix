@@ -91,6 +91,7 @@ async def _(event):
             "`Error: `@WooMaiBot` is not responding or Song not found!.`"
         )
 
+
 @register(outgoing=True, pattern=r"^\.song(?: |$)(.*)")
 async def song(v_url):
     lazy = v_url
