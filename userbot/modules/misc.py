@@ -15,10 +15,8 @@ import os
 import io
 import sys
 from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
-from userbot import BOT_TOKEN, BOT_USERNAME
 from userbot.events import register
 from userbot.utils import time_formatter
-from telethon import custom
 import urllib
 import requests
 from bs4 import BeautifulSoup
