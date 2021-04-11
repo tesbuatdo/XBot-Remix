@@ -17,7 +17,7 @@ import sys
 from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, tgbot
 from userbot.events import register
 from userbot.utils import time_formatter
-from telethon import Button, events
+from telethon import events
 import urllib
 import requests
 from bs4 import BeautifulSoup
@@ -128,20 +128,20 @@ async def repo_is_here(wannasee):
 @tgbot.on(events.NewMessage(pattern=".xrepo"))
 async def handler(event):
     text = "OFFICIAL REPO"
-    await tgbot.send_message(event.chat_id, text, 
+    await tgbot.send_message(event.chat_id, text,
                              buttons=[
-                        [
-                            custom.Button.url(
-                                "🔥 GITHUB REPO 🔥",
-                                "https://github.com/ximfine/XBot-Remix",
-                            ),
-                            custom.Button.url(
-                                "🔱 OFFICIAL CHANNELS 🔱",
-                                "https://t.me/X_Projectss"),
-                        ],
-                    ],
-                    link_preview=False,
-                )
+                                 [
+                                     custom.Button.url(
+                                         "🔥 GITHUB REPO 🔥",
+                                         "https://github.com/ximfine/XBot-Remix",
+                                     ),
+                                     custom.Button.url(
+                                         "🔱 OFFICIAL CHANNELS 🔱",
+                                         "https://t.me/X_Projectss"),
+                                 ],
+                             ],
+                             link_preview=False,
+                             )
 
 
 @register(outgoing=True, pattern="^.raw$")
