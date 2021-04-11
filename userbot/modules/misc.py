@@ -17,7 +17,7 @@ import sys
 from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
 from userbot.events import register
 from userbot.utils import time_formatter
-from telethon import Button
+from telethon import Button, custom, events
 import urllib
 import requests
 from bs4 import BeautifulSoup
@@ -126,19 +126,25 @@ async def repo_is_here(wannasee):
 
 
 @register(outgoing=True, pattern="^.xrepo$")
-async def repo(e):
-    res = [
-        await e.builder.article(
-            title="XPROJECT Userbot",
-            description="Userbot | Telethon",
-            text="• **XPROJECT USERBOT** •",
-            buttons=[
-                [Button.url("GITHUB REPO", url="https://github.com/ximfine/XBot-Remix")],
-                [Button.url("SUPPORT CHANNELS", url="t.me/X-Projectss")],
-            ],
-        ),
-    ]
-    await e.answer(res)
+async def xrepo(event):
+    result = builder.article(
+                    "xbot",
+                    text="""You can convert your account to bot and use them. Remember, you can't manage someone else's bot! All installation details are explained from GitHub address below.""",
+                    buttons=[
+                        [
+                            custom.Button.url(
+                                "GitHub Repo",
+                                "https://github.com/ximfine/XBot-Remix",
+                            ),
+                            custom.Button.url(
+                                "Support",
+                                "https://t.me/X_Projectss"),
+                        ],
+                    ],
+                    link_preview=False,
+                )
+            await event.answer([result] if result else None)
+
 
 
 @ register(outgoing=True, pattern="^.raw$")
