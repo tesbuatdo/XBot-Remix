@@ -15,6 +15,7 @@ import os
 import io
 import sys
 from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from userbot import BOT_TOKEN, BOT_USERNAME
 from userbot.events import register
 from userbot.utils import time_formatter
 from telethon import custom
@@ -127,7 +128,10 @@ async def repo_is_here(wannasee):
 
 @register(outgoing=True, pattern="^.xrepo$")
 async def xrepo(event):
-    result = builder.article(
+    tgbotusername = BOT_USERNAME
+    if tgbotusername and BOT_TOKEN:
+        try:
+            result = builder.article(
         "xbot",
         text="""You can convert your account to bot and use them. Remember, you can't manage someone else's bot! All installation details are explained from GitHub address below.""",
         buttons=[
@@ -143,7 +147,9 @@ async def xrepo(event):
         ],
         link_preview=False,
     )
-    await event.answer(result)
+    await results[0].click(
+            event.chat_id, reply_to=event.reply_to_msg_id, hide_via=True
+        )
 
 
 @ register(outgoing=True, pattern="^.raw$")
