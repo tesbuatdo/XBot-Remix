@@ -42,7 +42,7 @@ psycopg2-binary
 pybase64
 pyfiglet
 pylast
-pySmartDL=>1.3.4
+pySmartDL==1.3.4
 pendulum
 psutil
 python-barcode
