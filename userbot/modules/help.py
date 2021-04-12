@@ -8,6 +8,9 @@
 import asyncio
 from userbot import CMD_HELP
 from userbot.events import register
+import sys
+from importlib import import_module
+from sys import argv
 
 modules = CMD_HELP
 
@@ -18,7 +21,7 @@ async def help(event):
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
-            await event.edit(str(CMD_HELP[args]))
+            await event.edit(str(CMD_HELP[args]f"{module_name}"))
         else:
             await event.edit("**Module Salah Goblokkkk!!**")
             await asyncio.sleep(18)
