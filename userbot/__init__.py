@@ -211,6 +211,7 @@ def is_mongo_alive():
         return False
     return True
 
+
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
 # and giving them correct perms to work properly.
 if not os.path.exists("bin"):
