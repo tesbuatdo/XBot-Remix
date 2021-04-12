@@ -269,7 +269,7 @@ async def amireallyalive(alive):
 async def handler(event):
     user = await bot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
-    output = (
+    text = (
         f"۝⩵꙰ཱི►XBOT-REMIX◄⩵꙰ཱི۝\n __running on__ 🤖 __**{UPSTREAM_REPO_BRANCH}**__ 🤖\n"
         f"╭━━━━━━━━━━━━━━━━━━━━━╮\n"
         f"┣[•👤 **USER**     :{DEFAULTUSER}\n"
@@ -283,16 +283,14 @@ async def handler(event):
         f"┣[•🕒 **Uptime**   : {uptime}**🔥\n"
         f"╰━━━━━━━━━━━━━━━━━━━━━╯\n"
         f" **•USER :{DEFAULTUSER}**")
-    buttons = [[Button.url(text="🛠️ GITHUB 🛠️",
+    logo = "https://telegra.ph/file/e05fc834a4c62237734fa.mp4"
+    await tgbot.send_file(event.chat_id, logo, caption=text,
+                                  buttons=[[Button.url(text="🛠️ GITHUB 🛠️",
                            url="https://github.com/ximfine"),
                 Button.url(text="🔥 REPO 🔥",
                url="https://github.com/ximfine/XBot-Remix")],
                [Button.url(text="🔱 OFFICIAL CHANNELS 🔱",
-                           url="https://t.me/X_Projectss")]]
-
-    logo = "https://telegra.ph/file/e05fc834a4c62237734fa.mp4"
-    await tgbot.send_file(event.chat_id, logo, caption=output, buttons)
-
+                           url="https://t.me/X_Projectss")]])
 
 @register(outgoing=True, pattern=r"^\.aliveu")
 async def amireallyaliveuser(username):
