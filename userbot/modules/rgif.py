@@ -8,7 +8,7 @@ from userbot.utils import progress
 from userbot.events import register
 from userbot import bot, CMD_HELP
 
-path = "./dcobra/"
+path = "./downloads/"
 if not os.path.isdir(path):
     os.makedirs(path)
 
@@ -38,7 +38,7 @@ async def _(event):
         progress(d, t, event, c_time, "[UPLOAD]")
     ),)
     await event.delete()
-    shutil.rmtree(path)
+    
     os.remove("danish.mp4")
     os.remove("danish.png")
 
