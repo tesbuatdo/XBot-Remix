@@ -34,9 +34,7 @@ async def xrepo(repo):
                                                   url="https://github.com/ximfine/XBot-Remix")]])
 
 
-register(pattern="/info(?: |$)(.*)", outgoing=True)
-
-
+@register(pattern="/info(?: |$)(.*)", outgoing=True)
 async def who(event):
     await tgbot.send_message(event.chat_id,
                              "__Membongkar Kedok User...__", reply_to=message_id_to_reply)
