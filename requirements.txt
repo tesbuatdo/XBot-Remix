@@ -50,6 +50,7 @@ python-dotenv
 python-dateutil
 pytz
 PyGithub
+pymongo[srv]
 qrcode
 redis
 requests
