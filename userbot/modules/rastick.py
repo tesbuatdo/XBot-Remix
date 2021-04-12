@@ -140,9 +140,10 @@ async def frg(animu):
     await animu.delete()
 
 CMD_HELP.update(
-    {
-        "rastick": ">`.rst`"
-        "\nUsage: To stickerize your text with random sticker templates."
-        "\n@StickerizerBot"
+    {   "rastick": 
+        ">`.rst` <text>\
+        "\nUsage: To stickerize your text with random sticker templates.\
+        "\n\n>`.frog` <text>\
+        "\nUsage: To stickerize your text with random frog sticker templates."
     }
 )
