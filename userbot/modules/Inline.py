@@ -31,6 +31,8 @@ async def xrepo(repo):
     await tgbot.send_message(repo.chat_id, rtext,
                              buttons=[[Button.url(text="GITHUB REPO",
                                                   url="https://github.com/ximfine/XBot-Remix")]])
+
+
 @tgbot.on(events.NewMessage(pattern="/whois"))
 async def who(event):
     await event.reply(
@@ -53,12 +55,12 @@ async def who(event):
 
     try:
         await tgbot.send_file(event.chat_id,
-                                     photo,
-                                     caption=caption,
-                                     link_preview=False,
-                                     force_document=False,
-                                     reply_to=message_id_to_reply,
-                                     parse_mode="html")
+                              photo,
+                              caption=caption,
+                              link_preview=False,
+                              force_document=False,
+                              reply_to=message_id_to_reply,
+                              parse_mode="html")
 
         if not photo.startswith("http"):
             os.remove(photo)
@@ -129,9 +131,9 @@ async def fetch_info(replied_user, event):
     restricted = replied_user.user.restricted
     verified = replied_user.user.verified
     photo = await tgbot.download_profile_photo(user_id,
-                                                      TEMP_DOWNLOAD_DIRECTORY +
-                                                      str(user_id) + ".jpg",
-                                                      download_big=True)
+                                               TEMP_DOWNLOAD_DIRECTORY +
+                                               str(user_id) + ".jpg",
+                                               download_big=True)
     first_name = first_name.replace(
         "\u2060", "") if first_name else ("This User has no First Name")
     last_name = last_name.replace(
