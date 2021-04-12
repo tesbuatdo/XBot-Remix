@@ -1,6 +1,7 @@
 from userbot.events import register
 from userbot import tgbot
 from telethon import Button
+
 rtext = """
 🔥 XBOT REMIX USERBOT 🔥
 
@@ -13,8 +14,8 @@ Thanks for using repo
 """
 
 
-@register(outgoing=True, pattern="/repo")
+@tgbot.on(events.NewMessage(pattern="/repo"))
 async def xrepo(repo):
-    await tgbot.send_messages(repo.chat_id, caption="🔥",
+    await tgbot.send_message(repo.chat_id, caption=rtext,
                               buttons=[[Button.url(text="GITHUB REPO",
                                                    url="https://github.com/ximfine/XBot-Remix")]])
