@@ -1,16 +1,14 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, scoped_session
-from userbot import DB_URI
-
-BASE = declarative_base()
+from pymongo import MongoClient, collection
+from userbot import MONGO_URI, LOGGER
 
 
-def start() -> scoped_session:
-    engine = create_engine(DB_URI)
-    BASE.metadata.bind = engine
-    BASE.metadata.create_all(engine)
-    return scoped_session(sessionmaker(bind=engine, autoflush=False))
+LOGGER.info("Connecting to MongoDB")
+
+DB_CLIENT = MongoClient(MONGO_URI)
+
+_DB = DB_CLIENT["xbot"]
 
 
-SESSION = start()
+def get_collection(name: str) -> collection:
+    """Get the collection from database."""
+    return _DB[name] 
