@@ -2,14 +2,15 @@ from userbot import tgbot
 from telethon import Button, events
 
 rtext = """
-🔥 XBOT REMIX USERBOT 🔥
+🔥 **XBOT REMIX USERBOT** 🔥
 
-  Running with telethon modules
+   `Running with telethon modules`
 
-• XBOT version: X01
-• License: [Raphielscape](https://github.com/ximfine/XBot-Remix/blob/alpha/LICENSE)
+**• XBOT version:** X-01
+**• Branch:** sql-extended
+**• License:** [Raphielscape](https://github.com/ximfine/XBot-Remix/blob/alpha/LICENSE)
 
-Thanks for using repo
+__Klik button below to use my repo__
 """
 
 
