@@ -142,8 +142,8 @@ async def frg(animu):
 CMD_HELP.update(
     {"rastick":
         ">`.rst` <text>\
-        "\nUsage: To stickerize your text with random sticker templates.
-        "\n\n>`.frog` <text>\
-        "\nUsage: To stickerize your text with random frog sticker templates."
+        \nUsage: To stickerize your text with random sticker templates.\
+        \n\n>`.frog` <text>\
+        \nUsage: To stickerize your text with random frog sticker templates."
      }
 )
