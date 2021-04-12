@@ -40,12 +40,12 @@ async def who(event):
 
     try:
         await tgbot.send_file(event.chat_id,
-                                     photo,
-                                     caption=caption,
-                                     link_preview=False,
-                                     force_document=False,
-                                     reply_to=message_id_to_reply,
-                                     parse_mode="html")
+                              photo,
+                              caption=caption,
+                              link_preview=False,
+                              force_document=False,
+                              reply_to=message_id_to_reply,
+                              parse_mode="html")
 
         if not photo.startswith("http"):
             os.remove(photo)
