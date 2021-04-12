@@ -8,9 +8,6 @@
 import asyncio
 from userbot import CMD_HELP
 from userbot.events import register
-import sys
-from importlib import import_module
-from sys import argv
 
 modules = CMD_HELP
 
