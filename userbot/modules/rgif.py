@@ -37,7 +37,9 @@ async def _(event):
         progress(d, t, event, c_time, "[UPLOAD]")
     ),)
     await event.delete()
-    os.system("rm -f downloads/*.png *.jpg")
+    os.system("rm -f downloads/*.jpg")
+    os.system("rm -f downloads/*.png")
+    os.system("rm -f downloads/*.webp")
     os.remove("danish.mp4")
     os.remove("danish.png")
 
