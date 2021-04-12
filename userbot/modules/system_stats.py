@@ -265,7 +265,7 @@ async def amireallyalive(alive):
         await alive.delete()
 
 
-@register(outgoing=True, pattern=!alive")
+@register(outgoing=True, pattern="!alive")
 async def handler(event):
     user = await tgbot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
