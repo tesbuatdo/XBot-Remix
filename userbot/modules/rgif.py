@@ -39,7 +39,6 @@ async def _(event):
     os.system("rm -f *.jpg")
     os.system("rm -f *.png")
     os.remove("danish.mp4")
-    
 
 
 CMD_HELP.update(
