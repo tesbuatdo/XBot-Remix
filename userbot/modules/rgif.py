@@ -7,6 +7,7 @@ from userbot.utils import progress
 from userbot.events import register
 from userbot import bot, CMD_HELP
 
+
 @register(outgoing=True, pattern=r"^\.rgif(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
