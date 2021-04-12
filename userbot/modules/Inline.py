@@ -15,6 +15,6 @@ Thanks for using repo
 
 @tgbot.on(events.NewMessage(pattern="/repo"))
 async def xrepo(repo):
-    await tgbot.send_message(repo.chat_id, caption=rtext,
+    await tgbot.send_message(repo.chat_id, rtext,
                              buttons=[[Button.url(text="GITHUB REPO",
                                                   url="https://github.com/ximfine/XBot-Remix")]])
