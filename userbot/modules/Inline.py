@@ -1,4 +1,4 @@
-from userbot import tgbot, BOT_TOKEN, BOT_USERNAME, bot
+from userbot import BOT_TOKEN, BOT_USERNAME, tgbot
 from telethon import Button, events
 import logging
 
@@ -33,8 +33,8 @@ async def xrepo(repo):
 @register(outgoing=True, pattern=r"^\.xrepo")
 async def yardim(event):
     tgbotusername = BOT_USERNAME
-    buttons=[[Button.url(text="GITHUB REPO",
-                                                  url="https://github.com/ximfine/XBot-Remix")]]
+    buttons = [[Button.url(text="GITHUB REPO",
+                           url="https://github.com/ximfine/XBot-Remix")]]
     if tgbotusername and BOT_TOKEN:
         try:
             results = await event.client.inline_query(tgbotusername, "@ProjectAlf")
