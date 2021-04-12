@@ -35,9 +35,11 @@ async def xrepo(repo):
 
 
 register(pattern="/info(?: |$)(.*)", outgoing=True)
+
+
 async def who(event):
-    await tgbot.send_message(event.chat_id, 
-        "__Membongkar Kedok User...__", reply_to=message_id_to_reply)
+    await tgbot.send_message(event.chat_id,
+                             "__Membongkar Kedok User...__", reply_to=message_id_to_reply)
 
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
