@@ -20,9 +20,9 @@ import time
 from datetime import datetime
 import psutil
 
-from userbot import ALIVE_LOGO, ALIVE_NAME, BOT_VER, CMD_HELP, StartTime, UPSTREAM_REPO_BRANCH, bot
+from userbot import tgbot, ALIVE_LOGO, ALIVE_NAME, BOT_VER, CMD_HELP, StartTime, UPSTREAM_REPO_BRANCH, bot
 from userbot.events import register
-
+from telethon import events, Button
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
@@ -264,6 +264,51 @@ async def amireallyalive(alive):
         await asyncio.sleep(200)
         await alive.delete()
 
+@tgbot.on(events.NewMessage(pattern="/alive"))
+async def handler(alive):
+    user = await tgbot.get_me()
+    uptime = await get_readable_time((time.time() - StartTime))
+    output = (
+        f"۝⩵꙰ཱི►XBOT-REMIX◄⩵꙰ཱི۝\n __running on__ 🤖 __**{UPSTREAM_REPO_BRANCH}**__ 🤖\n"
+        f"╭━━━━━━━━━━━━━━━━━━━━━╮\n"
+        f"┣[•👤 **USER**     :{DEFAULTUSER}\n"
+        f"┣[•👁‍🗨 **Username** :@{user.username}\n"
+        "`┣▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱`\n"
+        f"┣[•⚙️ **Telethon** : v {version.__version__}🔥\n"
+        f"┣[•🐍 **Python**   : v {python_version()}🔥\n"
+        f"┣[•💻 **Base on**  : {UPSTREAM_REPO_BRANCH}🔥\n"
+        f"┣[•🛠 **Version**  : {BOT_VER}🔥\n"
+        f"┣[•🗃 **Modules**  : {len(modules)}Loaded🔥\n"
+        f"┣[•🕒 **Uptime**   : {uptime}**🔥\n"
+        f"╰━━━━━━━━━━━━━━━━━━━━━╯\n"
+        f" **•USER :{DEFAULTUSER}**")
+     buttons=[
+               [
+                 Button.url(text="🛠️ GITHUB 🛠️", url="https://github.com/ximfine"), 
+                 Button.url(text="🔥 REPO 🔥", url="https://github.com/ximfine/XBot-Remix"
+                 )],
+               [Button.url(text="🔱 OFFICIAL CHANNELS 🔱", url="https://t.me/X_Projectss"
+                 )                 
+               ]
+             ]         
+    if ALIVE_LOGO:
+        try:
+            logo = ALIVE_LOGO
+            await alive.delete()
+            msg = await tgbot.send_file(alive.chat_id, logo, caption=output, buttons)
+            await asyncio.sleep(200)
+            await msg.delete()
+        except BaseException:
+            await alive.edit(
+                output + "\n\n *`The provided logo is invalid."
+                "\nMake sure the link is directed to the logo picture`"
+            )
+            await asyncio.sleep(200)
+            await alive.delete()
+    else:
+        await alive.edit(output)
+        await asyncio.sleep(200)
+        await alive.delete()
 
 @register(outgoing=True, pattern=r"^\.aliveu")
 async def amireallyaliveuser(username):
