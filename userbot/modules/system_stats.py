@@ -285,12 +285,13 @@ async def handler(event):
         f" **•USER :{DEFAULTUSER}**")
     logo = "https://telegra.ph/file/e05fc834a4c62237734fa.mp4"
     await tgbot.send_file(event.chat_id, logo, caption=text,
-                                  buttons=[[Button.url(text="🛠️ GITHUB 🛠️",
-                           url="https://github.com/ximfine"),
-                Button.url(text="🔥 REPO 🔥",
-               url="https://github.com/ximfine/XBot-Remix")],
-               [Button.url(text="🔱 OFFICIAL CHANNELS 🔱",
-                           url="https://t.me/X_Projectss")]])
+                          buttons=[[Button.url(text="🛠️ GITHUB 🛠️",
+                                               url="https://github.com/ximfine"),
+                                    Button.url(text="🔥 REPO 🔥",
+                                               url="https://github.com/ximfine/XBot-Remix")],
+                                   [Button.url(text="🔱 OFFICIAL CHANNELS 🔱",
+                                               url="https://t.me/X_Projectss")]])
+
 
 @register(outgoing=True, pattern=r"^\.aliveu")
 async def amireallyaliveuser(username):
