@@ -13,7 +13,7 @@ from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, tgbot
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
@@ -40,12 +40,12 @@ async def who(event):
 
     try:
         await bot.send_file(event.chat_id,
-                              photo,
-                              caption=caption,
-                              link_preview=False,
-                              force_document=False,
-                              reply_to=message_id_to_reply,
-                              parse_mode="html")
+                            photo,
+                            caption=caption,
+                            link_preview=False,
+                            force_document=False,
+                            reply_to=message_id_to_reply,
+                            parse_mode="html")
 
         if not photo.startswith("http"):
             os.remove(photo)
