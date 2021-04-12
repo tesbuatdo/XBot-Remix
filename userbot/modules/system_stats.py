@@ -22,7 +22,7 @@ import psutil
 
 from userbot import tgbot, ALIVE_LOGO, ALIVE_NAME, BOT_VER, CMD_HELP, StartTime, UPSTREAM_REPO_BRANCH, bot
 from userbot.events import register
-from telethon import events, Button
+from telethon import Button
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
@@ -289,11 +289,12 @@ async def handler(event):
                url="https://github.com/ximfine/XBot-Remix")],
                [Button.url(text="🔱 OFFICIAL CHANNELS 🔱",
                            url="https://t.me/X_Projectss")]]
-    
+
     logo = ALIVE_LOGO
     await event.delete()
     await tgbot.send_file(event.chat_id, logo, output, buttons)
-            
+
+
 @register(outgoing=True, pattern=r"^\.aliveu")
 async def amireallyaliveuser(username):
     message = username.text
