@@ -20,7 +20,7 @@ __Klik button below to use my repo__
 """
 
 
-@tgbot.on(events.NewMessage(pattern="/repo"))
+@tgbot.on(events.NewMessage(pattern="!repo"))
 async def xrepo(repo):
     await tgbot.send_message(repo.chat_id, rtext,
                              buttons=[[Button.url(text="GITHUB REPO",
