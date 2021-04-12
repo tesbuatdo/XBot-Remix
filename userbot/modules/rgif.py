@@ -2,7 +2,6 @@ import os
 import asyncio
 import PIL
 import cv2
-import shutil
 import time
 from userbot.utils import progress
 from userbot.events import register
@@ -38,7 +37,7 @@ async def _(event):
         progress(d, t, event, c_time, "[UPLOAD]")
     ),)
     await event.delete()
-    
+
     os.remove("danish.mp4")
     os.remove("danish.png")
 
