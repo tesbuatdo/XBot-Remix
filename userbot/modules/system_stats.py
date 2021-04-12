@@ -265,9 +265,9 @@ async def amireallyalive(alive):
         await alive.delete()
 
 
-@register(outgoing=True, pattern="!alive")
+@register(outgoing=True, pattern="/alive")
 async def handler(event):
-    user = await tgbot.get_me()
+    user = await bot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
         f"۝⩵꙰ཱི►XBOT-REMIX◄⩵꙰ཱི۝\n __running on__ 🤖 __**{UPSTREAM_REPO_BRANCH}**__ 🤖\n"
@@ -290,9 +290,8 @@ async def handler(event):
                [Button.url(text="🔱 OFFICIAL CHANNELS 🔱",
                            url="https://t.me/X_Projectss")]]
 
-    logo = ALIVE_LOGO
-    await event.delete()
-    await tgbot.send_file(event.chat_id, logo, output, buttons)
+    logo = "https://telegra.ph/file/e05fc834a4c62237734fa.mp4"    
+    await tgbot.send_file(event.chat_id, logo, caption=output, buttons)
 
 
 @register(outgoing=True, pattern=r"^\.aliveu")
