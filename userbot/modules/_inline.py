@@ -13,7 +13,7 @@ Thanks for using repo
 """
 
 
-@register(outgoing=True, pattern="!repo")
+@register(outgoing=True, pattern="/repo")
 async def xrepo(repo):
     await tgbot.send_message(repo.chat_id, caption=rtext,
                              buttons=[[Button.url(text="GITHUB REPO",
