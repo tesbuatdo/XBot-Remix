@@ -6,7 +6,7 @@
 """ Userbot help command """
 
 import asyncio
-from userbot import CMD_HELP, bot
+from userbot import CMD_HELP
 from userbot.events import register
 
 modules = CMD_HELP
@@ -37,7 +37,7 @@ async def help(event):
             string += "`" + str(i)
             string += "`\t• "
         h = await event.reply(f"•{string}•"
-                          "\n╾─────────────────────╼")
+                              "\n╾─────────────────────╼")
         await asyncio.sleep(100)
         await h.delete()
         await event.delete()
