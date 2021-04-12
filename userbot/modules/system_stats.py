@@ -289,26 +289,11 @@ async def handler(event):
                url="https://github.com/ximfine/XBot-Remix")],
                [Button.url(text="🔱 OFFICIAL CHANNELS 🔱",
                            url="https://t.me/X_Projectss")]]
-    if ALIVE_LOGO:
-        try:
-            logo = ALIVE_LOGO
-            await event.delete()
-            msg = await tgbot.send_file(event.chat_id, logo, caption=output, buttons)
-            await asyncio.sleep(200)
-            await msg.delete()
-        except BaseException:
-            await alive.edit(
-                output + "\n\n *`The provided logo is invalid."
-                "\nMake sure the link is directed to the logo picture`"
-            )
-            await asyncio.sleep(200)
-            await event.delete()
-    else:
-        await event.edit(output)
-        await asyncio.sleep(200)
-        await event.delete()
-
-
+    
+    logo = ALIVE_LOGO
+    await event.delete()
+    await tgbot.send_file(event.chat_id, logo, output, buttons)
+            
 @register(outgoing=True, pattern=r"^\.aliveu")
 async def amireallyaliveuser(username):
     message = username.text
