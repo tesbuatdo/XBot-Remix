@@ -8,6 +8,7 @@ from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
+from userbot.events import register
 
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
@@ -33,9 +34,9 @@ async def xrepo(repo):
                                                   url="https://github.com/ximfine/XBot-Remix")]])
 
 
-@tgbot.on(events.NewMessage(pattern="/whois"))
+register(pattern="/whois(?: |$)(.*)", outgoing=True)
 async def who(event):
-    await event.reply(
+    await tgbot.reply_message(
         "__Membongkar Kedok User...__")
 
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
@@ -55,12 +56,12 @@ async def who(event):
 
     try:
         await tgbot.send_file(event.chat_id,
-                              photo,
-                              caption=caption,
-                              link_preview=False,
-                              force_document=False,
-                              reply_to=message_id_to_reply,
-                              parse_mode="html")
+                                     photo,
+                                     caption=caption,
+                                     link_preview=False,
+                                     force_document=False,
+                                     reply_to=message_id_to_reply,
+                                     parse_mode="html")
 
         if not photo.startswith("http"):
             os.remove(photo)
@@ -74,7 +75,7 @@ async def get_user(event):
     """ Get the user from argument or replied message. """
     if event.reply_to_msg_id and not event.pattern_match.group(1):
         previous_message = await event.get_reply_message()
-        replied_user = await tgbot(
+        replied_user = await event.client(
             GetFullUserRequest(previous_message.from_id))
     else:
         user = event.pattern_match.group(1)
@@ -83,7 +84,7 @@ async def get_user(event):
             user = int(user)
 
         if not user:
-            self_user = await tgbot.get_me()
+            self_user = await event.client.get_me()
             user = self_user.id
 
         if event.message.entities is not None:
@@ -92,11 +93,11 @@ async def get_user(event):
             if isinstance(probable_user_mention_entity,
                           MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
-                replied_user = await tgbot(GetFullUserRequest(user_id))
+                replied_user = await event.client(GetFullUserRequest(user_id))
                 return replied_user
         try:
-            user_object = await tgbot.get_entity(user)
-            replied_user = await tgbot(
+            user_object = await event.client.get_entity(user)
+            replied_user = await event.client(
                 GetFullUserRequest(user_object.id))
         except (TypeError, ValueError) as err:
             return await event.edit(str(err))
@@ -106,7 +107,7 @@ async def get_user(event):
 
 async def fetch_info(replied_user, event):
     """ Get details from the User object. """
-    replied_user_profile_photos = await tgbot(
+    replied_user_profile_photos = await event.client(
         GetUserPhotosRequest(user_id=replied_user.user.id,
                              offset=42,
                              max_id=0,
@@ -130,10 +131,10 @@ async def fetch_info(replied_user, event):
     is_bot = replied_user.user.bot
     restricted = replied_user.user.restricted
     verified = replied_user.user.verified
-    photo = await tgbot.download_profile_photo(user_id,
-                                               TEMP_DOWNLOAD_DIRECTORY +
-                                               str(user_id) + ".jpg",
-                                               download_big=True)
+    photo = await event.client.download_profile_photo(user_id,
+                                                      TEMP_DOWNLOAD_DIRECTORY +
+                                                      str(user_id) + ".jpg",
+                                                      download_big=True)
     first_name = first_name.replace(
         "\u2060", "") if first_name else ("This User has no First Name")
     last_name = last_name.replace(
