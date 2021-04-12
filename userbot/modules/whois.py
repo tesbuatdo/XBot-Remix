@@ -39,7 +39,7 @@ async def who(event):
         message_id_to_reply = None
 
     try:
-        await tgbot.send_file(event.chat_id,
+        await bot.send_file(event.chat_id,
                               photo,
                               caption=caption,
                               link_preview=False,
