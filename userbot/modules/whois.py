@@ -13,7 +13,7 @@ from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, tgbot
 from userbot.events import register
 
 
@@ -39,7 +39,7 @@ async def who(event):
         message_id_to_reply = None
 
     try:
-        await event.client.send_file(event.chat_id,
+        await tgbot.send_file(event.chat_id,
                                      photo,
                                      caption=caption,
                                      link_preview=False,
