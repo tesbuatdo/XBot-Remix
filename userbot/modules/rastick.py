@@ -121,10 +121,10 @@ async def rastick(animu):
 async def frg(animu):
     text = animu.pattern_match.group(1)
     if not text:
-       await animumedit("Silahkan Masukan Kata!")
+        await animumedit("Silahkan Masukan Kata!")
     else:
-         sticcers = await bot.inline_query("honka_says_bot", f"{text}."
-    )
+        sticcers = await bot.inline_query("honka_says_bot", f"{text}."
+                                          )
     try:
         await sticcers[0].click(
             animu.chat_id,
