@@ -118,7 +118,7 @@ async def rastick(animu):
 
 
 @register(outgoing=True, pattern=r"^\.frog(?: |$)(.*)")
-async def rastick(animu):
+async def frg(animu):
     text = animu.pattern_match.group(1)
     if not text:
        await animumedit("Silahkan Masukan Kata!")
