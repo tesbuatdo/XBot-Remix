@@ -1,10 +1,8 @@
-from userbot import BOT_TOKEN, BOT_USERNAME, tgbot
+from userbot import tgbot
 from telethon import Button, events
 import logging
 
-from telethon.errors.rpcerrorlist import BotInlineDisabledError
 
-from userbot.events import register
 
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
