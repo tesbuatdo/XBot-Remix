@@ -265,8 +265,8 @@ async def amireallyalive(alive):
         await alive.delete()
 
 
-@tgbot.on(events.NewMessage(pattern="/alive"))
-async def handler(alive):
+@register(outgoing=True, pattern=!alive")
+async def handler(event):
     user = await tgbot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
@@ -292,8 +292,8 @@ async def handler(alive):
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
-            await alive.delete()
-            msg = await tgbot.send_file(alive.chat_id, logo, caption=output, buttons)
+            await event.delete()
+            msg = await tgbot.send_file(event.chat_id, logo, caption=output, buttons)
             await asyncio.sleep(200)
             await msg.delete()
         except BaseException:
@@ -302,11 +302,11 @@ async def handler(alive):
                 "\nMake sure the link is directed to the logo picture`"
             )
             await asyncio.sleep(200)
-            await alive.delete()
+            await event.delete()
     else:
-        await alive.edit(output)
+        await event.edit(output)
         await asyncio.sleep(200)
-        await alive.delete()
+        await event.delete()
 
 
 @register(outgoing=True, pattern=r"^\.aliveu")
