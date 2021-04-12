@@ -290,7 +290,7 @@ async def handler(event):
                [Button.url(text="🔱 OFFICIAL CHANNELS 🔱",
                            url="https://t.me/X_Projectss")]]
 
-    logo = "https://telegra.ph/file/e05fc834a4c62237734fa.mp4"    
+    logo = "https://telegra.ph/file/e05fc834a4c62237734fa.mp4"
     await tgbot.send_file(event.chat_id, logo, caption=output, buttons)
 
 
