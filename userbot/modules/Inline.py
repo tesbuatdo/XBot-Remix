@@ -1,5 +1,5 @@
 from userbot import tgbot
-from telethon import Button
+from telethon import Button, events
 
 rtext = """
 🔥 XBOT REMIX USERBOT 🔥
