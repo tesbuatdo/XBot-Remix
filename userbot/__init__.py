@@ -12,7 +12,7 @@ from distutils.util import strtobool as sb
 from logging import DEBUG, INFO, basicConfig, getLogger
 from math import ceil
 from sys import version_info
-
+from pymongo import MongoClient
 from dotenv import load_dotenv
 from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
@@ -128,6 +128,9 @@ QUOTES_API_TOKEN = os.environ.get("QUOTES_API_TOKEN") or None
 ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT") or "False")
 ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT") or "False")
 
+# For MONGO based DataBase
+MONGO_URI = os.environ.get("MONGO_URI", None)
+
 # Time & Date - Country and Time Zone
 COUNTRY = str(os.environ.get("COUNTRY") or "")
 TZ_NUMBER = int(os.environ.get("TZ_NUMBER") or 1)
@@ -195,6 +198,18 @@ BOT_USERNAME = os.environ.get("BOT_USERNAME") or None
 
 # bit.ly module
 BITLY_TOKEN = os.environ.get("BITLY_TOKEN", None)
+
+# Init Mongo
+MONGOCLIENT = MongoClient(MONGO_URI, 27017, serverSelectionTimeoutMS=1)
+MONGO = MONGOCLIENT.userbot
+
+
+def is_mongo_alive():
+    try:
+        MONGOCLIENT.server_info()
+    except BaseException:
+        return False
+    return True
 
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
 # and giving them correct perms to work properly.
