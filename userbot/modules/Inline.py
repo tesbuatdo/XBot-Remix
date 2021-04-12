@@ -37,10 +37,9 @@ async def yardim(event):
                            url="https://github.com/ximfine/XBot-Remix")]]
     if tgbotusername and BOT_TOKEN:
         try:
-            results = await event.client.inline_query(tgbotusername, "@ProjectAlf")
+            await event.client.inline_query(tgbotusername, "@ProjectAlf")
         except BotInlineDisabledError:
             return await event.edit(
                 "`Bot can't be used in inline mode.\nMake sure to turn on inline mode!`"
-            )       
+            )
             await event.edit("klik here", buttons)
-   
