@@ -36,8 +36,10 @@ async def _(event):
     os.system("rm -f downloads/*.jpg")
     os.system("rm -f downloads/*.png")
     os.system("rm -f downloads/*.webp")
+    os.system("rm -f *.jpg")
+    os.system("rm -f *.png")
     os.remove("danish.mp4")
-    os.remove("danish.png")
+    
 
 
 CMD_HELP.update(
