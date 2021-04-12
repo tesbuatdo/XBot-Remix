@@ -264,6 +264,7 @@ async def amireallyalive(alive):
         await asyncio.sleep(200)
         await alive.delete()
 
+
 @tgbot.on(events.NewMessage(pattern="/alive"))
 async def handler(alive):
     user = await tgbot.get_me()
@@ -282,15 +283,12 @@ async def handler(alive):
         f"┣[•🕒 **Uptime**   : {uptime}**🔥\n"
         f"╰━━━━━━━━━━━━━━━━━━━━━╯\n"
         f" **•USER :{DEFAULTUSER}**")
-     buttons=[
-               [
-                 Button.url(text="🛠️ GITHUB 🛠️", url="https://github.com/ximfine"), 
-                 Button.url(text="🔥 REPO 🔥", url="https://github.com/ximfine/XBot-Remix"
-                 )],
-               [Button.url(text="🔱 OFFICIAL CHANNELS 🔱", url="https://t.me/X_Projectss"
-                 )                 
-               ]
-             ]         
+    buttons = [[Button.url(text="🛠️ GITHUB 🛠️",
+                           url="https://github.com/ximfine"),
+                Button.url(text="🔥 REPO 🔥",
+               url="https://github.com/ximfine/XBot-Remix")],
+               [Button.url(text="🔱 OFFICIAL CHANNELS 🔱",
+                           url="https://t.me/X_Projectss")]]
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
@@ -309,6 +307,7 @@ async def handler(alive):
         await alive.edit(output)
         await asyncio.sleep(200)
         await alive.delete()
+
 
 @register(outgoing=True, pattern=r"^\.aliveu")
 async def amireallyaliveuser(username):
