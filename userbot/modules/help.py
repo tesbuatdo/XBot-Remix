@@ -21,7 +21,7 @@ async def help(event):
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
-            await event.edit(str(CMD_HELP[args]module_name))
+            await event.edit(str(CMD_HELP[args] + module_name))
         else:
             await event.edit("**Module Salah Goblokkkk!!**")
             await asyncio.sleep(18)
