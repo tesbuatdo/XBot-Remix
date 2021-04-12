@@ -29,7 +29,7 @@ Thanks for using repo
 
 
 @register(outgoing=True, pattern="!repo")
-async def repo(repo):
+async def xrepo(repo):
     await tgbot.send_message(repo.chat_id, caption=rtext,
                              buttons=[[Button.url(text="GITHUB REPO",
-                                               url="https://github.com/ximfine/XBot-Remix")]]
+                                               url="https://github.com/ximfine/XBot-Remix")]])
