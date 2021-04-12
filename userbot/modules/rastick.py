@@ -117,6 +117,28 @@ async def rastick(animu):
     await animu.delete()
 
 
+@register(outgoing=True, pattern=r"^\.frog(?: |$)(.*)")
+async def rastick(animu):
+    text = animu.pattern_match.group(1)
+    if not text:
+       await animumedit("Silahkan Masukan Kata!")
+    else:
+         sticcers = await bot.inline_query("honka_says_bot", f"{text}."
+    )
+    try:
+        await sticcers[0].click(
+            animu.chat_id,
+            reply_to=animu.reply_to_msg_id,
+            silent=True if animu.is_reply else False,
+            hide_via=True,
+        )
+    except Exception:
+        return await animu.edit(
+            "`You cannot send inline results in this chat (caused by SendInlineBotResultRequest)`"
+        )
+    await sleep(5)
+    await animu.delete()
+
 CMD_HELP.update(
     {
         "rastick": ">`.rst`"
