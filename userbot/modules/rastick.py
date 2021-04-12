@@ -112,12 +112,11 @@ async def rastick(animu):
     except Exception:
         return await animu.edit(
             "`You cannot send inline results in this chat (caused by SendInlineBotResultRequest)`"
-        )
-    await sleep(5)
+        )   
     await animu.delete()
 
 
-@register(outgoing=True, pattern=r"^\.frog(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.honka(?: |$)(.*)")
 async def frg(animu):
     text = animu.pattern_match.group(1)
     if not text:
@@ -136,14 +135,13 @@ async def frg(animu):
         return await animu.edit(
             "`You cannot send inline results in this chat (caused by SendInlineBotResultRequest)`"
         )
-    await sleep(5)
     await animu.delete()
 
 CMD_HELP.update(
     {"rastick":
         ">`.rst` <text>\
         \nUsage: To stickerize your text with random sticker templates.\
-        \n\n>`.frog` <text>\
+        \n\n>`.honka` <text>\
         \nUsage: To stickerize your text with random frog sticker templates."
      }
 )
