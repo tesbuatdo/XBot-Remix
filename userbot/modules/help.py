@@ -36,7 +36,7 @@ async def help(event):
         for i in CMD_HELP:
             string += "`" + str(i)
             string += "`\t• "
-        await event.edit(string)
+        await bot.send_message(event.chat_id, string)
 
         await asyncio.sleep(100)
         await event.delete()
