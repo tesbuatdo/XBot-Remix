@@ -171,10 +171,7 @@ async def _(event):
         allow_cache=False,
         caption=query,
         thumb=catthumb,
-        supports_streaming=True,
-        progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-            progress(d, t, event, c_time, "[UPLOAD]", loa)
-        ),
+        supports_streaming=True,        
     )
     await event.delete()
     os.system("rm -rf ./temp/*.mp3")
