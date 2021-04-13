@@ -9,12 +9,10 @@ import shutil
 import time
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 import os
-import subprocess
 import time
 from asyncio.exceptions import TimeoutError
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
-import pybase64
 
 import deezloader
 from hachoir.metadata import extractMetadata
@@ -24,14 +22,7 @@ from selenium import webdriver
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
-from youtube_dl import YoutubeDL
-from youtube_dl.utils import (DownloadError, ContentTooShortError,
 
-                              ExtractorError, GeoRestrictedError,
-                              MaxDownloadsReached, PostProcessingError,
-                              UnavailableVideoError, XAttrMetadataError)
-
-from youtubesearchpython import SearchVideos
 from userbot import (
     CMD_HELP,
     DEEZER_ARL_TOKEN,
@@ -64,6 +55,7 @@ async def getmusicvideo(cat):
     command = 'youtube-dl -f "[filesize<50M]" --merge-output-format mp4 ' + video_link
     os.system(command)
 
+
 async def catmusic(cat, QUALITY, hello):
     search = cat
     chrome_options = webdriver.ChromeOptions()
@@ -86,22 +78,21 @@ async def catmusic(cat, QUALITY, hello):
         return
     try:
         command = (
-            'youtube-dl -o "./temp/%(title)s.%(ext)s" --extract-audio --audio-format mp3 --audio-quality '
-            + QUALITY
-            + " "
-            + video_link
-        )
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" --extract-audio --audio-format mp3 --audio-quality ' +
+            QUALITY +
+            " " +
+            video_link)
         os.system(command)
     except Exception as e:
         return await hello.edit(f"`Error:\n {e}`")
     try:
         thumb = (
-            'youtube-dl -o "./temp/%(title)s.%(ext)s" --write-thumbnail --skip-download '
-            + video_link
-        )
+            'youtube-dl -o "./temp/%(title)s.%(ext)s" --write-thumbnail --skip-download ' +
+            video_link)
         os.system(thumb)
     except Exception as e:
         return await hello.edit(f"`Error:\n {e}`")
+
 
 @register(outgoing=True, pattern=r"^\.netease (?:(now)|(.*) - (.*))")
 async def _(event):
@@ -187,6 +178,7 @@ async def _(event):
     os.system("rm -rf ./temp/*.mp3")
     os.system("rm -rf ./temp/*.jpg")
     os.system("rm -rf ./temp/*.webp")
+
 
 @register(outgoing=True, pattern=r"^\.vsong(?: |$)(.*)")
 async def _(event):
