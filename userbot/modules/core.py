@@ -2,6 +2,7 @@ import asyncio
 import importlib
 import logging
 import sys
+import os
 from pathlib import Path
 
 from userbot import CMD_HELP, LOGS, bot
