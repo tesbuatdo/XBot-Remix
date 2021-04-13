@@ -71,40 +71,40 @@ async def speedtest(event):
     output = replymsg += f"\nDownload: `{xconvert(result['download'])}Mb/s`\nUpload: `{xconvert(result['upload'])}Mb/s`\nPing: `{result['ping']}`")
     await event.reply_photo(
         event.chat_id,
-        photo=speedtest_image,
-        caption=output,
-        force_document=False,
+        photo = speedtest_image,
+        caption = output,
+        force_document = False,
     )
 
 
-@register(outgoing=True, pattern="^.ping$")
+@ register(outgoing = True, pattern = "^.ping$")
 async def pingme(pong):
     """ For .ping command, ping the userbot from any chat.  """
-    uptime = await get_readable_time((time.time() - StartTime))
-    start = datetime.now()
+    uptime=await get_readable_time((time.time() - StartTime))
+    start=datetime.now()
     await pong.edit("`Pinging....`")
-    end = datetime.now()
-    duration = (end - start).microseconds / 1000
+    end=datetime.now()
+    duration=(end - start).microseconds / 1000
     await pong.edit(f"**PONG!! 🍭**\n**Pinger** : %sms\n**Bot Uptime** : {uptime}🕛" % (duration))
 
 
-@register(outgoing=True, pattern="^.pong$")
+@ register(outgoing = True, pattern = "^.pong$")
 async def pingme(pong):
     """ For .ping command, ping the userbot from any chat.  """
-    start = datetime.now()
+    start=datetime.now()
     await pong.edit("`gass!`")
-    end = datetime.now()
-    duration = (end - start).microseconds / 9000
+    end=datetime.now()
+    duration=(end - start).microseconds / 9000
     await pong.edit("`Ping!\n%sms`" % (duration))
 
 
-@register(outgoing=True, pattern="^.pink$")
+@ register(outgoing = True, pattern = "^.pink$")
 async def pingme(pong):
     """ For .ping command, ping the userbot from any chat.  """
-    start = datetime.now()
+    start=datetime.now()
     await pong.edit("`Croots!`")
-    end = datetime.now()
-    duration = (end - start).microseconds / 9000
+    end=datetime.now()
+    duration=(end - start).microseconds / 9000
     await pong.edit("**CROOTSS!\n%sms**" % (duration))
 
 
