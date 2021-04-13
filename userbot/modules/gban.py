@@ -120,8 +120,8 @@ async def gspider(userbot):
     if BOTLOG:
         await bot.send_message(
             BOTLOG_CHATID,
-            f"  # GBANNED\n
-            USER: [{user.first_name}](tg: // user?id={user.id})"
+            "#GBANNED\n"
+            f"USER: [{user.first_name}](tg: // user?id={user.id})"
         )
 
 
