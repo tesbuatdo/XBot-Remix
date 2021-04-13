@@ -53,7 +53,7 @@ def speed_convert(size):
     return f"{round(size, 2)} {units[zero]}"
 
 
-@register(outgoing=True, pattern="^\\.speed$")
+@register(outgoing=True, pattern="^.speed$")
 async def _(event):
     if event.fwd_from:
         return
@@ -73,25 +73,21 @@ async def _(event):
     i_s_p = client_infos.get("isp")
     i_s_p_rating = client_infos.get("isprating")
     reply_msg_id = event.message.id
-    if event.reply_to_msg_id:
-        reply_msg_id = event.reply_to_msg_id
-    try:
-        response = s.results.share()
-        speedtest_image = response
-        output = (f"Download: {speed_convert(download_speed)}\n"
+    response = s.results.share()
+    speedtest_image = response
+    output = (f"Download: {speed_convert(download_speed)}\n"
                   f"Upload: {speed_convert(upload_speed)}\n"
                   f"Ping: {ping_time}\n"
                   f"ISP: {i_s_p}\n"
                   f"ISP RATE: {i_s_p_rating}\n")
-        await bot.send_file(
+    await bot.send_file(
             event.chat_id,
             speedtest_image,
             caption=output,
-            force_document=False,
-            reply_to=reply_msg_id,
+            force_document=False,            
             allow_cache=False
-        )
-        await event.delete()
+    )
+    await event.delete()
 
 
 @register(outgoing=True, pattern="^.ping$")
