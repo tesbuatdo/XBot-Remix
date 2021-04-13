@@ -75,7 +75,7 @@ async def gspider(userbot):
         pass
     try:
         if not reason:
-            reason = "Private"
+            reason = "No Reason"
     except BaseException:
         return await friday.edit(f"**Terjadi Kesalahan!!**")
     if user:
@@ -104,20 +104,24 @@ async def gspider(userbot):
             except BaseException:
                 b += 1
     else:
-        await friday.edit(f"**Reply to a user !!**")
+        await friday.edit("**Reply to a user !!**")
     try:
         if gmute(user.id) is False:
             return await friday.edit(f"**Error! User telah di gbanned.**")
     except BaseException:
         pass
-    return await friday.edit(f"**GLOBAL BANNED USER**\n\nName: [{user.first_name}](tg://user?id={user.id})\nTotal Group: {a}\nReason: {reason}"
+    if reason:
+        await friday.edit(f"**// GLOBAL BANNED USER //**\n\nName: [{user.first_name}](tg://user?id={user.id})\nTotal Group: {a}\nReason: {reason}"
                              )
 
+    else:
+        await friday.edit(f"**// GLOBAL BANNED USER //**\n\nName: [{user.first_name}](tg://user?id={user.id})\nTotal Group: {a}"
+                             )
     if BOTLOG:
         await bot.send_message(
             BOTLOG_CHATID,
-            "#GBANNED\n"
-            f"USER: [{user.first_name}](tg://user?id={user.id})"
+            f"#GBANNED\n
+            USER: [{user.first_name}](tg://user?id={user.id})"
         )
 
 
