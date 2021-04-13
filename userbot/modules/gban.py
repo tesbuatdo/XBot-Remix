@@ -56,11 +56,11 @@ async def gspider(userbot):
     me = await lol.client.get_me()
     xreason = userbot.pattern_match.group(1)
     if not sender.id == me.id:
-        friday = await lol.reply("Gbanning User..")
+        friday = await lol.reply("Gbanning User....")
     else:
         friday = await lol.edit("Wait Processing.....")
     me = await userbot.client.get_me()
-    await friday.edit(f"**Global Ban user..**")
+    await friday.edit(f"**Global Ban User....**")
     my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
     f"@{me.username}" if me.username else my_mention
     await userbot.get_chat()
@@ -111,18 +111,14 @@ async def gspider(userbot):
             return await friday.edit(f"**Error! User telah di gbanned.**")
     except BaseException:
         pass
-    if xreason:
-        await friday.edit(f"**// GLOBAL BANNED USER //**\n\n**Name:** [{user.first_name}](tg://user?id={user.id})\n**Total Group:** {a}\n**Reason:** {xreason}"
+    return await friday.edit(f"**// GLOBAL BANNED USER //**\n\n**Name:** [{user.first_name}](tg://user?id={user.id})\n**Total Group:** {a}\n**Reason:** {reason}"
                           )
 
-    else:
-        await friday.edit(f"**// GLOBAL BANNED USER //**\n\n**Name:** [{user.first_name}](tg://user?id={user.id})\n**Total Group:** {a}\n**Reason:** No Reason"
-                          )
     if BOTLOG:
         await bot.send_message(
             BOTLOG_CHATID,
-            "#GLOBAL BANNED\n\n"
-            f"USER: [{user.first_name}](tg: // user?id={user.id})\n"
+            "#GLOBAL_BANNED\n\n"
+            f"**USER:** [{user.first_name}](tg: // user?id={user.id})\n"
             f"**SUDO:** {ALIVE_NAME}"
         )
 
@@ -137,7 +133,7 @@ async def gspider(userbot):
     else:
         friday = await lol.edit("Just a Second ")
     me = await userbot.client.get_me()
-    await friday.edit(f"Trying To Ungban User !")
+    await friday.edit(f"Ungbanning User..")
     my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
     f"@{me.username}" if me.username else my_mention
     await userbot.get_chat()
@@ -186,9 +182,16 @@ async def gspider(userbot):
             return await friday.edit("**Error! User probably already ungbanned.**")
     except BaseException:
         pass
-    return await friday.edit(
-        f"**UNGBANNED // USER - [{user.first_name}](tg://user?id={user.id}) CHATS : {a} **"
-    )
+    return await friday.edit(f"**// UNGBANNED USER //**\n\n**Name:** [{user.first_name}](tg://user?id={user.id})\n**Total Group:** {a}"
+                          )
+
+    if BOTLOG:
+        await bot.send_message(
+            BOTLOG_CHATID,
+            "#UNGBANNED\n\n"
+            f"**USER:** [{user.first_name}](tg: // user?id={user.id})\n"
+            f"**SUDO:** {ALIVE_NAME}"
+        )
 
 
 CMD_HELP.update({
