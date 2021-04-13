@@ -54,7 +54,7 @@ async def gspider(userbot):
     lol = userbot
     sender = await lol.get_sender()
     me = await lol.client.get_me()
-    xreason = userbot.pattern_match.group(1)
+    userbot.pattern_match.group(1)
     if not sender.id == me.id:
         friday = await lol.reply("Gbanning User....")
     else:
@@ -112,7 +112,7 @@ async def gspider(userbot):
     except BaseException:
         pass
     return await friday.edit(f"**// GLOBAL BANNED USER //**\n\n**Name:** [{user.first_name}](tg://user?id={user.id})\n**Total Group:** {a}\n**Reason:** {reason}"
-                          )
+                             )
 
     if BOTLOG:
         await bot.send_message(
@@ -183,7 +183,7 @@ async def gspider(userbot):
     except BaseException:
         pass
     return await friday.edit(f"**// UNGBANNED USER //**\n\n**Name:** [{user.first_name}](tg://user?id={user.id})\n**Total Group:** {a}"
-                          )
+                             )
 
     if BOTLOG:
         await bot.send_message(
