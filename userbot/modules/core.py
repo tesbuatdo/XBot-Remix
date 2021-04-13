@@ -1,9 +1,7 @@
 from pathlib import Path
 import asyncio
 import os
-from datetime import datetime
 from userbot.events import register
-from userbot.utils import progress
 
 DELETE_TIMEOUT = 5
 
