@@ -16,4 +16,6 @@ RUN cp sample_config.env userbot/config.env
 #Install python requirements
 RUN pip3 install -r https://raw.githubusercontent.com/ximfine/XBot-Remix/sql-extended/requirements.txt
 
+EXPOSE 80 443
+
 CMD ["python3","-m","userbot"]
