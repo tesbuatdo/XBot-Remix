@@ -39,6 +39,7 @@ async def get_readable_time(seconds: int) -> str:
 
     return up_time
 
+
 def speed_convert(size):
     """
     Hi human, you can't read bytes?
@@ -50,6 +51,7 @@ def speed_convert(size):
         size /= power
         zero += 1
     return f"{round(size, 2)} {units[zero]}"
+
 
 @register(outgoing=True, pattern="^\\.speed$")
 async def speedtest(event):
@@ -77,7 +79,7 @@ async def speedtest(event):
               f"**Upload:** {speed_convert(upload_speed)}\n"
               f"**Ping:** {ping_time}\n"
               f"**Internet Service Provider:** {i_s_p}\n"
-              f"**ISP Rating:** {i_s_p_rating}")    
+              f"**ISP Rating:** {i_s_p_rating}")
     await bot.send_file(
         event.chat_id,
         logo=speedtest_image,
@@ -85,7 +87,6 @@ async def speedtest(event):
         force_document=False,
     )
     await event.delete()
-
 
 
 @register(outgoing=True, pattern="^.ping$")
