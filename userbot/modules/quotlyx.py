@@ -13,7 +13,7 @@ import emoji
 from PIL import Image, ImageDraw, ImageFont
 from telethon.tl import functions, types
 from userbot.events import register
-
+from userbot import bot
 
 def convert_tosticker(response, filename=None):
     filename = filename or os.path.join("./temp/", "temp.webp")
@@ -365,21 +365,18 @@ async def stickerchat(catquotes):
         await catquotes.edit("`I cant quote the message . reply to a message`"
                              )
         return
-    if reply.media and reply.media.document.mime_type in ("mp4"):
-        await catquotes.edit("`this format is not supported now`")
-        return
     catevent = await catquotes.edit("`Making quote...`")
     user = (
         await event.client.get_entity(reply.forward.sender)
         if reply.fwd_from
         else reply.sender
     )
-    res, catmsg = await process(user, catquotes.client, repl)
+    res, catmsg = await process(user, catquotes.client, reply)
     if not res:
         return
     outfi = os.path.join("./temp", "sticker.png")
     catmsg.save(outfi)
     endfi = convert_tosticker(outfi)
-    await catquotes.client.send_file(catquotes.chat_id, endfi, reply_to=reply)
+    await bot.send_file(catquotes.chat_id, endfi, reply_to=reply)
     await catevent.delete()
     os.remove(endfi)
