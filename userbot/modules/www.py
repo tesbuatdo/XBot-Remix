@@ -40,10 +40,10 @@ async def get_readable_time(seconds: int) -> str:
     return up_time
 
 
-@register(outgoing=True, pattern="^\.speed$")
+@register(outgoing=True, pattern="^\\.speed$")
 async def speedtest(event):
     if event.fwd_from:
-        return   
+        return
     await event.edit("`Test Internet Speed Connection..`⚡")
     start = datetime.now()
     s = speedtest.Speedtest()
@@ -62,18 +62,18 @@ async def speedtest(event):
     response = s.results.share()
     speedtest_image = response
     output = (f"**SpeedTest** completed in {ms} seconds\n"
-                  f"**Download:** {speed_convert(download_speed)}\n"
-                  f"**Upload:** {speed_convert(upload_speed)}\n"
-                  f"**Ping:** {ping_time}\n"
-                  f"**Internet Service Provider:** {i_s_p}\n"
-                  f"**ISP Rating:** {i_s_p_rating}")
+              f"**Download:** {speed_convert(download_speed)}\n"
+              f"**Upload:** {speed_convert(upload_speed)}\n"
+              f"**Ping:** {ping_time}\n"
+              f"**Internet Service Provider:** {i_s_p}\n"
+              f"**ISP Rating:** {i_s_p_rating}")
     logo = speedtest_image
     await bot.send_file(
-            event.chat_id,
-            logo,
-            caption=output,
-            force_document=False,           
-            allow_cache=False
+        event.chat_id,
+        logo,
+        caption=output,
+        force_document=False,
+        allow_cache=False
     )
     await event.delete()
 
