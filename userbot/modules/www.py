@@ -68,7 +68,7 @@ async def speedtest(event):
     speed.upload()
     replymsg = "SpeedTest Results:"
     speedtest_image = speed.results.share()
-    output = replymsg += f"\nDownload: `{xconvert(result['download'])}Mb/s`\nUpload: `{xconvert(result['upload'])}Mb/s`\nPing: `{result['ping']}`"
+    output = replymsg += f"\nDownload: `{xconvert(result['download'])}Mb/s`\nUpload: `{xconvert(result['upload'])}Mb/s`\nPing: `{result['ping']}`")
     await event.reply_photo(
         event.chat_id,
         photo=speedtest_image,
