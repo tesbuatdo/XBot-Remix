@@ -138,9 +138,9 @@ async def _(event):
 
 @register(outgoing=True, pattern="^.song(?: |$)(.*)")
 async def _(event):
-    reply_to_id = event.message.id
+    event.message.id
     if event.reply_to_msg_id:
-        reply_to_id = event.reply_to_msg_id
+        event.reply_to_msg_id
     reply = await event.get_reply_message()
     if event.pattern_match.group(1):
         query = event.pattern_match.group(1)
@@ -173,14 +173,13 @@ async def _(event):
         thumb=catthumb,
         supports_streaming=True,
         progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(d, t, event, c_time, "[UPLOAD]", loa)
-            ),
+            progress(d, t, event, c_time, "[UPLOAD]", loa)
+        ),
     )
     await event.delete()
     os.system("rm -rf ./temp/*.mp3")
     os.system("rm -rf ./temp/*.jpg")
     os.system("rm -rf ./temp/*.webp")
-
 
 
 @register(outgoing=True, pattern=r"^\.vsong(?: |$)(.*)")
