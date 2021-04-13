@@ -83,16 +83,16 @@ async def _(event):
         f"Ping: {ping_time}\n"
         f"ISP: {i_s_p}\n"
         f"ISP RATE: {i_s_p_rating}\n"
-        else:
-            await bot.send_file(
+    else:
+        await bot.send_file(
                 event.chat_id,
                 speedtest_image,
                 caption=output,
                 force_document=as_document,
                 reply_to=reply_msg_id,
                 allow_cache=False
-            )
-            await event.delete()
+         )
+         await event.delete()
 
 
 @register(outgoing=True, pattern="^.ping$")
