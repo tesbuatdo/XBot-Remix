@@ -4,7 +4,7 @@ from telethon.tl.types import (
     MessageEntityMentionName,
 )
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, ALIVE_NAME
 from userbot.events import register
 
 
@@ -111,7 +111,7 @@ async def gspider(userbot):
             return await friday.edit(f"**Error! User telah di gbanned.**")
     except BaseException:
         pass
-    if reason:
+    if xreason:
         await friday.edit(f"**// GLOBAL BANNED USER //**\n\n**Name:** [{user.first_name}](tg://user?id={user.id})\n**Total Group:** {a}\n**Reason:** {xreason}"
                           )
 
@@ -122,8 +122,8 @@ async def gspider(userbot):
         await bot.send_message(
             BOTLOG_CHATID,
             "#GLOBAL BANNED\n\n"
-            f"USER: [{user.first_name}](tg: // user?id={user.id})"
-            f"**REASON:** {xreason}"
+            f"USER: [{user.first_name}](tg: // user?id={user.id})\n"
+            f"**SUDO:** {ALIVE_NAME}"
         )
 
 
