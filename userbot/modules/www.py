@@ -53,8 +53,7 @@ def speed_convert(size):
     return f"{round(size, 2)} {units[zero]}"
 
 
-
-@register(outgoing=True, pattern="^\.speed")
+@register(outgoing=True, pattern="^\\.speed")
 async def _(event):
     if event.fwd_from:
         return
@@ -80,10 +79,10 @@ async def _(event):
         response = s.results.share()
         speedtest_image = response
         output = f"Download: {speed_convert(download_speed)}\n"
-                 f"Upload: {speed_convert(upload_speed)}\n"
-                 f"Ping: {ping_time}\n"
-                 f"ISP: {i_s_p}\n"
-                 f"ISP RATE: {i_s_p_rating}\n"
+        f"Upload: {speed_convert(upload_speed)}\n"
+        f"Ping: {ping_time}\n"
+        f"ISP: {i_s_p}\n"
+        f"ISP RATE: {i_s_p_rating}\n"
         else:
             await bot.send_file(
                 event.chat_id,
@@ -94,36 +93,36 @@ async def _(event):
                 allow_cache=False
             )
             await event.delete()
-    
 
-@register(outgoing = True, pattern = "^.ping$")
+
+@register(outgoing=True, pattern="^.ping$")
 async def pingme(pong):
     """ For .ping command, ping the userbot from any chat.  """
-    uptime=await get_readable_time((time.time() - StartTime))
-    start=datetime.now()
+    uptime = await get_readable_time((time.time() - StartTime))
+    start = datetime.now()
     await pong.edit("`Pinging....`")
-    end=datetime.now()
-    duration=(end - start).microseconds / 1000
+    end = datetime.now()
+    duration = (end - start).microseconds / 1000
     await pong.edit(f"**PONG!! 🍭**\n**Pinger** : %sms\n**Bot Uptime** : {uptime}🕛" % (duration))
 
 
-@register(outgoing = True, pattern = "^.pong$")
+@register(outgoing=True, pattern="^.pong$")
 async def pingme(pong):
     """ For .ping command, ping the userbot from any chat.  """
-    start=datetime.now()
+    start = datetime.now()
     await pong.edit("`gass!`")
-    end=datetime.now()
-    duration=(end - start).microseconds / 9000
+    end = datetime.now()
+    duration = (end - start).microseconds / 9000
     await pong.edit("`Ping!\n%sms`" % (duration))
 
 
-@ register(outgoing = True, pattern = "^.pink$")
+@ register(outgoing=True, pattern="^.pink$")
 async def pingme(pong):
     """ For .ping command, ping the userbot from any chat.  """
-    start=datetime.now()
+    start = datetime.now()
     await pong.edit("`Croots!`")
-    end=datetime.now()
-    duration=(end - start).microseconds / 9000
+    end = datetime.now()
+    duration = (end - start).microseconds / 9000
     await pong.edit("**CROOTSS!\n%sms**" % (duration))
 
 
