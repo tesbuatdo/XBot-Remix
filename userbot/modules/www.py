@@ -39,6 +39,17 @@ async def get_readable_time(seconds: int) -> str:
 
     return up_time
 
+def speed_convert(size):
+    """
+    Hi human, you can't read bytes?
+    """
+    power = 2**10
+    zero = 0
+    units = {0: '', 1: 'Kb/s', 2: 'Mb/s', 3: 'Gb/s', 4: 'Tb/s'}
+    while size > power:
+        size /= power
+        zero += 1
+    return f"{round(size, 2)} {units[zero]}"
 
 @register(outgoing=True, pattern="^\\.speed$")
 async def speedtest(event):
@@ -66,29 +77,15 @@ async def speedtest(event):
               f"**Upload:** {speed_convert(upload_speed)}\n"
               f"**Ping:** {ping_time}\n"
               f"**Internet Service Provider:** {i_s_p}\n"
-              f"**ISP Rating:** {i_s_p_rating}")
-    logo = speedtest_image
+              f"**ISP Rating:** {i_s_p_rating}")    
     await bot.send_file(
         event.chat_id,
-        logo,
+        logo=speedtest_image,
         caption=output,
         force_document=False,
-        allow_cache=False
     )
     await event.delete()
 
-
-def speed_convert(size):
-    """
-    Hi human, you can't read bytes?
-    """
-    power = 2**10
-    zero = 0
-    units = {0: '', 1: 'Kb/s', 2: 'Mb/s', 3: 'Gb/s', 4: 'Tb/s'}
-    while size > power:
-        size /= power
-        zero += 1
-    return f"{round(size, 2)} {units[zero]}"
 
 
 @register(outgoing=True, pattern="^.ping$")
