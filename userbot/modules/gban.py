@@ -111,9 +111,12 @@ async def gspider(userbot):
             return await friday.edit(f"**Error! User telah di gbanned.**")
     except BaseException:
         pass
-    return await friday.edit(f"**// GLOBAL BANNED USER //**\n\n**Name:** [{user.first_name}](tg://user?id={user.id})\n**Total Group:** {a}\n**Reason:** {reason}"
+    if reason:
+        await friday.edit(f"**// GLOBAL BANNED USER //**\n\n**Name:** [{user.first_name}](tg://user?id={user.id})\n**Total Group:** {a}\n**Reason:** {reason}"
                              )
-
+    else:
+        await friday.edit(f"**// GLOBAL BANNED USER //**\n\n**Name:** [{user.first_name}](tg://user?id={user.id})\n**Total Group:** {a}\n**Reason:** {reason}"
+                             )
     if BOTLOG:
         await bot.send_message(
             BOTLOG_CHATID,
@@ -182,9 +185,12 @@ async def gspider(userbot):
             return await friday.edit("**Error! User probably already ungbanned.**")
     except BaseException:
         pass
-    return await friday.edit(f"**// UNGBANNED USER //**\n\n**Name:** [{user.first_name}](tg://user?id={user.id})\n**Total Group:** {a}"
+    if reason:
+        await friday.edit(f"**// UNGBANNED USER //**\n\n**Name:** [{user.first_name}](tg://user?id={user.id})\n**Total Group:** {a}"
                              )
-
+    else:
+        await friday.edit(f"**// UNGBANNED USER //**\n\n**Name:** [{user.first_name}](tg://user?id={user.id})\n**Total Group:** {a}"
+                             )
     if BOTLOG:
         await bot.send_message(
             BOTLOG_CHATID,
