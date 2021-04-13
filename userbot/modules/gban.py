@@ -112,16 +112,16 @@ async def gspider(userbot):
         pass
     if reason:
         await friday.edit(f"**// GLOBAL BANNED USER //**\n\nName: [{user.first_name}](tg://user?id={user.id})\nTotal Group: {a}\nReason: {reason}"
-                             )
+                          )
 
     else:
         await friday.edit(f"**// GLOBAL BANNED USER //**\n\nName: [{user.first_name}](tg://user?id={user.id})\nTotal Group: {a}"
-                             )
+                          )
     if BOTLOG:
         await bot.send_message(
             BOTLOG_CHATID,
-            f"#GBANNED\n
-            USER: [{user.first_name}](tg://user?id={user.id})"
+            f"  # GBANNED\n
+            USER: [{user.first_name}](tg: // user?id={user.id})"
         )
 
 
