@@ -57,7 +57,7 @@ def speed_convert(size):
 async def _(event):
     if event.fwd_from:
         return
-    await event.edit("Calculating my internet speed. Please wait!")
+    await event.edit("`Test Speed Internet connection` ⚡")
     start = datetime.now()
     s = speedtest.Speedtest()
     s.get_best_server()
@@ -72,14 +72,14 @@ async def _(event):
     client_infos = response.get("client")
     i_s_p = client_infos.get("isp")
     i_s_p_rating = client_infos.get("isprating")
-    event.message.id
     response = s.results.share()
     speedtest_image = response
-    output = (f"Download: {speed_convert(download_speed)}\n"
-              f"Upload: {speed_convert(upload_speed)}\n"
-              f"Ping: {ping_time}\n"
-              f"ISP: {i_s_p}\n"
-              f"ISP RATE: {i_s_p_rating}\n")
+    output = (f"`Download: {speed_convert(download_speed)}\n`"
+              f"`Upload: {speed_convert(upload_speed)}\n`"
+              f"`Ping: {ping_time}\n`"
+              f"`Isp: {i_s_p}\n"
+              f"`Isp Rate: {i_s_p_rating}\n`"
+              f"`Info: {client_infos}\n`")
     await bot.send_file(
         event.chat_id,
         speedtest_image,
