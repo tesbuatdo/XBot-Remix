@@ -30,8 +30,6 @@ def load_module(shortname):
         mod.LOGS = LOGS
         mod.CMD_HELP = CMD_HELP
         mod.logger = logging.getLogger(shortname)
-        # support for paperplaneextended
-        sys.modules["userbot.events"] = userbot.utils
         spec.loader.exec_module(mod)
         # for imports
         sys.modules["userbot.modules." + shortname] = mod
