@@ -272,9 +272,9 @@ with bot:
 
 async def check_alive():
     x = await bot.send_message(BOTLOG_CHATID, "**🔥 XBOT-REMIX 🔥\n☠️ BERHASIL DIAKTIFKAN ☠️**")
+    return
     await asyncio.sleep(20)
     await x.delete()
-    return
 
 with bot:
     try:
