@@ -4,7 +4,7 @@ import logging
 import sys
 from pathlib import Path
 
-from userbot import CMD_HELP, LOGS, bot
+from userbot import CMD_HELP, LOGS, bot, tgbot
 from userbot.events import register
 
 DELETE_TIMEOUT = 5
@@ -28,7 +28,6 @@ def load_module(shortname):
         mod = importlib.util.module_from_spec(spec)
         mod.bot = bot
         mod.LOGS = LOGS
-        mod._format = _format
         mod.tgbot = bot.tgbot
 
         mod.CMD_HELP = CMD_HELP
