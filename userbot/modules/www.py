@@ -56,6 +56,7 @@ def speed_convert(size):
 def xconvert(speed):
     return round(int(speed) / 1048576, 2)
 
+
 @register(outgoing=True, pattern="^\\.speed$")
 async def speedtest(event):
     if event.fwd_from:
@@ -74,7 +75,6 @@ async def speedtest(event):
         caption=output,
         force_document=False,
     )
-    
 
 
 @register(outgoing=True, pattern="^.ping$")
