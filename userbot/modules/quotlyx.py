@@ -364,7 +364,7 @@ async def stickerchat(catquotes):
     if not reply:
         await catquotes.edit("`I cant quote the message . reply to a message`"
                              )
-        return    
+        return
     if reply.media and reply.media.document.mime_type in ("mp4"):
         await catquotes.edit("`this format is not supported now`")
         return
