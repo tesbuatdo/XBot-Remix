@@ -54,7 +54,7 @@ async def gspider(userbot):
     lol = userbot
     sender = await lol.get_sender()
     me = await lol.client.get_me()
-    userbot.pattern_match.group(1)    
+    userbot.pattern_match.group(1)
     if not sender.id == me.id:
         friday = await lol.reply("Gbanning User....")
     else:
