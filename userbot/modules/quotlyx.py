@@ -15,6 +15,7 @@ from telethon.tl import functions, types
 from userbot.events import register
 from userbot import bot
 
+
 def convert_tosticker(response, filename=None):
     filename = filename or os.path.join("./temp/", "temp.webp")
     image = Image.open(response)
