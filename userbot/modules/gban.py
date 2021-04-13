@@ -49,7 +49,7 @@ async def get_user_sender_id(user, event):
     return user_obj
 
 
-@register(outgoing=True, pattern=r"^\.gban(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.gban (.*)$")
 async def gspider(userbot):
     lol = userbot
     sender = await lol.get_sender()
@@ -110,12 +110,11 @@ async def gspider(userbot):
             return await friday.edit(f"**Error! User telah di gbanned.**")
     except BaseException:
         pass
-    return await friday.edit(
-        f"**Gbanned [{user.first_name}](tg://user?id={user.id}) Dari : {a} Group**"
+    return await friday.edit(f"**GLOBAL BANNED USER**\n\nName: [{user.first_name}](tg://user?id={user.id})\nTotal Group: {a}\nReason: {reason}"
     )
 
     if BOTLOG:
-        await event.client.send_message(
+        await bot.send_message(
             BOTLOG_CHATID,
             "#GBANNED\n"
             f"USER: [{user.first_name}](tg://user?id={user.id})"
