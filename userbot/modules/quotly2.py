@@ -482,4 +482,3 @@ async def stickerchat(event):
     canvas.save("./temp/sticker.webp")
     await bot.send_file(event.chat_id, "./temp/sticker.webp", reply_to=reply)
     os.remove("./temp/sticker.webp")
-
