@@ -171,7 +171,7 @@ async def _(event):
         allow_cache=False,
         caption=query,
         thumb=catthumb,
-        supports_streaming=True,        
+        supports_streaming=True,
     )
     await event.delete()
     os.system("rm -rf ./temp/*.mp3")
