@@ -79,10 +79,10 @@ async def _(event):
         response = s.results.share()
         speedtest_image = response
         output = (f"Download: {speed_convert(download_speed)}\n"
-        f"Upload: {speed_convert(upload_speed)}\n"
-        f"Ping: {ping_time}\n"
-        f"ISP: {i_s_p}\n"
-        f"ISP RATE: {i_s_p_rating}\n")
+                  f"Upload: {speed_convert(upload_speed)}\n"
+                  f"Ping: {ping_time}\n"
+                  f"ISP: {i_s_p}\n"
+                  f"ISP RATE: {i_s_p_rating}\n")
         await bot.send_file(
             event.chat_id,
             speedtest_image,
