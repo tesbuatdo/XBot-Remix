@@ -1,4 +1,3 @@
-import asyncio
 import importlib
 import logging
 import sys
@@ -31,7 +30,7 @@ def load_module(shortname):
         mod.LOGS = LOGS
         mod.CMD_HELP = CMD_HELP
         mod.install_pip = install_pip
-        
+
         mod.logger = logging.getLogger(shortname)
         # support for paperplaneextended
         sys.modules["userbot.events"] = userbot.utils
@@ -63,4 +62,3 @@ async def _(event):
         except Exception as e:  # pylint:disable=C0103,W0703
             await event.edit(str(e))
             os.remove(downloaded_file_name)
-    
