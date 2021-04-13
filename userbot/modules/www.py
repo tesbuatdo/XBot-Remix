@@ -53,31 +53,50 @@ def speed_convert(size):
     return f"{round(size, 2)} {units[zero]}"
 
 
-def xconvert(speed):
-    return round(int(speed) / 1048576, 2)
 
-
-@register(outgoing=True, pattern="^\\.speed$")
-async def speedtest(event):
+@register(outgoing=True, pattern="^\.speed")
+async def _(event):
     if event.fwd_from:
         return
-    await event.edit("`Test Internet Speed Connection..`⚡")
-    speed = speedtest.Speedtest()
-    speed.get_best_server()
-    speed.download()
-    speed.upload()
-    replymsg = "SpeedTest Results:"
-    speedtest_image = speed.results.share()
-    output = replymsg += f"\nDownload: `{xconvert(result['download'])}Mb/s`\nUpload: `{xconvert(result['upload'])}Mb/s`\nPing: `{result['ping']}`")
-    await event.reply_photo(
-        event.chat_id,
-        photo = speedtest_image,
-        caption = output,
-        force_document = False,
-    )
+    await event.edit("Calculating my internet speed. Please wait!")
+    start = datetime.now()
+    s = speedtest.Speedtest()
+    s.get_best_server()
+    s.download()
+    s.upload()
+    end = datetime.now()
+    ms = (end - start).microseconds / 1000
+    response = s.results.dict()
+    download_speed = response.get("download")
+    upload_speed = response.get("upload")
+    ping_time = response.get("ping")
+    client_infos = response.get("client")
+    i_s_p = client_infos.get("isp")
+    i_s_p_rating = client_infos.get("isprating")
+    reply_msg_id = event.message.id
+    if event.reply_to_msg_id:
+        reply_msg_id = event.reply_to_msg_id
+    try:
+        response = s.results.share()
+        speedtest_image = response
+        output = f"Download: {speed_convert(download_speed)}\n"
+                 f"Upload: {speed_convert(upload_speed)}\n"
+                 f"Ping: {ping_time}\n"
+                 f"ISP: {i_s_p}\n"
+                 f"ISP RATE: {i_s_p_rating}\n"
+        else:
+            await bot.send_file(
+                event.chat_id,
+                speedtest_image,
+                caption=output,
+                force_document=as_document,
+                reply_to=reply_msg_id,
+                allow_cache=False
+            )
+            await event.delete()
+    
 
-
-@ register(outgoing = True, pattern = "^.ping$")
+@register(outgoing = True, pattern = "^.ping$")
 async def pingme(pong):
     """ For .ping command, ping the userbot from any chat.  """
     uptime=await get_readable_time((time.time() - StartTime))
@@ -88,7 +107,7 @@ async def pingme(pong):
     await pong.edit(f"**PONG!! 🍭**\n**Pinger** : %sms\n**Bot Uptime** : {uptime}🕛" % (duration))
 
 
-@ register(outgoing = True, pattern = "^.pong$")
+@register(outgoing = True, pattern = "^.pong$")
 async def pingme(pong):
     """ For .ping command, ping the userbot from any chat.  """
     start=datetime.now()
