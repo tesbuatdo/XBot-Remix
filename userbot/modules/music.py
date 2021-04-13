@@ -148,15 +148,15 @@ async def _(event):
         if reply.message:
             query = reply.message
     else:
-        event = await event.edit("`What I am Supposed to find `")
+        event = await event.edit("`Apa yang harus saya cari?`")
         return
-    event = await event.edit("`wi8..! I am finding your song....`")
+    event = await event.edit(f"`Mencari music {query}....`")
     await catmusic(str(query), "320k", event)
     l = glob.glob("./temp/*.mp3")
     if l:
-        await event.edit("yeah..! i found something wi8..🥰")
+        await event.edit(f"Ok!, {query} di temukan..")
     else:
-        await event.edit(f"Sorry..! i can't find anything with `{query}`")
+        await event.edit(f"Maaf saya tidak dapat menemukan lagu `{query}`")
         return
     thumbcat = glob.glob("./temp/*.jpg") + glob.glob("./temp/*.webp")
     if thumbcat:
@@ -172,12 +172,15 @@ async def _(event):
         caption=query,
         thumb=catthumb,
         supports_streaming=True,
-        reply_to=reply_to_id,
+        progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, event, c_time, "[UPLOAD]", loa)
+            ),
     )
     await event.delete()
     os.system("rm -rf ./temp/*.mp3")
     os.system("rm -rf ./temp/*.jpg")
     os.system("rm -rf ./temp/*.webp")
+
 
 
 @register(outgoing=True, pattern=r"^\.vsong(?: |$)(.*)")
