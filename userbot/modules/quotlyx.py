@@ -16,7 +16,7 @@ from userbot.events import register
 
 
 def convert_tosticker(response, filename=None):
-    filename = ("temp.webp")
+    filename = filename or os.path.join("./temp/", "temp.webp")
     image = Image.open(response)
     if image.mode != "RGB":
         image.convert("RGB")
@@ -364,9 +364,7 @@ async def stickerchat(catquotes):
     if not reply:
         await catquotes.edit("`I cant quote the message . reply to a message`"
                              )
-        return
-    fetchmsg = reply.message
-    repliedreply = await reply.get_reply_message()
+        return    
     if reply.media and reply.media.document.mime_type in ("mp4"):
         await catquotes.edit("`this format is not supported now`")
         return
@@ -376,7 +374,7 @@ async def stickerchat(catquotes):
         if reply.fwd_from
         else reply.sender
     )
-    res, catmsg = await process(fetchmsg, user, catquotes.client, reply, repliedreply)
+    res, catmsg = await process(user, catquotes.client, repl)
     if not res:
         return
     outfi = os.path.join("./temp", "sticker.png")
