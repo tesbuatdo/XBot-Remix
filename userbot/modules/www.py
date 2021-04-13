@@ -53,40 +53,28 @@ def speed_convert(size):
     return f"{round(size, 2)} {units[zero]}"
 
 
+def xconvert(speed):
+    return round(int(speed) / 1048576, 2)
+
 @register(outgoing=True, pattern="^\\.speed$")
 async def speedtest(event):
     if event.fwd_from:
         return
     await event.edit("`Test Internet Speed Connection..`⚡")
-    start = datetime.now()
-    s = speedtest.Speedtest()
-    s.get_best_server()
-    s.download()
-    s.upload()
-    end = datetime.now()
-    ms = (end - start).microseconds / 1000
-    response = s.results.dict()
-    download_speed = response.get("download")
-    upload_speed = response.get("upload")
-    ping_time = response.get("ping")
-    client_infos = response.get("client")
-    i_s_p = client_infos.get("isp")
-    i_s_p_rating = client_infos.get("isprating")
-    response = s.results.share()
-    speedtest_image = response
-    output = (f"**SpeedTest** completed in {ms} seconds\n"
-              f"**Download:** {speed_convert(download_speed)}\n"
-              f"**Upload:** {speed_convert(upload_speed)}\n"
-              f"**Ping:** {ping_time}\n"
-              f"**Internet Service Provider:** {i_s_p}\n"
-              f"**ISP Rating:** {i_s_p_rating}")
-    await bot.send_file(
+    speed = speedtest.Speedtest()
+    speed.get_best_server()
+    speed.download()
+    speed.upload()
+    replymsg = "SpeedTest Results:"
+    speedtest_image = speed.results.share()
+    output = replymsg += f"\nDownload: `{xconvert(result['download'])}Mb/s`\nUpload: `{xconvert(result['upload'])}Mb/s`\nPing: `{result['ping']}`"
+    await event.reply_photo(
         event.chat_id,
-        logo=speedtest_image,
+        photo=speedtest_image,
         caption=output,
         force_document=False,
     )
-    await event.delete()
+    
 
 
 @register(outgoing=True, pattern="^.ping$")
