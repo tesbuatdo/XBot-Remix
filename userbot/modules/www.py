@@ -87,7 +87,7 @@ async def _(event):
             event.chat_id,
             speedtest_image,
             caption=output,
-            force_document=as_document,
+            force_document=False,
             reply_to=reply_msg_id,
             allow_cache=False
         )
