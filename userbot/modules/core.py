@@ -56,6 +56,7 @@ async def _(event):
         return
     if event.reply_to_msg_id:
         try:
+            await event.edit("Installing Modules..")
             downloaded_file_name = await event.client.download_media(  # pylint:disable=E0602
                 await event.get_reply_message(),
                 "userbot/modules/"  # pylint:disable=E0602
@@ -64,7 +65,7 @@ async def _(event):
                 path1 = Path(downloaded_file_name)
                 shortname = path1.stem
                 load_module(shortname.replace(".py", ""))
-                await event.edit("Installed Plugin `{}`".format(os.path.basename(downloaded_file_name)))
+                await event.edit("Installed Plugin done `{}`".format(os.path.basename(downloaded_file_name)))
             else:
                 os.remove(downloaded_file_name)
                 await event.edit("Errors! This plugin is already installed/pre-installed.")
@@ -72,4 +73,4 @@ async def _(event):
             await event.edit(str(e))
             os.remove(downloaded_file_name)
     await asyncio.sleep(DELETE_TIMEOUT)
-    await event.delete()
+    
