@@ -64,7 +64,7 @@ async def _(event):
     s.download()
     s.upload()
     end = datetime.now()
-    ms = (end - start).microseconds / 1000
+    (end - start).microseconds / 1000
     response = s.results.dict()
     download_speed = response.get("download")
     upload_speed = response.get("upload")
@@ -72,20 +72,20 @@ async def _(event):
     client_infos = response.get("client")
     i_s_p = client_infos.get("isp")
     i_s_p_rating = client_infos.get("isprating")
-    reply_msg_id = event.message.id
+    event.message.id
     response = s.results.share()
     speedtest_image = response
     output = (f"Download: {speed_convert(download_speed)}\n"
-                  f"Upload: {speed_convert(upload_speed)}\n"
-                  f"Ping: {ping_time}\n"
-                  f"ISP: {i_s_p}\n"
-                  f"ISP RATE: {i_s_p_rating}\n")
+              f"Upload: {speed_convert(upload_speed)}\n"
+              f"Ping: {ping_time}\n"
+              f"ISP: {i_s_p}\n"
+              f"ISP RATE: {i_s_p_rating}\n")
     await bot.send_file(
-            event.chat_id,
-            speedtest_image,
-            caption=output,
-            force_document=False,            
-            allow_cache=False
+        event.chat_id,
+        speedtest_image,
+        caption=output,
+        force_document=False,
+        allow_cache=False
     )
     await event.delete()
 
