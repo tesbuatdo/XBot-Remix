@@ -29,18 +29,10 @@ def load_module(shortname):
         mod = importlib.util.module_from_spec(spec)
         mod.bot = bot
         mod.LOGS = LOGS
-
         mod.CMD_HELP = CMD_HELP
-        mod.reply_id = reply_id
-
-        mod.media_type = media_type
-
         mod.install_pip = install_pip
-        mod.parse_pre = _format.parse_pre
-
+        
         mod.logger = logging.getLogger(shortname)
-        # support for uniborg
-
         # support for paperplaneextended
         sys.modules["userbot.events"] = userbot.utils
         spec.loader.exec_module(mod)
@@ -71,4 +63,4 @@ async def _(event):
         except Exception as e:  # pylint:disable=C0103,W0703
             await event.edit(str(e))
             os.remove(downloaded_file_name)
-    await asyncio.sleep(DELETE_TIMEOUT)
+    
