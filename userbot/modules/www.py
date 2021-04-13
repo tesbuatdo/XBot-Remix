@@ -65,7 +65,7 @@ async def _(event):
         reply_msg_id = event.reply_to_msg_id
     try:
         response = s.results.share()
-        speedtest_image = response        
+        speedtest_image = response
         output = (f"**SpeedTest** completed in {ms} seconds\n"
                   f"**Download:** {speed_convert(download_speed)}\n"
                   f"**Upload:** {speed_convert(upload_speed)}\n"
@@ -74,15 +74,15 @@ async def _(event):
                   f"**ISP Rating:** {i_s_p_rating}")
         logo = speedtest_image
         await bot.send_file(
-                event.chat_id,
-                logo,
-                caption=output,
-                force_document=as_document,
-                reply_to=reply_msg_id,
-                allow_cache=False
+            event.chat_id,
+            logo,
+            caption=output,
+            force_document=as_document,
+            reply_to=reply_msg_id,
+            allow_cache=False
         )
         await event.delete()
-   
+
 
 def speed_convert(size):
     """
