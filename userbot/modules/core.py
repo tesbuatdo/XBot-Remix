@@ -29,7 +29,6 @@ def load_module(shortname):
         mod = importlib.util.module_from_spec(spec)
         mod.bot = bot
         mod.LOGS = LOGS
-        mod.tgbot = bot.tgbot
 
         mod.CMD_HELP = CMD_HELP
         mod.reply_id = reply_id
