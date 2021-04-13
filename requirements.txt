@@ -13,6 +13,7 @@ colour
 deezloader
 dnspython
 emoji
+fontTools
 gitpython
 google-api-python-client
 google-auth-httplib2
