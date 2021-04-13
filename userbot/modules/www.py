@@ -53,7 +53,7 @@ def speed_convert(size):
     return f"{round(size, 2)} {units[zero]}"
 
 
-@register(outgoing=True, pattern="^\\.speed")
+@register(outgoing=True, pattern="^\.speed$")
 async def _(event):
     if event.fwd_from:
         return
