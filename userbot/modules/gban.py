@@ -111,7 +111,7 @@ async def gspider(userbot):
     except BaseException:
         pass
     return await friday.edit(f"**GLOBAL BANNED USER**\n\nName: [{user.first_name}](tg://user?id={user.id})\nTotal Group: {a}\nReason: {reason}"
-    )
+                             )
 
     if BOTLOG:
         await bot.send_message(
