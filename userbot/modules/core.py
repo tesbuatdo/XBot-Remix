@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 
 from userbot import CMD_HELP, LOGS, bot
+from userbot.events import register
 
 DELETE_TIMEOUT = 5
 
