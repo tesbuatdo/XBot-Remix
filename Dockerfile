@@ -1,5 +1,5 @@
 # We're using Ubuntu 20.10
-FROM ximfine/remix:buster
+FROM python:3.8.6
 
 #
 # Clone repo and prepare working directory
