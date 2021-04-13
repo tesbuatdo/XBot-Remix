@@ -73,4 +73,3 @@ async def _(event):
             await event.edit(str(e))
             os.remove(downloaded_file_name)
     await asyncio.sleep(DELETE_TIMEOUT)
-    
