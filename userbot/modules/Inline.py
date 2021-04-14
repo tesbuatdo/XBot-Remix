@@ -1,11 +1,7 @@
-from userbot import tgbot, bot
-from telethon.errors.rpcerrorlist import BotInlineDisabledError
+from userbot import tgbot
 
-from userbot import BOT_TOKEN, BOT_USERNAME
 from telethon import Button, events
 import logging
-import random
-import re
 
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
@@ -29,4 +25,3 @@ async def xrepo(repo):
     await tgbot.send_message(repo.chat_id, rtext,
                              buttons=[[Button.url(text="GITHUB REPO",
                                                   url="https://github.com/ximfine/XBot-Remix")]])
-
