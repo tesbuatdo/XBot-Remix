@@ -1,6 +1,5 @@
-from userbot import tgbot, StartTime
+from userbot import tgbot
 import speedtest
-import time
 from datetime import datetime
 from telethon import Button, events
 import logging
@@ -27,6 +26,7 @@ async def xrepo(repo):
     await tgbot.send_message(repo.chat_id, rtext,
                              buttons=[[Button.url(text="GITHUB REPO",
                                                   url="https://github.com/ximfine/XBot-Remix")]])
+
 
 async def get_readable_time(seconds: int) -> str:
     count = 0
@@ -66,6 +66,7 @@ def speed_convert(size):
         size /= power
         zero += 1
     return f"{round(size, 2)} {units[zero]}"
+
 
 @tgbot.on(events.NewMessage(pattern="!speed"))
 async def spd(event):
