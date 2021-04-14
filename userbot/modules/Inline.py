@@ -70,7 +70,7 @@ def speed_convert(size):
 
 @tgbot.on(events.NewMessage(pattern="!speed"))
 async def spd(event):
-    await event.reply("`Test Speed Internet connection` ⚡")
+    asu = await event.reply("`Test Speed Internet connection` ⚡")
     start = datetime.now()
     s = speedtest.Speedtest()
     s.get_best_server()
@@ -94,7 +94,7 @@ async def spd(event):
               f"`•ISP: {i_s_p}\n`"
               f"`•ISP Rating: {i_s_p_rating}\n\n`"
               "**POWERED BY XBOT REMIX 🔥**")
-    await event.delete()
+    await asu.delete()
     await tgbot.send_file(
         event.chat_id,
         speedtest_image,
