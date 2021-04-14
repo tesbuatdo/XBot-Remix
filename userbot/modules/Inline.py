@@ -30,26 +30,3 @@ async def xrepo(repo):
                              buttons=[[Button.url(text="GITHUB REPO",
                                                   url="https://github.com/ximfine/XBot-Remix")]])
 
-
-@register(outgoing=True, pattern=r"^\.xrepo")
-async def yardim(event):
-    xrepo = ("Klik here", buttons=[[Button.url(text="GITHUB REPO",
-                                               url="https://github.com/ximfine/XBot-Remix")]])
-
-    tgbotusername = BOT_USERNAME
-    if tgbotusername and BOT_TOKEN:
-        try:
-            results = await event.client.inline_query(tgbotusername, xrepo)
-        except BotInlineDisabledError:
-            return await event.edit(
-                "`Bot can't be used in inline mode.\nMake sure to turn on inline mode!`"
-            )
-        await results[0].click(
-            event.chat_id, reply_to=event.reply_to_msg_id, hide_via=True
-        )
-        await event.delete()
-    else:
-        return await event.edit(
-            "`The bot doesn't work! Please set the Bot Token and Username correctly.`"
-            "\n`The module has been stopped.`"
-        )
