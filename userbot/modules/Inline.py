@@ -1,4 +1,7 @@
 from userbot import tgbot, bot
+from telethon.errors.rpcerrorlist import BotInlineDisabledError
+
+from userbot import BOT_TOKEN, BOT_USERNAME
 from telethon import Button, events
 import logging
 import random
