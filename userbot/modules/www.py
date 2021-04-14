@@ -79,7 +79,8 @@ async def _(event):
               f"`•Upload: {speed_convert(upload_speed)}\n`"
               f"`•Ping: {ping_time}\n`"
               f"`•ISP: {i_s_p}\n`"
-              f"`•ISP Rating: {i_s_p_rating}\n`")
+              f"`•ISP Rating: {i_s_p_rating}\n\n`"
+              "**POWERED BY XBOT REMIX 🔥**")
     await bot.send_file(
         event.chat_id,
         speedtest_image,
