@@ -94,6 +94,7 @@ async def spd(event):
               f"`•ISP: {i_s_p}\n`"
               f"`•ISP Rating: {i_s_p_rating}\n\n`"
               "**POWERED BY XBOT REMIX 🔥**")
+    await event.delete()
     await tgbot.send_file(
         event.chat_id,
         speedtest_image,
@@ -101,4 +102,3 @@ async def spd(event):
         force_document=False,
         allow_cache=False
     )
-    await event.delete()
