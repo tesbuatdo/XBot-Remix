@@ -33,8 +33,8 @@ async def xrepo(repo):
 
 @register(outgoing=True, pattern=r"^\.xrepo")
 async def yardim(event):
-    xrepo = ("Klik here", buttons = [[Button.url(text="GITHUB REPO",
-                                                url="https://github.com/ximfine/XBot-Remix")]])
+    xrepo = ("Klik here", buttons=[[Button.url(text="GITHUB REPO",
+                                               url="https://github.com/ximfine/XBot-Remix")]])
 
     tgbotusername = BOT_USERNAME
     if tgbotusername and BOT_TOKEN:
