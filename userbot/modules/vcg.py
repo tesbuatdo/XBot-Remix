@@ -1,15 +1,11 @@
 from os import path
 import asyncio
-import os
-from PIL import Image
-from PIL import ImageFont
-from PIL import ImageDraw
 from userbot.events import register
 from userbot import bot
-from telethon.tl.types import DocumentAttributeAudio as Audio
 from pytgcalls import PyTgCalls
 pytgcalls = PyTgCalls(bot)
 run = pytgcalls.run
+
 
 async def convert(file_path: str) -> str:
     out = path.basename(file_path)
@@ -30,6 +26,7 @@ async def convert(file_path: str) -> str:
 
     await proc.communicate()
     return out
+
 
 @register(outgoing=True, pattern=r"^\.play")
 async def vcg(event):
