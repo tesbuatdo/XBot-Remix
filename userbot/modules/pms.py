@@ -49,7 +49,7 @@ async def permitpm(event):
         return
     self_user = await event.client.get_me()
     user = await event.get_chat()
-    user.first_name
+    fname = user.first_name
     if (
         event.is_private
         and event.chat_id != 777000
