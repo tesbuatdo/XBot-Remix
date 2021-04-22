@@ -238,13 +238,13 @@ async def amireallyalive(alive):
         f"┣[•👁‍🗨 **Username** :@{user.username}\n"
         "`┣▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱`\n"
         f"┣[•⚙️ **Telethon** : v {version.__version__}🔥\n"
-        f"┣[•🐍 **Python**   : v {python_version()}🔥\n"
+        f"┣[•🐍 **Python**    : v {python_version()}🔥\n"
         f"┣[•💻 **Base on**  : {UPSTREAM_REPO_BRANCH}🔥\n"
-        f"┣[•🛠 **Version**  : {BOT_VER}🔥\n"
-        f"┣[•🗃 **Modules**  : {len(modules)}Loaded🔥\n"
-        f"┣[•🕒 **Uptime**   : {uptime}**🔥\n"
+        f"┣[•🛠 **Version**   : {BOT_VER}🔥\n"
+        f"┣[•🗃 **Modules** : {len(modules)}Loaded🔥\n"
+        f"┣[•🕒 **Uptime**    : {uptime}**🔥\n"
         f"╰━━━━━━━━━━━━━━━━━━━━━╯\n"
-        f" **•USER** : {DEFAULTUSER}")
+        f"☠️ **•USER** : {DEFAULTUSER}")
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
@@ -279,10 +279,10 @@ async def handler(event):
         f"┣[•🐍 **Python**    : v {python_version()}🔥\n"
         f"┣[•💻 **Base on**  : {UPSTREAM_REPO_BRANCH}🔥\n"
         f"┣[•🛠 **Version**   : {BOT_VER}🔥\n"
-        f"┣[•🗃 **Modules**  : {len(modules)}Loaded🔥\n"
+        f"┣[•🗃 **Modules** : {len(modules)}Loaded🔥\n"
         f"┣[•🕒 **Uptime**    : {uptime}**🔥\n"
         f"╰━━━━━━━━━━━━━━━━━━━━╯\n"
-        f"**•USER** : {DEFAULTUSER}")
+        f"☠️ **•USER** : {DEFAULTUSER}")
     logo = ALIVE_LOGO
     await tgbot.send_file(event.chat_id, logo, caption=text,
                           buttons=[[Button.url(text="🛠️ GITHUB 🛠️",
