@@ -25,10 +25,10 @@ from userbot.events import register
 
 # ========================= CONSTANTS ============================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-sender = bot.get_sender
+name = user.first_name
 
 DEF_UNAPPROVED_MSG = (
-    f"Hai {sender.first_name} Selamat datang di chat {DEFAULTUSER}\n"
+    f"Hai {name} Selamat datang di chat {DEFAULTUSER}\n"
     "╾─────────────────────╼\n"
     " Mohon untuk tidak\n"
     " melakukan spam chat\n"
