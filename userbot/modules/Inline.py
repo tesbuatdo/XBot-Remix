@@ -194,6 +194,4 @@ async def dyno_usage(dyno):
                 f"- {percentage}%**\n"
                 "╰━━━━━━━━━━━━━━━━━━━━╯"
             )
-            await asyncio.sleep(20)
-            await x.delete()
             return True
