@@ -1,12 +1,9 @@
 import logging
 import time
 import speedtest
-import codecs
 import heroku3
 import aiohttp
 import math
-import os
-import requests
 import asyncio
 from telethon import Button, events
 from datetime import datetime
