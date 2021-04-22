@@ -232,7 +232,7 @@ async def amireallyalive(alive):
     user = await bot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
-        f"۝⩵꙰ཱི►XBOT-REMIX◄⩵꙰ཱི۝\n __running on__ 🤖 __**{UPSTREAM_REPO_BRANCH}**__ 🤖\n"
+        f"۝⩵꙰ཱི►**XBOT-REMIX**◄⩵꙰ཱི۝\n __running on__ 🤖 __**{UPSTREAM_REPO_BRANCH}**__ 🤖\n"
         f"╭━━━━━━━━━━━━━━━━━━━━━╮\n"
         f"┣[•👤 **USER**     :{DEFAULTUSER}\n"
         f"┣[•👁‍🗨 **Username** :@{user.username}\n"
@@ -244,7 +244,7 @@ async def amireallyalive(alive):
         f"┣[•🗃 **Modules**  : {len(modules)}Loaded🔥\n"
         f"┣[•🕒 **Uptime**   : {uptime}**🔥\n"
         f"╰━━━━━━━━━━━━━━━━━━━━━╯\n"
-        f" **•USER :{DEFAULTUSER}**")
+        f" **•USER** : {DEFAULTUSER}")
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
@@ -270,7 +270,7 @@ async def handler(event):
     user = await bot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
     text = (
-        f"۝⩵꙰ཱི►XBOT-REMIX◄⩵꙰ཱི۝\n __running on__ 🤖 __**{UPSTREAM_REPO_BRANCH}**__ 🤖\n"
+        f"۝⩵꙰ཱི►**XBOT-REMIX**◄⩵꙰ཱི۝\n __running on__ 🤖 __**{UPSTREAM_REPO_BRANCH}**__ 🤖\n"
         f"╭━━━━━━━━━━━━━━━━━━━━╮\n"
         f"┣[•👤 **USER**     : {DEFAULTUSER}\n"
         f"┣[•👁‍🗨 **Username** : @{user.username}\n"
@@ -282,7 +282,7 @@ async def handler(event):
         f"┣[•🗃 **Modules**  : {len(modules)}Loaded🔥\n"
         f"┣[•🕒 **Uptime**    : {uptime}**🔥\n"
         f"╰━━━━━━━━━━━━━━━━━━━━╯\n"
-        f"**•USER :**{DEFAULTUSER}")
+        f"**•USER** : {DEFAULTUSER}")
     logo = ALIVE_LOGO
     await tgbot.send_file(event.chat_id, logo, caption=text,
                           buttons=[[Button.url(text="🛠️ GITHUB 🛠️",
