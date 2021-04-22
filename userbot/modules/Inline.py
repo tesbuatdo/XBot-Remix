@@ -103,6 +103,7 @@ async def spd(event):
         allow_cache=False
     )
 
+
 @tgbot.on(events.NewMessage(pattern="!ping"))
 async def pingme(pong):
     """ For .ping command, ping the userbot from any chat.  """
@@ -112,4 +113,3 @@ async def pingme(pong):
     end = datetime.now()
     duration = (end - start).microseconds / 1000
     await tgbot.send_message(pong.chat_id, f"**PONG!! 🍭**\n**Pinger** : %sms\n**Bot Uptime** : {uptime}🕛" % (duration))
-
