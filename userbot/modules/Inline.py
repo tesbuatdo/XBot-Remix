@@ -1,5 +1,6 @@
-from userbot import tgbot
+from userbot import tgbot, StartTime
 import speedtest
+import time
 from datetime import datetime
 from telethon import Button, events
 import logging
