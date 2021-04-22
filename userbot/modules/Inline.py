@@ -1,6 +1,4 @@
 import logging
-from telethon import Button, events
-from datetime import datetime
 import time
 import speedtest
 import codecs
@@ -10,8 +8,9 @@ import math
 import os
 import requests
 import asyncio
-from userbot import tgbot, StartTime, HEROKU_APP_NAME,
-HEROKU_API_KEY,
+from telethon import Button, events
+from datetime import datetime
+from userbot import tgbot, StartTime, HEROKU_APP_NAME, HEROKU_API_KEY
 
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
