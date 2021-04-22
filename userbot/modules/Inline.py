@@ -4,7 +4,6 @@ import speedtest
 import heroku3
 import aiohttp
 import math
-import asyncio
 from telethon import Button, events
 from datetime import datetime
 from userbot import tgbot, StartTime, HEROKU_APP_NAME, HEROKU_API_KEY
