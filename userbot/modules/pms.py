@@ -27,7 +27,7 @@ from userbot.events import register
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
 DEF_UNAPPROVED_MSG = (
-    f"Hai {fname} Selamat datang di chat {DEFAULTUSER}\n"
+    f"Hai Selamat datang di chat {DEFAULTUSER}\n"
     "╾─────────────────────╼\n"
     " Mohon untuk tidak\n"
     " melakukan spam chat\n"
@@ -49,7 +49,7 @@ async def permitpm(event):
         return
     self_user = await event.client.get_me()
     user = await event.get_chat()
-    user.first_name
+    
     if (
         event.is_private
         and event.chat_id != 777000
@@ -333,6 +333,8 @@ async def unblockpm(unblock):
 @register(outgoing=True, pattern=r"^.(set|get|reset) pm_msg(?: |$)(\w*)")
 async def add_pmsg(cust_msg):
     """Set your own Unapproved message"""
+    user = await cust_msg.get_chat()
+    fname = user.first_name
     if not PM_AUTO_BAN:
         return await cust_msg.edit("You need to set `PM_AUTO_BAN` to `True`")
     try:
