@@ -265,7 +265,7 @@ async def amireallyalive(alive):
         await alive.delete()
 
 
-@register(outgoing=True, pattern="/alive")
+@register(outgoing=True, pattern="!alive")
 async def handler(event):
     user = await bot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
@@ -279,10 +279,10 @@ async def handler(event):
         f"┣[•🐍 **Python**    : v {python_version()}🔥\n"
         f"┣[•💻 **Base on**  : {UPSTREAM_REPO_BRANCH}🔥\n"
         f"┣[•🛠 **Version**   : {BOT_VER}🔥\n"
-        f"┣[•🗃 **Modules** : {len(modules)}Loaded🔥\n"
+        f"┣[•🗃 **Modules**  : {len(modules)}Loaded🔥\n"
         f"┣[•🕒 **Uptime**    : {uptime}**🔥\n"
         f"╰━━━━━━━━━━━━━━━━━━━━╯\n"
-        f"**•USER :** {DEFAULTUSER}")
+        f"**•USER :**{DEFAULTUSER}")
     logo = ALIVE_LOGO
     await tgbot.send_file(event.chat_id, logo, caption=text,
                           buttons=[[Button.url(text="🛠️ GITHUB 🛠️",
