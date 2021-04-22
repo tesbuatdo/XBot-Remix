@@ -1,3 +1,8 @@
+import logging
+from telethon import Button, events
+from datetime import datetime
+import time
+import speedtest
 import codecs
 import heroku3
 import aiohttp
@@ -6,12 +11,7 @@ import os
 import requests
 import asyncio
 from userbot import tgbot, StartTime, HEROKU_APP_NAME,
-    HEROKU_API_KEY,
-import speedtest
-import time
-from datetime import datetime
-from telethon import Button, events
-import logging
+HEROKU_API_KEY,
 
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
@@ -132,12 +132,13 @@ if HEROKU_APP_NAME is not None and HEROKU_API_KEY is not None:
 else:
     app = None
 
+
 @tgbot.on(events.NewMessage(pattern="!usage"))
 async def dyno_usage(dyno):
     """
         Get your account Dyno Usage
     """
-    x= await dyno.reply("`Getting Information...`")
+    x = await dyno.reply("`Getting Information...`")
     useragent = (
         'Mozilla/5.0 (Linux; Android 10; SM-G975F) '
         'AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -200,4 +201,3 @@ async def dyno_usage(dyno):
             await asyncio.sleep(20)
             await x.delete()
             return True
-
