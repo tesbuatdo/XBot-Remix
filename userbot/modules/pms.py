@@ -25,10 +25,9 @@ from userbot.events import register
 
 # ========================= CONSTANTS ============================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-name = user.first_name
 
 DEF_UNAPPROVED_MSG = (
-    f"Hai {name} Selamat datang di chat {DEFAULTUSER}\n"
+    f"Hai {fname} Selamat datang di chat {DEFAULTUSER}\n"
     "╾─────────────────────╼\n"
     " Mohon untuk tidak\n"
     " melakukan spam chat\n"
@@ -49,6 +48,8 @@ async def permitpm(event):
     if not PM_AUTO_BAN:
         return
     self_user = await event.client.get_me()
+    user = await event.get_chat()
+    fname = user.first_name
     if (
         event.is_private
         and event.chat_id != 777000
