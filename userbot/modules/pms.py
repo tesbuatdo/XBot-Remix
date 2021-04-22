@@ -48,8 +48,8 @@ async def permitpm(event):
     if not PM_AUTO_BAN:
         return
     self_user = await event.client.get_me()
-    user = await event.get_chat()
-    
+    await event.get_chat()
+
     if (
         event.is_private
         and event.chat_id != 777000
@@ -334,7 +334,7 @@ async def unblockpm(unblock):
 async def add_pmsg(cust_msg):
     """Set your own Unapproved message"""
     user = await cust_msg.get_chat()
-    fname = user.first_name
+    user.first_name
     if not PM_AUTO_BAN:
         return await cust_msg.edit("You need to set `PM_AUTO_BAN` to `True`")
     try:
