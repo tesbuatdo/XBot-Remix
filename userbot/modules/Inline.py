@@ -217,12 +217,11 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
         tmp = progress_str + "{0} of {1}\nETA: {2}".format(
             humanbytes(current), humanbytes(total), time_formatter(estimated_total_time))
         if file_name:
-            await eor(
-                event, "{}\nFile Name: `{}`\n{}".format(
+            await event.edit("{}\nFile Name: `{}`\n{}".format(
                     type_of_ps, file_name, tmp)
             )
         else:
-            await eor(event, "{}\n{}".format(type_of_ps, tmp))
+            await event.edit("{}\n{}".format(type_of_ps, tmp))
 
 
 def humanbytes(size):
