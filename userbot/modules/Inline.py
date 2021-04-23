@@ -266,16 +266,12 @@ def time_formatter(milliseconds: int) -> str:
     return tmp[:-2]
 
 
-@tgbot.on(events.NewMessage(pattern="!ydl(a|v) (.*)"))
+@tgbot.on(events.NewMessage(pattern="!ydl"))
 async def download_video(v_url):
     """ For .ytdl command, download media from YouTube and many other sites. """
-    url = v_url.pattern_match.group(2)
-    type = v_url.pattern_match.group(1).lower()
-
-    ax = await v_url.reply("`Preparing to download...`")
-
-    if type == "a":
-        opts = {
+    url = v_url.pattern_match.group(1)  
+    ax = await v_url.reply("`Preparing to download...`")  
+    opts = {
             "format": "bestaudio",
             "addmetadata": True,
             "key": "FFmpegMetadata",
@@ -293,28 +289,7 @@ async def download_video(v_url):
             "outtmpl": "%(id)s.mp3",
             "quiet": True,
             "logtostderr": False,
-        }
-        video = False
-        song = True
-
-    elif type == "v":
-        opts = {
-            "format": "best",
-            "addmetadata": True,
-            "key": "FFmpegMetadata",
-            "prefer_ffmpeg": True,
-            "geo_bypass": True,
-            "nocheckcertificate": True,
-            "postprocessors": [
-                {"key": "FFmpegVideoConvertor", "preferedformat": "mp4"}
-            ],
-            "outtmpl": "%(id)s.mp4",
-            "logtostderr": False,
-            "quiet": True,
-        }
-        song = False
-        video = True
-
+        }   
     try:
         az = await ax.edit("`Fetching data, please wait..`")
         with YoutubeDL(opts) as ytdl:
@@ -347,14 +322,13 @@ async def download_video(v_url):
     except Exception as e:
         await az.edit(f"{str(type(e)): {str(e)}}")
         return
-    c_time = time.time()
-    if song:
-        up = await az.edit(
+    c_time = time.time(
+    up = await az.edit(
             f"`Preparing to upload song:`\
         \n**{ytdl_data['title']}**\
         \nby *{ytdl_data['uploader']}*",
         )
-        await tgbot.send_file(
+    await tgbot.send_file(
             v_url.chat_id,
             f"{ytdl_data['id']}.mp3",
             supports_streaming=True,
@@ -371,24 +345,6 @@ async def download_video(v_url):
                 )
             ),
         )
-        os.remove(f"{ytdl_data['id']}.mp3")
-        await up.delete()
-    elif video:
-        up = await az.edit(
-            f"`Preparing to upload video:`\
-        \n**{ytdl_data['title']}**\
-        \nby *{ytdl_data['uploader']}*",
-        )
-        await tgbot.send_file(
-            v_url.chat_id,
-            f"{ytdl_data['id']}.mp4",
-            supports_streaming=True,
-            caption=ytdl_data["title"],
-            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(
-                    d, t, v_url, c_time, "Uploading..", f"{ytdl_data['title']}.mp4"
-                )
-            ),
-        )
-        os.remove(f"{ytdl_data['id']}.mp4")
-        await up.delete()
+    os.remove(f"{ytdl_data['id']}.mp3")
+    await up.delete()
+    
