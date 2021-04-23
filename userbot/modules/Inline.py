@@ -291,44 +291,10 @@ async def download_video(v_url):
             "quiet": True,
             "logtostderr": False,
         }
-    try:
-        az = await ax.edit("`Fetching data, please wait..`")
-        with YoutubeDL(opts) as ytdl:
+    
+    az = await ax.edit("`Fetching data, please wait..`")
+    with YoutubeDL(opts) as ytdl:
             ytdl_data = ytdl.extract_info(url)
-    except DownloadError as DE:
-        await az.edit(f"`{str(DE)}`")
-        return
-    except ContentTooShortError:
-        await az.edit("`The download content was too short.`")
-        return
-    except GeoRestrictedError:
-        await az.edit("`Video is not available from your geographic location due to geographic restrictions imposed by a website.`",
-                      )
-        return
-    except MazDownloadsReached:
-        await az.edit("`Max-downloads limit has been reached.`")
-        return
-    except PostProcessingError:
-        await az.edit("`There was an error during post processing.`")
-        return
-    except UnavailableVideoError:
-        await az.edit("`Media is not available in the requested format.`")
-        return
-    except XAttrMetadataError as XAME:
-        await az.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
-        return
-    except ExtractorError:
-        await az.edit("`There was an error during info extraction.`")
-        return
-    except Exception as e:
-        await az.edit(f"{str(type(e)): {str(e)}}")
-        return
-    c_time = time.time(
-    up=await az.edit(
-            f"`Preparing to upload song:`\
-        \n**{ytdl_data['title']}**\
-        \nby *{ytdl_data['uploader']}*",
-        )
     await tgbot.send_file(
             v_url.chat_id,
             f"{ytdl_data['id']}.mp3",
