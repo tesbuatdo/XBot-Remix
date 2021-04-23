@@ -258,7 +258,7 @@ def time_formatter(milliseconds: int) -> str:
     return tmp[:-2]
 
 
-@tgbot.on(events.NewMessage(pattern="!ydl(a|v) (.*)"))
+@tgbot.on(events.NewMessage(pattern="!ydl(.*) (.*)"))
 async def download_video(v_url):
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
