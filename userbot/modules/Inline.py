@@ -16,7 +16,6 @@ from youtube_dl.utils import (
     DownloadError,
     ExtractorError,
     GeoRestrictedError,
-    MaxDownloadsReached,
     PostProcessingError,
     UnavailableVideoError,
     XAttrMetadataError,
@@ -208,6 +207,7 @@ async def dyno_usage(dyno):
             )
             return True
 
+
 async def progress(current, total, event, start, type_of_ps, file_name=None):
     """Generic progress_callback for uploads and downloads."""
     now = time.time()
@@ -224,8 +224,7 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
             round(percentage, 2),
         )
         tmp = progress_str + "{0} of {1}\nETA: {2}".format(
-            humanbytes(current), humanbytes(total), time_formatter(estimated_total_time)
-        )
+            humanbytes(current), humanbytes(total), time_formatter(estimated_total_time))
         if file_name:
             await eor(
                 event, "{}\nFile Name: `{}`\n{}".format(type_of_ps, file_name, tmp)
@@ -265,6 +264,7 @@ def time_formatter(milliseconds: int) -> str:
         + ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
     )
     return tmp[:-2]
+
 
 @tgbot.on(events.NewMessage(pattern="!ydl(a|v) (.*)"))
 async def download_video(v_url):
@@ -327,7 +327,7 @@ async def download_video(v_url):
         return
     except GeoRestrictedError:
         await az.edit("`Video is not available from your geographic location due to geographic restrictions imposed by a website.`",
-        )
+                      )
         return
     except MazDownloadsReached:
         await az.edit("`Max-downloads limit has been reached.`")
