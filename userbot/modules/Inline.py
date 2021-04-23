@@ -261,7 +261,6 @@ def time_formatter(milliseconds: int) -> str:
 @tgbot.on(events.NewMessage(pattern="!ydl"))
 async def download_video(v_url):
     """ For .ytdl command, download media from YouTube and many other sites. """
-    url = v_url.pattern_match.group(1)
     ax = await v_url.reply("`Preparing to download...`")
     opts = {
         "format": "bestaudio",
