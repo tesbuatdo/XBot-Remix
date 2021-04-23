@@ -218,7 +218,7 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
             humanbytes(current), humanbytes(total), time_formatter(estimated_total_time))
         if file_name:
             await event.edit("{}\nFile Name: `{}`\n{}".format(
-                    type_of_ps, file_name, tmp)
+                type_of_ps, file_name, tmp)
             )
         else:
             await event.edit("{}\n{}".format(type_of_ps, tmp))
