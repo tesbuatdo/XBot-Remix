@@ -258,8 +258,8 @@ def time_formatter(milliseconds: int) -> str:
     return tmp[:-2]
 
 
-@tgbot.on(events.NewMessage(pattern="!ydl (.*)"))
-async def download_video(v_url):
+@tgbot.on(events.NewMessage(pattern="!ydla (.*)"))
+async def download_song(v_url):
     url = v_url.pattern_match.group(1)
     """ For .ytdl command, download media from YouTube and many other sites. """
     ax = await v_url.reply("`Preparing to download...`")
@@ -305,5 +305,50 @@ async def download_video(v_url):
         ),
     )
     os.remove(f"{ytdl_data['id']}.mp3")
+    os.remove(f"{ytdl_data['id']}.mp3.webp")
+    await up.delete()
+
+@tgbot.on(events.NewMessage(pattern="!ydlv (.*)"))
+async def download_video(v_url):
+    url = v_url.pattern_match.group(1)
+    """ For .ytdl command, download media from YouTube and many other sites. """
+    ax = await v_url.reply("`Preparing to download...`")
+    opts = {
+            "format": "best",
+            "addmetadata": True,
+            "key": "FFmpegMetadata",
+            "prefer_ffmpeg": True,
+            "geo_bypass": True,
+            "nocheckcertificate": True,
+            "postprocessors": [
+                {"key": "FFmpegVideoConvertor", "preferedformat": "mp4"}
+            ],
+            "outtmpl": "%(id)s.mp4",
+            "logtostderr": False,
+            "quiet": True,
+        }
+    song = False
+    video = True
+    c_time = time.time()
+    up = await ax.edit("`Fetching data, please wait..`")
+    with YoutubeDL(opts) as ytdl:
+        ytdl_data = ytdl.extract_info(url)
+
+    await up.edit(f"`Preparing to upload video:`\
+        \n**{ytdl_data['title']}**\
+        \nby *{ytdl_data['uploader']}*",
+        )
+    await tgbot.send_file(
+            v_url.chat_id,
+            f"{ytdl_data['id']}.mp4",
+            supports_streaming=True,
+            caption=ytdl_data["title"],
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(
+                    d, t, v_url, c_time, "Uploading..", f"{ytdl_data['title']}.mp4"
+                )
+            ),
+        )
+    os.remove(f"{ytdl_data['id']}.mp4")
     os.remove(f"{ytdl_data['id']}.mp3.webp")
     await up.delete()
