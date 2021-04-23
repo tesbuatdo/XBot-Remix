@@ -4,6 +4,7 @@ import speedtest
 import heroku3
 import aiohttp
 import math
+import os
 import asyncio
 from telethon import Button, events
 from datetime import datetime
