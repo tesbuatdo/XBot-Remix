@@ -282,8 +282,8 @@ async def download_video(v_url):
         "quiet": True,
         "logtostderr": False,
     }
-
-    await ax.edit("`Fetching data, please wait..`")
+    c_time = time.time()
+    up = await ax.edit("`Fetching data, please wait..`")
     with YoutubeDL(opts) as ytdl:
         ytdl_data = ytdl.extract_info(url)
     await tgbot.send_file(
