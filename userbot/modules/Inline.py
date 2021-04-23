@@ -288,8 +288,8 @@ async def download_video(v_url):
     c_time = time.time()
     up = await ax.edit("`Fetching data, please wait..`")
     with YoutubeDL(opts) as ytdl:
-        ytdl_data = ytdl.extract_info(url
-    asu=await up.edit(
+        ytdl_data = ytdl.extract_info(url)
+    await up.edit(
             f"`Preparing to upload song:`\
         \n**{ytdl_data['title']}**\
         \nby *{ytdl_data['uploader']}*",
@@ -313,4 +313,4 @@ async def download_video(v_url):
         )
     os.remove(f"{ytdl_data['id']}.mp3")
     os.remove(f"{ytdl_data['id']}.mp3.webp")
-    await asu.delete()
+    await up.delete()
