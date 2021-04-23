@@ -286,7 +286,7 @@ async def download_video(v_url):
     up = await ax.edit("`Fetching data, please wait..`")
     with YoutubeDL(opts) as ytdl:
         ytdl_data = ytdl.extract_info(url)
-    
+
     await tgbot.send_file(
         v_url.chat_id,
         f"{ytdl_data['id']}.mp3",
