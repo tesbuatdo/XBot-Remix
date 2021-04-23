@@ -11,15 +11,6 @@ from userbot import tgbot, StartTime, HEROKU_APP_NAME, HEROKU_API_KEY
 from telethon.tl.types import DocumentAttributeAudio
 
 from youtube_dl import YoutubeDL
-from youtube_dl.utils import (
-    ContentTooShortError,
-    DownloadError,
-    ExtractorError,
-    GeoRestrictedError,
-    PostProcessingError,
-    UnavailableVideoError,
-    XAttrMetadataError,
-)
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
     level=logging.WARNING)
@@ -273,44 +264,44 @@ async def download_video(v_url):
     url = v_url.pattern_match.group(1)
     ax = await v_url.reply("`Preparing to download...`")
     opts = {
-            "format": "bestaudio",
-            "addmetadata": True,
-            "key": "FFmpegMetadata",
-            "writethumbnail": True,
-            "prefer_ffmpeg": True,
-            "geo_bypass": True,
-            "nocheckcertificate": True,
-            "postprocessors": [
-                {
-                    "key": "FFmpegExtractAudio",
-                    "preferredcodec": "mp3",
-                    "preferredquality": "320",
-                }
-            ],
-            "outtmpl": "%(id)s.mp3",
-            "quiet": True,
-            "logtostderr": False,
-        }
-    
-    az = await ax.edit("`Fetching data, please wait..`")
+        "format": "bestaudio",
+        "addmetadata": True,
+        "key": "FFmpegMetadata",
+        "writethumbnail": True,
+        "prefer_ffmpeg": True,
+        "geo_bypass": True,
+        "nocheckcertificate": True,
+        "postprocessors": [
+            {
+                "key": "FFmpegExtractAudio",
+                "preferredcodec": "mp3",
+                "preferredquality": "320",
+            }
+        ],
+        "outtmpl": "%(id)s.mp3",
+        "quiet": True,
+        "logtostderr": False,
+    }
+
+    await ax.edit("`Fetching data, please wait..`")
     with YoutubeDL(opts) as ytdl:
-            ytdl_data = ytdl.extract_info(url)
+        ytdl_data = ytdl.extract_info(url)
     await tgbot.send_file(
-            v_url.chat_id,
-            f"{ytdl_data['id']}.mp3",
-            supports_streaming=True,
-            attributes=[
-                DocumentAttributeAudio(
-                    duration=int(ytdl_data["duration"]),
-                    title=str(ytdl_data["title"]),
-                    performer=str(ytdl_data["uploader"]),
-                )
-            ],
-            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(
-                    d, t, v_url, c_time, "Uploading..", f"{ytdl_data['title']}.mp3"
-                )
-            ),
-        )
+        v_url.chat_id,
+        f"{ytdl_data['id']}.mp3",
+        supports_streaming=True,
+        attributes=[
+            DocumentAttributeAudio(
+                duration=int(ytdl_data["duration"]),
+                title=str(ytdl_data["title"]),
+                performer=str(ytdl_data["uploader"]),
+            )
+        ],
+        progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+            progress(
+                d, t, v_url, c_time, "Uploading..", f"{ytdl_data['title']}.mp3"
+            )
+        ),
+    )
     os.remove(f"{ytdl_data['id']}.mp3")
     await up.delete()
