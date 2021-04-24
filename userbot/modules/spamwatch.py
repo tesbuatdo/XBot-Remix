@@ -16,11 +16,9 @@
 #   thanks to @rekcah-pavi for the base
 
 import html
-import os
 
 import spamwatch
 from telethon.tl.functions.users import GetFullUserRequest
-from userbot import bot
 from userbot.events import register
 
 SPAMWATCH_API_KEY = "V3PDs2Ya3KIML9wHpeOPlib~gvjnn6f4sQSRu9wkuaSpBeV_UOvTUU2Clpdoa8VO"
