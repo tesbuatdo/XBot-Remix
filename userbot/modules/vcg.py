@@ -25,7 +25,7 @@ async def get_entity(chat):
 async def join_call(data):
     chat = await get_entity(data['chat'])
     full_chat = await bot(GetFullChannelRequest(chat))
-    call = await client(GetGroupCallRequest(full_chat.full_chat.call))
+    call = await bot(GetGroupCallRequest(full_chat.full_chat.call))
 
     result = await bot(
         JoinGroupCallRequest(
