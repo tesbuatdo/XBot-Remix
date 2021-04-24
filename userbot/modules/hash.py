@@ -73,7 +73,7 @@ async def endecrypt(query):
         await query.reply("Decoded: `" + lething[:-1] + "`")
 
 
-@register(outgoing=True, pattern="^\.json")
+@register(outgoing=True, pattern="^\\.json")
 async def _(event):
     if event.fwd_from:
         return
