@@ -33,7 +33,9 @@ async def _(event):
     sender = await event.get_sender()
     me = await event.client.get_me()
     if not sender.id == me.id:
-    tele = await event.edit("`Processing...`")
+        tele = await event.reply("`Processing...`")
+    else:
+        tele = await event.edit("`Processing...`")
     if event.fwd_from:
         return
     tuser, rdhs = await get_full_user(event)
