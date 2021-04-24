@@ -8,12 +8,12 @@ from subprocess import PIPE
 from subprocess import run as runapp
 
 import pybase64
-from telethon import events
 import io
 from userbot import CMD_HELP
 from userbot.events import register
 
-MAX_MESSAGE_SIZE_LIMIT  = 4095
+MAX_MESSAGE_SIZE_LIMIT = 4095
+
 
 @register(outgoing=True, pattern=r"^\.hash (.*)")
 async def gethash(hash_q):
