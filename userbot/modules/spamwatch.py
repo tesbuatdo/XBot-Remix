@@ -32,7 +32,7 @@ swapi = SPAMWATCH_API_KEY
 async def _(event):
     sender = await event.get_sender()
     me = await event.client.get_me()
-    if not sender.id == me.id:        
+    if not sender.id == me.id:
     tele = await event.edit("`Processing...`")
     if event.fwd_from:
         return
@@ -116,7 +116,9 @@ async def get_full_user(event):
         if event.message.entities:
             mention_entity = event.message.entities
             probable_user_mention_entity = mention_entity[0]
-            if isinstance(probable_user_mention_entity, MessageEntityMentionName):
+            if isinstance(
+                    probable_user_mention_entity,
+                    MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
                 ruser = await event.client(GetFullUserRequest(user_id))
                 return ruser, None
