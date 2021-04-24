@@ -31,7 +31,7 @@ from telethon.tl.types import (
 )
 from userbot.events import register
 
-from telebot import CMD_HELP, bot
+from userbot import CMD_HELP, bot
 
 
 @register(outgoing=True, pattern=r"^\.unbanall (.*)")
