@@ -2,6 +2,7 @@ import json
 from json.decoder import JSONDecodeError
 
 from userbot import bot
+from userbot.events import register
 from aiohttp import web
 from aiohttp.http_websocket import WSMsgType
 
