@@ -1,5 +1,4 @@
 import json
-import os
 from json.decoder import JSONDecodeError
 
 from userbot import bot
@@ -11,6 +10,7 @@ from telethon.tl.functions.phone import GetGroupCallRequest
 from telethon.tl.functions.phone import JoinGroupCallRequest
 from telethon.tl.types import DataJSON
 
+
 async def get_entity(chat):
     try:
         return await bot.get_input_entity(chat['id'])
@@ -18,7 +18,6 @@ async def get_entity(chat):
         if 'username' in chat:
             return await bot.get_entity(chat['username'])
         raise
-
 
 
 @register(outgoing=True, pattern=r"^\.joinvcg")
