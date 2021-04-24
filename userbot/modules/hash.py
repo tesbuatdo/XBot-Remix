@@ -12,7 +12,7 @@ import io
 from userbot import CMD_HELP
 from userbot.events import register
 
-MAX_MESSAGE_SIZE_LIMIT = 4095
+MAX_MESSAGE_SIZE_LIMIT = 100000
 
 
 @register(outgoing=True, pattern=r"^\.hash (.*)")
