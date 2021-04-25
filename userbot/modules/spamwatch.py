@@ -26,7 +26,7 @@ SPAMWATCH_API_KEY = "V3PDs2Ya3KIML9wHpeOPlib~gvjnn6f4sQSRu9wkuaSpBeV_UOvTUU2Clpd
 swapi = SPAMWATCH_API_KEY
 
 
-@register(outgoing=True, pattern=r"^\.xstats$")
+@register(outgoing=True, pattern=r"^\.xstats (.*)")
 async def _(event):
     sender = await event.get_sender()
     me = await event.client.get_me()
