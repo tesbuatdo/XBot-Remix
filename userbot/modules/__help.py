@@ -38,3 +38,15 @@ async def yardim(event):
             "`The bot doesn't work! Please set the Bot Token and Username correctly.`"
             "\n`The module has been stopped.`"
         )
+
+@register(outgoing=True, pattern=r"^\.xrepo")
+async def _(event):
+    if event.fwd_from:
+        return
+    botusername = BOT_USERNAME
+    noob = "/repo"
+    if event.reply_to_msg_id:
+        await event.get_reply_message()
+    tap = await bot.inline_query(botusername, noob)
+    await tap[0].click(event.chat_id)
+    await event.delete()
