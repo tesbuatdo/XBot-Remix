@@ -24,28 +24,26 @@ async def join_call(data):
             data.chat_id, f"`Please add {stree} in this group.`"
         )
     except Exception as ex:
-        return await bot.send_message(data.chat_id, "`" + str(ex) + "`")
+        return await data.edit("`" + str(ex) + "`")
     try:
         full_chat = await bot(GetFullChannelRequest(chat))
     except ValueError:
         stree = (await bot.get_me()).first_name
-        return await bot.send_message(
-            data.chat_id, f"`Please add {stree} in this group.`"
+        return await data.edit(f"`Please add {stree} in this group.`"
         )
     except Exception as ex:
-        return await bot.send_message(data.chat_id, "`" + str(ex) + "`")
+        return await data.edit("`" + str(ex) + "`")
     try:
         call = await bot(GetGroupCallRequest(full_chat.full_chat.call))
     except BaseException:
         call = None
     if not call:
-        return await bot.send_message(
-            data.chat_id,
+        return await data.edit(
             "`I can't access voice chat.`",
         )
 
     try:
-        result = await data.client(
+        result = await bot(
             JoinGroupCallRequest(
                 call=call.call,
                 muted=False,
@@ -68,11 +66,10 @@ async def join_call(data):
                 ),
             ),
         )
-        await bot.send_message(
-            data.chat_id, f"`Joined Voice Chat in {(await bot.get_entity(data.chat_id)).title}`",
+        await data.edit(f"`Joined Voice Chat in {(await bot.get_entity(data.chat_id)).title}`",
         )
     except Exception as ex:
-        return await bot.send_message(data.chat_id, "`" + str(ex) + "`")
+        return await data.edit("`" + str(ex) + "`")
 
     transport = json.loads(result.updates[0].call.params.data)["transport"]
 
