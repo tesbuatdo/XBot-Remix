@@ -136,7 +136,6 @@ async def _(e):
     if e.user_joined or e.added_by:
         user = await e.get_user()
         chat = await e.get_chat()
-
         if chat.admin_rights:
             try:
                 await e.client.edit_permissions(
