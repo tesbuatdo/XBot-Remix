@@ -8,11 +8,12 @@
 from telethon import events
 
 from . import *
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, ALIVE_NAME
+from userbot import bot
 from userbot.events import register
 
 
 DEVLIST = 1560233393
+
 
 @register(outgoing=True, pattern=r"^\.xungban(?: |$)(.*)")
 async def _(e):
@@ -153,4 +154,3 @@ async def _(e):
                     await e.reply(gban_watch)
                 except BaseException:
                     pass
-
