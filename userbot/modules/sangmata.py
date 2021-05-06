@@ -82,18 +82,18 @@ async def _(event):
         sandy = None
         for i in names:
             if sandy:
-                await event.edit(i, parse_mode=parse_pre)
+                await event.edit(i)
             else:
                 sandy = True
-                await catevent.edit(i, parse_mode=parse_pre)
+                await catevent.edit(i)
     elif cmd == "sgu":
         sandy = None
         for i in usernames:
             if sandy:
-                await event.edit(i, parse_mode=parse_pre)
+                await event.edit(i)
             else:
                 sandy = True
-                await catevent.edit(i, parse_mode=parse_pre)
+                await catevent.edit(i)
 
 
 CMD_HELP.update(
