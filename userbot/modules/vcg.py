@@ -88,3 +88,27 @@ async def join_call(data):
                 },
             },
         }
+
+async def websocket_handler(request):
+        ws = web.WebSocketResponse()
+        await ws.prepare(request)
+
+        async for msg in ws:
+            if msg.type == WSMsgType.TEXT:
+                try:
+                    data = json.loads(msg.data)
+                except JSONDecodeError:
+                    await ws.close()
+                    break
+
+                response = None
+                if data["_"] == "join":
+                    response = await join_call(data["data"])
+
+                #                if data["_"] == "leave":
+                #                    response = await leave_vc(data["data"])
+
+                if response is not None:
+                    await ws.send_json(response)
+
+        return ws
