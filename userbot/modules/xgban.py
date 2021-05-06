@@ -136,16 +136,16 @@ async def _(e):
     if e.user_joined or e.added_by:
         user = await e.get_user()
         chat = await e.get_chat()
-        
+
         if chat.admin_rights:
-           try:
-               await e.client.edit_permissions(
-                        chat.id,
-                        user.id,
-                        view_messages=False,
-                    )
-                    gban_watch = f"`Gbanned User` [{user.first_name}](tg://user?id={user.id}) `Spotted\n"
-                    gban_watch += f"Banned Successfully`"
-                    await e.reply(gban_watch)
-           except BaseException:
-               pass
+            try:
+                await e.client.edit_permissions(
+                    chat.id,
+                    user.id,
+                    view_messages=False,
+                )
+                gban_watch = f"`Gbanned User` [{user.first_name}](tg://user?id={user.id}) `Spotted\n"
+                gban_watch += f"Banned Successfully`"
+                await e.reply(gban_watch)
+            except BaseException:
+                pass
