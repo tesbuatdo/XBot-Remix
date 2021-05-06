@@ -22,7 +22,6 @@ import psutil
 
 from userbot import ALIVE_LOGO, ALIVE_NAME, BOT_VER, CMD_HELP, StartTime, UPSTREAM_REPO_BRANCH, bot
 from userbot.events import register
-from telethon import Button
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
@@ -263,7 +262,6 @@ async def amireallyalive(alive):
         await alive.edit(output)
         await asyncio.sleep(200)
         await alive.delete()
-
 
 
 @register(outgoing=True, pattern=r"^\.aliveu")
