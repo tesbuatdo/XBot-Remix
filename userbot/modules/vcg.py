@@ -17,35 +17,35 @@ from telethon.tl.types import DataJSON
 @register(outgoing=True, pattern=r"^\.joinvc")
 async def join_call(data):
     try:
-        chat = await get_entity(data["chat"])
+        chat = await get_entity(data.chat_id)
     except ValueError:
         stree = (await bot.get_me()).first_name
         return await bot.send_message(
-            data["chat"]["id"], f"`Please add {stree} in this group.`"
+            data.chat_id, f"`Please add {stree} in this group.`"
         )
     except Exception as ex:
-        return await bot.send_message(data["chat"]["id"], "`" + str(ex) + "`")
+        return await bot.send_message(data.chat_id, "`" + str(ex) + "`")
     try:
         full_chat = await bot(GetFullChannelRequest(chat))
     except ValueError:
         stree = (await bot.get_me()).first_name
         return await bot.send_message(
-            data["chat"]["id"], f"`Please add {stree} in this group.`"
+            data.chat_id, f"`Please add {stree} in this group.`"
         )
     except Exception as ex:
-        return await bot.send_message(data["chat"]["id"], "`" + str(ex) + "`")
+        return await bot.send_message(data.chat_id, "`" + str(ex) + "`")
     try:
         call = await bot(GetGroupCallRequest(full_chat.full_chat.call))
     except BaseException:
         call = None
     if not call:
         return await bot.send_message(
-            data["chat"]["id"],
+            data.chat_id,
             "`I can't access voice chat.`",
         )
 
     try:
-        result = await bot(
+        result = await data.client(
             JoinGroupCallRequest(
                 call=call.call,
                 muted=False,
@@ -69,10 +69,10 @@ async def join_call(data):
             ),
         )
         await bot.send_message(
-            data, f"`Joined Voice Chat in {(await bot.get_entity(data['chat']['id'])).title}`",
+            data.chat_id, f"`Joined Voice Chat in {(await bot.get_entity(data.chat_id)).title}`",
         )
     except Exception as ex:
-        return await bot.send_message(data["chat"]["id"], "`" + str(ex) + "`")
+        return await bot.send_message(data.chat_id, "`" + str(ex) + "`")
 
     transport = json.loads(result.updates[0].call.params.data)["transport"]
 
