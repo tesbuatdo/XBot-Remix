@@ -7,17 +7,16 @@ from aiohttp import web
 from aiohttp.http_websocket import WSMsgType
 
 from telethon.tl.functions.channels import GetFullChannelRequest as getchat
-from telethon.tl.functions.phone import CreateGroupCallRequest as startvc
-from telethon.tl.functions.phone import DiscardGroupCallRequest as stopvc
 from telethon.tl.functions.phone import GetGroupCallRequest as getvc
-from telethon.tl.functions.phone import InviteToGroupCallRequest as invitetovc
 from telethon.tl.functions.phone import JoinGroupCallRequest as joinvc
 from telethon.tl.types import DataJSON
+
 
 async def get_call(event):
     mm = await event.client(getchat(event.chat_id))
     xx = await event.client(getvc(mm.full_chat.call))
     return xx.call
+
 
 @register(outgoing=True, pattern=r"^\.joinvc")
 async def join_call(data):
