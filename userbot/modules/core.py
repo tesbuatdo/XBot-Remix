@@ -4,7 +4,7 @@ import sys
 import os
 from pathlib import Path
 
-from userbot import CMD_HELP, LOGS, bot, tgbot  # pylint:disable=E0602
+from userbot import CMD_HELP, LOGS, bot,  # pylint:disable=E0602
 from userbot.events import register
 
 DELETE_TIMEOUT = 5
