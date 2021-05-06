@@ -20,7 +20,7 @@ import time
 from datetime import datetime
 import psutil
 
-from userbot import tgbot, ALIVE_LOGO, ALIVE_NAME, BOT_VER, CMD_HELP, StartTime, UPSTREAM_REPO_BRANCH, bot
+from userbot import ALIVE_LOGO, ALIVE_NAME, BOT_VER, CMD_HELP, StartTime, UPSTREAM_REPO_BRANCH, bot
 from userbot.events import register
 from telethon import Button
 
@@ -264,33 +264,6 @@ async def amireallyalive(alive):
         await asyncio.sleep(200)
         await alive.delete()
 
-
-@register(outgoing=True, pattern="!alive")
-async def handler(event):
-    user = await bot.get_me()
-    uptime = await get_readable_time((time.time() - StartTime))
-    text = (
-        f"۝⩵꙰ཱི►**XBOT-REMIX**◄⩵꙰ཱི۝\n __running on__ 🤖 __**{UPSTREAM_REPO_BRANCH}**__ 🤖\n"
-        f"╭━━━━━━━━━━━━━━━━━━━━╮\n"
-        f"┣[•👤 **USER**     : {DEFAULTUSER}\n"
-        f"┣[•👁‍🗨 **Username** : @{user.username}\n"
-        "`┣▰▱▰▱▰▱▰▱▱▰▱▰▱▰▱`\n"
-        f"┣[•⚙️ **Telethon** : v {version.__version__}🔥\n"
-        f"┣[•🐍 **Python**    : v {python_version()}🔥\n"
-        f"┣[•💻 **Base on**  : {UPSTREAM_REPO_BRANCH}🔥\n"
-        f"┣[•🛠 **Version**   : {BOT_VER}🔥\n"
-        f"┣[•🗃 **Modules** : {len(modules)}Loaded🔥\n"
-        f"┣[•🕒 **Uptime**    : {uptime}**🔥\n"
-        f"╰━━━━━━━━━━━━━━━━━━━━╯\n"
-        f"☠️ **•USER** : {DEFAULTUSER}")
-    logo = ALIVE_LOGO
-    await tgbot.send_file(event.chat_id, logo, caption=text,
-                          buttons=[[Button.url(text="🛠️ GITHUB 🛠️",
-                                               url="https://github.com/ximfine"),
-                                    Button.url(text="🔥 REPO 🔥",
-                                               url="https://github.com/ximfine/XBot-Remix")],
-                                   [Button.url(text="🔱 OFFICIAL CHANNELS 🔱",
-                                               url="https://t.me/X_Projectss")]])
 
 
 @register(outgoing=True, pattern=r"^\.aliveu")
