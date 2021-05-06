@@ -6,13 +6,18 @@ from userbot.events import register
 from aiohttp import web
 from aiohttp.http_websocket import WSMsgType
 
-from telethon.tl.functions.channels import GetFullChannelRequest
-from telethon.tl.functions.phone import (
-    GetGroupCallRequest,
-    JoinGroupCallRequest,
-)
+from telethon.tl.functions.channels import GetFullChannelRequest as getchat
+from telethon.tl.functions.phone import CreateGroupCallRequest as startvc
+from telethon.tl.functions.phone import DiscardGroupCallRequest as stopvc
+from telethon.tl.functions.phone import GetGroupCallRequest as getvc
+from telethon.tl.functions.phone import InviteToGroupCallRequest as invitetovc
+from telethon.tl.functions.phone import JoinGroupCallRequest as joinvc
 from telethon.tl.types import DataJSON
 
+async def get_call(event):
+    mm = await event.client(getchat(event.chat_id))
+    xx = await event.client(getvc(mm.full_chat.call))
+    return xx.call
 
 @register(outgoing=True, pattern=r"^\.joinvc")
 async def join_call(data):
@@ -26,7 +31,7 @@ async def join_call(data):
     except Exception as ex:
         return await data.edit("`" + str(ex) + "`")
     try:
-        full_chat = await bot(GetFullChannelRequest(chat))
+        full_chat = await bot(getchat(chat))
     except ValueError:
         stree = (await bot.get_me()).first_name
         return await data.edit(f"`Please add {stree} in this group.`"
@@ -34,7 +39,7 @@ async def join_call(data):
     except Exception as ex:
         return await data.edit("`" + str(ex) + "`")
     try:
-        call = await bot(GetGroupCallRequest(full_chat.full_chat.call))
+        call = await bot(getvc(full_chat.full_chat.call))
     except BaseException:
         call = None
     if not call:
@@ -44,7 +49,7 @@ async def join_call(data):
 
     try:
         result = await bot(
-            JoinGroupCallRequest(
+            joinvc(
                 call=call.call,
                 muted=False,
                 join_as="me",
