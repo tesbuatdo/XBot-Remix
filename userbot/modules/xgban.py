@@ -6,11 +6,7 @@
 # <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
 from telethon import events
-from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 
-from telethon.tl.types import (
-    MessageEntityMentionName,
-)
 
 from userbot import bot
 from userbot.events import register
