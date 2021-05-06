@@ -11,6 +11,7 @@ from telethon import events
 from userbot import bot, CMD_HELP
 from userbot.events import register
 
+
 @register(outgoing=True, pattern=r"^\.gcast(?: |$)(.*)")
 async def gcast(event):
     xx = event.pattern_match.group(1)
