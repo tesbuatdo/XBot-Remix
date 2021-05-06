@@ -17,7 +17,7 @@ from telethon.tl.types import DataJSON
 @register(outgoing=True, pattern=r"^\.joinvc")
 async def join_call(data):
     try:
-        chat = await data.get_chat()
+        chat = await data.client.get_entity(data.chat_id)
     except ValueError:
         stree = (await bot.get_me()).first_name
         return await bot.send_message(
