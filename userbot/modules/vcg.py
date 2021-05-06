@@ -30,7 +30,7 @@ async def join_call(data):
     except ValueError:
         stree = (await bot.get_me()).first_name
         return await data.edit(f"`Please add {stree} in this group.`"
-        )
+                               )
     except Exception as ex:
         return await data.edit("`" + str(ex) + "`")
     try:
@@ -67,7 +67,7 @@ async def join_call(data):
             ),
         )
         await data.edit(f"`Joined Voice Chat in {(await bot.get_entity(data.chat_id)).title}`",
-        )
+                        )
     except Exception as ex:
         return await data.edit("`" + str(ex) + "`")
 
