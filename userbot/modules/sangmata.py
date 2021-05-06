@@ -6,26 +6,21 @@ ported char, airing and manga by @sandy1709 and @mrconfused
 import asyncio
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-import datetime
-import os
-import re
-import time
-import urllib.request
-from random import choice
-import requests
-from telethon.tl.tlobject import TLObject
 from telethon.tl.types import MessageEntityPre
 from telethon.utils import add_surrogate
 
 from userbot.events import register
-from userbot import bot, CMD_HELP
+from userbot import CMD_HELP
+
 
 def parse_pre(text):
     text = text.strip()
     return (
-        text,
-        [MessageEntityPre(offset=0, length=len(add_surrogate(text)), language="")],
-    )
+        text, [
+            MessageEntityPre(
+                offset=0, length=len(
+                    add_surrogate(text)), language="")], )
+
 
 async def sanga_seperator(sanga_list):
     for i in sanga_list:
@@ -40,6 +35,7 @@ async def sanga_seperator(sanga_list):
     names = sanga_list[:s]
     return names, usernames
 
+
 @register(outgoing=True, pattern=r"^\.(?:sg|sgu)($| (.*))")
 async def _(event):
     if event.fwd_from:
@@ -48,7 +44,7 @@ async def _(event):
     reply_message = await event.get_reply_message()
     if not input_str and not reply_message:
         await event.edit("`reply to  user's text message to get name/username history or give userid/username`",
-        )
+                         )
     if input_str:
         try:
             uid = int(input_str)
@@ -57,7 +53,7 @@ async def _(event):
                 u = await event.client.get_entity(input_str)
             except ValueError:
                 await event.edit("`Give userid or username to find name history`"
-                )
+                                 )
             uid = u.id
     else:
         uid = reply_message.sender_id
