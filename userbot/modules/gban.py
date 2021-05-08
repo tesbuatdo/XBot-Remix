@@ -3,7 +3,6 @@ from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.events import ChatAction
 import userbot.modules.sql_helper.gmute_sql as gmute_sql
-from userbot.modules.sql_helper.gmute_sql import is_gmuted
 from telethon.tl.types import (
     MessageEntityMentionName,
 )
