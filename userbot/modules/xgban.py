@@ -1,17 +1,16 @@
 import asyncio
 import base64
-from datetime import datetime
 
 from telethon.errors import BadRequestError
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
-from telethon.tl.types import Channel, MessageEntityMentionName
+from telethon.tl.types import Channel
 
 from userbot import BOTLOG, BOTLOG_CHATID
 from userbot.events import register
 
 import userbot.modules.sql_helper.gban_sql as sql
-from userbot.modules.sql_helper.users_sql import get_all_chats
+
 
 async def admin_groups(cat):
     catgroups = []
@@ -24,6 +23,7 @@ async def admin_groups(cat):
         ):
             catgroups.append(entity.id)
     return catgroups
+
 
 @register(outgoing=True, pattern=r"^\.xgban(?: |$)(.*)")
 async def catgban(event):
@@ -71,7 +71,7 @@ async def catgban(event):
                 BOTLOG_CHATID,
                 f"`You don't have required permission in :`\n**Chat :** {event.chat.title}(`{event.chat_id}`)\n`For banning here`",
             )
-    
+
     if reason:
         await cate.edit(
             f"[{user.first_name}](tg://user?id={user.id}) `was gbanned in {count} groups in seconds`!!\n**Reason :** `{reason}`"
@@ -91,7 +91,7 @@ async def catgban(event):
                 \n**User : **[{user.first_name}](tg://user?id={user.id})\
                 \n**ID : **`{user.id}`\
                 \n**Reason :** `{reason}`\
-                \n__Banned in {count} groups__",                
+                \n__Banned in {count} groups__",
             )
         else:
             await event.client.send_message(
