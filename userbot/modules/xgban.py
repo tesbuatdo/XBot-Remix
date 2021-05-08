@@ -12,7 +12,7 @@ from datetime import datetime
 from telethon.errors import BadRequestError
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
-from telethon.tl.types import Channel
+from telethon.tl.types import Channel, MessageEntityMentionName
 
 from userbot import BOTLOG, BOTLOG_CHATID
 from userbot.events import register
@@ -35,33 +35,41 @@ async def admin_groups(cat):
     return catgroups
 
 
-async def get_user_from_event(event):
-    args = event.pattern_match.group(1).split(':', 1)
+async def get_user_from_event(event, catevent=None, secondgroup=None):
+    if catevent is None:
+        catevent = event
+    if secondgroup:
+        args = event.pattern_match.group(2).split(" ", 1)
+    else:
+        args = event.pattern_match.group(1).split(" ", 1)
     extra = None
-    if event.reply_to_msg_id and not len(args) == 2:
+    if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
-        user_obj = await event.client.get_entity(previous_message.from_id)
+        if previous_message.from_id is None and not event.is_private:
+            await catevent.edit("`Well that's an anonymous admin !`")
+            return None, None
+        user_obj = await event.client.get_entity(previous_message.sender_id)
         extra = event.pattern_match.group(1)
-    elif len(args[0]) > 0:
+    elif args:
         user = args[0]
         if len(args) == 2:
             extra = args[1]
         if user.isnumeric():
             user = int(user)
         if not user:
-            await event.edit(f"`{ALIVE_NAME}`: ** Pass the user's username, id or reply!**")
-            return
-        if event.message.entities is not None:
+            await catevent.edit("`Pass the user's username, id or reply!`", 5)
+            return None, None
+        if event.message.entities:
             probable_user_mention_entity = event.message.entities[0]
-            if isinstance(probable_user_mention_entity,
-                          MessageEntityMentionName):
+            if isinstance(probable_user_mention_entity, MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
                 user_obj = await event.client.get_entity(user_id)
-                return user_obj
+                return user_obj, extra
         try:
             user_obj = await event.client.get_entity(user)
-        except Exception as err:
-            return await event.edit("Failed \n **Error**\n", str(err))
+        except (TypeError, ValueError):
+            await catevent.edit("`Couldn't fetch user to procced further`", 5)
+            return None, None
     return user_obj, extra
 
 
