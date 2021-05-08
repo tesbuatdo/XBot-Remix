@@ -1,11 +1,6 @@
-import html
 
-from telethon import events
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
-from telethon.tl.functions.photos import GetUserPhotosRequest
-from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
-from telethon.utils import get_input_location
 from telethon.events import ChatAction
 
 from telethon.tl.types import (
@@ -207,31 +202,32 @@ async def gspider(userbot):
             f"**SUDO:** {ALIVE_NAME}"
         )
 
+
 @bot.on(ChatAction)
-async def handler(rkG): 
-   if rkG.user_joined or rkG.user_added:      
-       try:       	
-         from userbot.modules.sql_helper.gmute_sql import is_gmuted
-         guser = await rkG.get_user()      
-         gmuted = is_gmuted(guser.id)             
-       except:      
-          return
-       if gmuted:
-        for i in gmuted:
-            if i.sender == str(guser.id):                                                                         
-                chat = await rkG.get_chat()
-                admin = chat.admin_rights
-                creator = chat.creator   
-                if admin or creator:
-                 try:
-                    await client.edit_permissions(rkG.chat_id, guser.id, view_messages=False)                              
-                    await rkG.reply(
-                     f"**Gbanned User Joined!!** \n"                      
-                     f"**Victim Id**: [{guser.id}](tg://user?id={guser.id})\n"                   
-                     f"**Action **  : `Banned`")                                                
-                 except:       
-                    rkG.reply("`No Permission To Ban`")                   
-                    return 
+async def handler(rkG):
+    if rkG.user_joined or rkG.user_added:
+        try:
+            from userbot.modules.sql_helper.gmute_sql import is_gmuted
+            guser = await rkG.get_user()
+            gmuted = is_gmuted(guser.id)
+        except BaseException:
+            return
+        if gmuted:
+            for i in gmuted:
+                if i.sender == str(guser.id):
+                    chat = await rkG.get_chat()
+                    admin = chat.admin_rights
+                    creator = chat.creator
+                    if admin or creator:
+                        try:
+                            await client.edit_permissions(rkG.chat_id, guser.id, view_messages=False)
+                            await rkG.reply(
+                                f"**Gbanned User Joined!!** \n"
+                                f"**Victim Id**: [{guser.id}](tg://user?id={guser.id})\n"
+                                f"**Action **  : `Banned`")
+                        except BaseException:
+                            rkG.reply("`No Permission To Ban`")
+                            return
 
 CMD_HELP.update({
     "gban": "\
