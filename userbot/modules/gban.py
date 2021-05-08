@@ -2,9 +2,8 @@
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.events import ChatAction
-import userbot.modules.sql_helper.gmute_sql as gmute_sql
 from userbot.modules.sql_helper.gmute_sql import is_gmuted
-            
+
 from telethon.tl.types import (
     MessageEntityMentionName,
 )
@@ -210,7 +209,7 @@ async def gablist(event):
     if event.fwd_from:
         return
     guser = await rkG.get_user()
-    gmute_users = is_gmuted(guser.id)   
+    gmute_users = is_gmuted(guser.id)
     GBANNED_LIST = "List Gbanned Users\n"
     if len(gmute_users) > 0:
         for a_user in gmute_users:
