@@ -2,6 +2,7 @@
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.events import ChatAction
+from userbot.modules.sql_helper.gmute_sql import is_gmuted
 
 from telethon.tl.types import (
     MessageEntityMentionName,
@@ -202,6 +203,24 @@ async def gspider(userbot):
             f"**SUDO:** {ALIVE_NAME}"
         )
 
+@register(outgoing=True, pattern=r"^\.listgban$")
+async def gablist(event):
+    if event.fwd_from:
+        return
+    import userbot.modules.sql_helper.gmute_sql as gmute_sql
+    gmute_users = gmute_sql.get_all_gmute()
+    GBANNED_LIST = "List Gbanned Users\n"
+    if len(gmute_users) > 0:
+        for a_user in gmute_users:
+            if a_user.reason:
+                GBANNED_LIST += f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) for {a_user.reason}\n"
+            else:
+                GBANNED_LIST += (
+                    f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) Reason None\n"
+                )
+    else:
+        GBANNED_LIST = "Tidak user yang di GBANNED (yet)"
+    await event.edit(GBANNED_LIST)
 
 @bot.on(ChatAction)
 async def handler(rkG):
