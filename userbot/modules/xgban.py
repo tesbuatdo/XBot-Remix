@@ -73,7 +73,7 @@ async def get_user_from_event(event):
 async def catgban(event):
     if event.fwd_from:
         return
-    cate = await event.edit"`gbanning.......`")
+    cate = await event.edit("`gbanning.......`")
     start=datetime.now()
     user, reason=await get_user_from_event(event, cate)
     if not user:
