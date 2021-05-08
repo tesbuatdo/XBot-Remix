@@ -207,8 +207,9 @@ async def gspider(userbot):
 async def gablist(event):
     if event.fwd_from:
         return
+    from userbot.modules.sql_helper.gmute_sql import is_gmuted
     import userbot.modules.sql_helper.gmute_sql as gmute_sql
-    gmute_users = gmute_sql.get_all_gmute()
+    gmute_users = gmute_sql.is_gmuted()
     GBANNED_LIST = "List Gbanned Users\n"
     if len(gmute_users) > 0:
         for a_user in gmute_users:
