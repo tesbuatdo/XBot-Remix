@@ -301,6 +301,7 @@ def is_redis_alive():
     except BaseException:
         return False
 
+
 def paginate_help(page_number, loaded_modules, prefix):
     number_of_rows = 5
     number_of_cols = 3
