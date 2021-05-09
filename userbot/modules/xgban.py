@@ -23,7 +23,8 @@ from userbot.modules.dbhelper import (
 
 @register(outgoing=True, pattern="^.xgban")
 async def gban_all(msg):
-    if not is_mongo_alive() or not is_redis_alive():
+    extra = msg.pattern_match.group(1)
+    if not is_mongo_alive():
         await msg.edit("`Database connections failing!`")
         return
     textx = await msg.get_reply_message()
@@ -31,7 +32,7 @@ async def gban_all(msg):
         try:
             banreason = banreason.join(msg.text.split(" ")[1:])
         except TypeError:
-            banreason = "[paperplane] GBan"
+            banreason = "[xbot] GBan"
     else:
         banid = msg.text.split(" ")[1]
         if banid.isnumeric():
@@ -49,7 +50,7 @@ async def gban_all(msg):
         try:
             banreason = banreason.join(msg.text.split(" ")[2:])
         except TypeError:
-            banreason = "[paperplane] GBan"
+            banreason = "[xbot] GBan"
     if not textx:
         await msg.edit(
             "Reply message missing! Might fail on many bots! Still attempting to Gban!"
