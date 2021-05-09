@@ -42,7 +42,9 @@ async def gban_all(msg):
             if msg.message.entities is not None:
                 probable_user_mention_entity = msg.message.entities[0]
 
-            if isinstance(probable_user_mention_entity, MessageEntityMentionName):
+            if isinstance(
+                    probable_user_mention_entity,
+                    MessageEntityMentionName):
                 banid = probable_user_mention_entity.user_id
         try:
             banreason = banreason.join(msg.text.split(" ")[2:])
@@ -94,7 +96,9 @@ async def fedban_all(msg):
             if msg.message.entities is not None:
                 probable_user_mention_entity = msg.message.entities[0]
 
-            if isinstance(probable_user_mention_entity, MessageEntityMentionName):
+            if isinstance(
+                    probable_user_mention_entity,
+                    MessageEntityMentionName):
                 banid = probable_user_mention_entity.user_id
         try:
             banreason = banreason.join(msg.text.split(" ")[2:])
@@ -166,16 +170,11 @@ async def remove_from_gban(chat):
     await chat.edit("`Removed this bot from the Gbanlist!`")
 
 
-CMD_HELP.update(
-    {
-        "fbans/gbans": [
-            "FBans/GBans",
-            " - `.gban`: Reply to a user to ban them in all the bots provided by you.\n"
-            " - `.fban`: Reply to a user to fban them in all the groups provided by you.\n"
-            " - `.addfban`: Add this group to the fbanlist.\n"
-            " - `.addgban`: Add this group to the gbanlist.\n"
-            " - `.removefban`: Remove this group from the fbanlist.\n"
-            " - `.removegban`: Remove this group from the gbanlist.\n",
-        ]
-    }
-)
+CMD_HELP.update({"fbans/gbans": ["FBans/GBans",
+                                 " - `.gban`: Reply to a user to ban them in all the bots provided by you.\n"
+                                 " - `.fban`: Reply to a user to fban them in all the groups provided by you.\n"
+                                 " - `.addfban`: Add this group to the fbanlist.\n"
+                                 " - `.addgban`: Add this group to the gbanlist.\n"
+                                 " - `.removefban`: Remove this group from the fbanlist.\n"
+                                 " - `.removegban`: Remove this group from the gbanlist.\n",
+                                 ]})
