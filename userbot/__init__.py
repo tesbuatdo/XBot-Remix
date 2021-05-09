@@ -15,7 +15,11 @@ from math import ceil
 from sys import version_info
 from dotenv import load_dotenv
 from pylast import LastFMNetwork, md5
+
 from pySmartDL import SmartDL
+from pymongo import MongoClient
+from redis import StrictRedis
+
 from requests import get
 from telethon.sessions import StringSession
 from telethon.sync import TelegramClient, custom, events
@@ -105,6 +109,7 @@ CONSOLE_LOGGER_VERBOSE = sb(os.environ.get(
 
 # SQL Database URI
 DB_URI = os.environ.get("DATABASE_URL") or None
+MONGO_DB_URI = os.environ.get("MONGO_DB_URI") or None
 
 # OCR API key
 OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY") or None
@@ -269,6 +274,32 @@ with bot:
             "valid entity. Check your environment variables/config.env file.")
         quit(1)
 
+# Init Mongo
+MONGOCLIENT = MongoClient(MONGO_DB_URI, 27017, serverSelectionTimeoutMS=1)
+MONGO = MONGOCLIENT.userbot
+
+
+def is_mongo_alive():
+    try:
+        MONGOCLIENT.server_info()
+    except BaseException as e:
+        print(e)
+        return False
+    return True
+
+
+# Init Redis
+# Redis will be hosted inside the docker container that hosts the bot
+# We need redis for just caching, so we just leave it to non-persistent
+REDIS = StrictRedis(host="localhost", port=6379, db=0)
+
+
+def is_redis_alive():
+    try:
+        REDIS.ping()
+        return True
+    except BaseException:
+        return False
 
 def paginate_help(page_number, loaded_modules, prefix):
     number_of_rows = 5
