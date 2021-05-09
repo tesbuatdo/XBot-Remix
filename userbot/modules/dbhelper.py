@@ -17,7 +17,8 @@ async def mute(chatid, userid):
 
 
 async def is_muted(chatid, userid):
-    is_user_muted = MONGO.mutes.find_one({"chat_id": chatid, "user_id": userid})
+    is_user_muted = MONGO.mutes.find_one(
+        {"chat_id": chatid, "user_id": userid})
 
     if not is_user_muted:
         return False
@@ -92,7 +93,8 @@ async def add_filter(chatid, keyword, msg):
     to_check = await get_filter(chatid, keyword)
 
     if not to_check:
-        MONGO.filters.insert_one({"chat_id": chatid, "keyword": keyword, "msg": msg})
+        MONGO.filters.insert_one(
+            {"chat_id": chatid, "keyword": keyword, "msg": msg})
         return True
 
     MONGO.filters.update_one(
@@ -184,7 +186,8 @@ async def add_list(chatid, name, items):
     to_check = await get_list(chatid, name)
 
     if not to_check:
-        MONGO.lists.insert_one({"chat_id": chatid, "name": name, "items": items})
+        MONGO.lists.insert_one(
+            {"chat_id": chatid, "name": name, "items": items})
 
         return True
 
@@ -252,7 +255,8 @@ async def approve(userid):
     if await approval(userid) is True:
         return False
 
-    MONGO.pmpermit.update_one({"user_id": userid}, {"$set": {"approval": True}})
+    MONGO.pmpermit.update_one({"user_id": userid}, {
+                              "$set": {"approval": True}})
     return True
 
 
@@ -260,7 +264,8 @@ async def block_pm(userid):
     if await approval(userid) is False:
         return False
 
-    MONGO.pmpermit.update_one({"user_id": userid}, {"$set": {"approval": False}})
+    MONGO.pmpermit.update_one({"user_id": userid}, {
+                              "$set": {"approval": False}})
 
     return True
 
@@ -418,7 +423,8 @@ async def set_time(country, timezone=1):
 
 # Weather
 async def get_weather():
-    return MONGO.misc.find_one({"weather_city": {"$exists": True}}, {"weather_city": 1})
+    return MONGO.misc.find_one(
+        {"weather_city": {"$exists": True}}, {"weather_city": 1})
 
 
 async def set_weather(city):
