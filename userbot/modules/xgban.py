@@ -23,7 +23,7 @@ from userbot.modules.dbhelper import (
 
 @register(outgoing=True, pattern="^.xgban")
 async def gban_all(msg):
-    extra = msg.pattern_match.group(1)
+    msg.pattern_match.group(1)
     if not is_mongo_alive():
         await msg.edit("`Database connections failing!`")
         return
