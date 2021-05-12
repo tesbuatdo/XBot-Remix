@@ -28,10 +28,10 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
 
 HEROKU_APP = heroku3.from_key(HEROKU_API_KEY).apps()[
-            Config.HEROKU_APP_NAME
-        ]
-    else:
-        HEROKU_APP = None
+    Config.HEROKU_APP_NAME
+]
+else:
+    HEROKU_APP = None
 except Exception:
     HEROKU_APP = None
 
