@@ -14,7 +14,6 @@ import sys
 import os
 import io
 import sys
-from heroku3 import from_key
 from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, HEROKU_API_KEY, HEROKU_APP_NAME
 from userbot.events import register
 from userbot.utils import time_formatter
