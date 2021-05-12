@@ -27,13 +27,7 @@ from PIL import Image
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
 
-HEROKU_APP = heroku3.from_key(HEROKU_API_KEY).apps()[
-    Config.HEROKU_APP_NAME
-]
-else:
-    HEROKU_APP = None
-except Exception:
-    HEROKU_APP = None
+HEROKU_APP = heroku3.from_key(HEROKU_API_KEY).apps()[HEROKU_APP_NAME]
 
 opener = urllib.request.build_opener()
 useragent = 'Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.70 Mobile Safari/537.36'
