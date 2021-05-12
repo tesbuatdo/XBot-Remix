@@ -14,7 +14,7 @@ import sys
 import os
 import io
 import sys
-from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, HEROKU_API_KEY, HEROKU_APP_NAME
 from userbot.events import register
 from userbot.utils import time_formatter
 import urllib
@@ -23,10 +23,17 @@ from bs4 import BeautifulSoup
 import re
 from PIL import Image
 
-
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
+
+HEROKU_APP = heroku3.from_key(HEROKU_API_KEY).apps()[
+            Config.HEROKU_APP_NAME
+        ]
+    else:
+        HEROKU_APP = None
+except Exception:
+    HEROKU_APP = None
 
 opener = urllib.request.build_opener()
 useragent = 'Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.70 Mobile Safari/537.36'
@@ -64,14 +71,15 @@ async def sleepybot(time):
 
 @register(outgoing=True, pattern="^.shutdown$")
 async def killdabot(event):
-    """ For .shutdown command, shut the bot down."""
-    await event.edit("`Shutdown *XBOT-REMIX*....`")
-    await asyncio.sleep(7)
-    await event.delete()
+    if event.fwd_from:
+        return
     if BOTLOG:
-        await event.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n"
-                                        "Bot dimatikan!!")
-    await bot.disconnect()
+        await event.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n" "Bot shut down")
+    await edit_or_reply(event, "`Turning off bot now ...Manually turn me on later`")
+    if HEROKU_APP is not None:
+        HEROKU_APP.process_formation()["worker"].scale(0)
+    else:
+        sys.exit(0)
 
 
 @register(outgoing=True, pattern="^.restart$")
