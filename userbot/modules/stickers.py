@@ -101,7 +101,7 @@ async def kang(args):
 
         u_name = user.username
         f_name = user.first_name
-        packname = f"sticker_by_{u_name}_{pack}X"
+        packname = f"sticker_by_{u_name}_{pack}"
         custom_packnick = f"{custompack}" or f"{f_name}"
         packnick = f"{custom_packnick} Vol.{pack}"
         cmd = "/newpack"
@@ -134,7 +134,7 @@ async def kang(args):
                 x = await conv.get_response()
                 while "120" in x.text:
                     pack += 1
-                    packname = f"sticker_by_{u_name}_{pack}X"
+                    packname = f"sticker_by_{u_name}_{pack}"
                     packnick = f"{custom_packnick} Vol.{pack}"
                     await args.edit(
                         "`Switching to Pack "
