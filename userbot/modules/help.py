@@ -25,7 +25,7 @@ async def help(event):
             await event.delete()
     else:
         await event.edit(f"**╭━━━━━━━━━━━━━━━━━━━━━╮**\
-            \n│   Help for [🔥XBOT-REMIX🔥]\
+            \n│   Help for [🔥TEGAR-x-BOT🔥]\
             \n╰━━━━━━━━━━━━━━━━━━━━━╯ \
             \n╭━━━━━━━━━━━━━━━━━━━━━╮\
             \n│   Untuk melihat lengkap Command\
