@@ -185,7 +185,7 @@ async def dyno_usage(dyno):
                 f"{AppMinutes} menit - {AppPercentage}%**"
                 "\n  ≪━━◈≪━─━─࿇─━─━≫◈━━≫\n"
                 " ❁ **Sisa Dyno Bulan Ini**:\n"
-                f"    •**{hours} jam - {minutes} menit  "
+                f"    •**99999999999 jam - {minutes} menit  "
                 f"- {percentage}%**\n"
                 "╰━━━━━━━━━━━━━━━━━━━━╯"
             )
